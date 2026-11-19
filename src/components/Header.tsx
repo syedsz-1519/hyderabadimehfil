@@ -85,9 +85,9 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
           <button
             type="button"
             onClick={() => handleNavClick('menu')}
-            className="inline-flex items-center justify-center px-3.5 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-[#C9A24B] to-[#E8A317] text-[#241600] text-xs font-bold uppercase rounded-lg shadow-md hover:brightness-110 active:scale-[0.98] transition-all tracking-wider cursor-pointer border border-[#FFDF9E]/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFF8F6]"
+            className="inline-flex items-center justify-center px-4 py-2 bg-gradient-to-r from-[#C9A24B] to-[#E8A317] text-[#241600] text-xs font-bold uppercase rounded-lg shadow-md hover:brightness-110 active:scale-[0.98] transition-all tracking-wider cursor-pointer border border-[#FFDF9E]/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFF8F6] whitespace-nowrap"
           >
-            [ MENU ]
+            Menu
           </button>
 
           <a

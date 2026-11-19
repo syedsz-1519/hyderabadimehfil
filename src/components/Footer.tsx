@@ -1,4 +1,4 @@
-import { Clock, Phone, MapPin, ArrowUpRight, Instagram, Sparkles } from 'lucide-react';
+import { Clock, Phone, MapPin, ArrowUpRight, Instagram } from 'lucide-react';
 import { RESTAURANT_INFO } from '../data/restaurantData';
 import { ResilientImage } from './ResilientImage';
 
@@ -30,7 +30,7 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-4 w-full max-w-md my-2">
             <div className="flex-1 h-px bg-gradient-to-r from-transparent to-[#C9A24B]/45" />
-            <Sparkles className="w-4 h-4 text-[#FFDF9E]" aria-hidden="true" />
+            <span className="w-2 h-2 rotate-45 border border-[#C9A24B]/70" aria-hidden="true" />
             <div className="flex-1 h-px bg-gradient-to-l from-transparent to-[#C9A24B]/45" />
           </div>
         </div>

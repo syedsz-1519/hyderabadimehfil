@@ -15,7 +15,6 @@ import {
   Navigation,
   Utensils,
   Flame,
-  Sparkles,
   ExternalLink,
 } from 'lucide-react';
 import { CONTACT_VIGNETTES, RESTAURANT_INFO } from '../data/restaurantData';
@@ -70,20 +69,17 @@ export function ContactPage() {
 
   return (
     <div className="flex flex-col w-full bg-[#FFF8F6]">
-      {/* 1. TOP ROYAL NIZAMI ARCH BANNER */}
+      {/* 1. TOP HEADER BANNER */}
       <section className="relative w-full bg-[#5A0F1F] text-[#FFF8F6] overflow-hidden py-14 lg:py-20 shadow-lg">
-        <div className="absolute inset-0 jaali-lattice pointer-events-none opacity-30" />
         <div className="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-[#795902]/25 blur-3xl pointer-events-none" />
         <div className="absolute -left-20 -bottom-20 w-80 h-80 rounded-full bg-[#3A000D]/70 blur-3xl pointer-events-none" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-5 sm:px-6 lg:px-12 text-center flex flex-col items-center">
           <div className="flex items-center gap-3 mb-4">
             <span className="w-10 sm:w-12 h-px bg-gradient-to-r from-transparent to-[#FDD275]" />
-            <Sparkles className="w-4 h-4 text-[#FDD275]" aria-hidden="true" />
             <span className="text-[11px] sm:text-xs uppercase tracking-[0.22em] text-[#FDD275] font-semibold">
-              MEHFIL-E-KHAS • ROYAL HOSPITALITY
+              290 Ilford Lane · London IG1 2LP
             </span>
-            <Sparkles className="w-4 h-4 text-[#FDD275]" aria-hidden="true" />
             <span className="w-10 sm:w-12 h-px bg-gradient-to-l from-transparent to-[#FDD275]" />
           </div>
 
@@ -109,7 +105,7 @@ export function ContactPage() {
           {CONTACT_VIGNETTES.map((item) => (
             <div
               key={item.title}
-              className="relative h-32 md:h-36 rounded-lg overflow-hidden group shadow-xs"
+              className="relative h-36 md:h-40 rounded-lg overflow-hidden group shadow-xs"
             >
               <ResilientImage
                 src={item.imageUrl}
@@ -117,9 +113,8 @@ export function ContactPage() {
                 fallbackLabel={item.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#3A000D]/80 via-transparent to-transparent flex items-end p-3">
-                <span className="text-xs uppercase tracking-wider text-[#FFF8F6] font-bold flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#E8A317]" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1B1411]/75 via-transparent to-transparent flex items-end p-3">
+                <span className="text-xs uppercase tracking-wider text-[#FFF8F6] font-bold">
                   {item.title}
                 </span>
               </div>
@@ -139,7 +134,7 @@ export function ContactPage() {
               <div className="flex items-center gap-2 mb-2 pt-1">
                 <Mail className="w-4 h-4 text-[#795902]" aria-hidden="true" />
                 <span className="text-xs uppercase tracking-[0.2em] text-[#795902] font-bold">
-                  Direct Correspondence
+                  Direct Inquiry
                 </span>
               </div>
 
@@ -148,8 +143,8 @@ export function ContactPage() {
               </h2>
 
               <p className="text-sm sm:text-base text-[#554243] mb-7 leading-relaxed">
-                Whether inquiring about table bookings, private dastarkhwan parties, or takeaway
-                orders, our hosts are at your royal service.
+                Whether inquiring about table bookings, group catering, or takeaway orders, our team
+                is happy to help.
               </p>
 
               <form noValidate onSubmit={handleSubmit} className="flex flex-col gap-5">
@@ -304,8 +299,8 @@ export function ContactPage() {
                     />
                     <div className="flex-1">
                       <p className="font-semibold">
-                        Shukriya, {submittedName}! Your message has been received with Nizami honor.
-                        We will contact you shortly.
+                        Thank you, {submittedName}! Your message has been received and our team will
+                        reply shortly.
                       </p>
                       <button
                         type="button"
@@ -367,7 +362,7 @@ export function ContactPage() {
                     {RESTAURANT_INFO.phoneDisplay}
                   </a>
                   <p className="text-sm text-[#554243]">
-                    Direct hotline for fast reservations &amp; fresh takeaway orders.
+                    Direct line for table reservations and fresh takeaway orders.
                   </p>
                 </div>
                 <a
@@ -390,7 +385,7 @@ export function ContactPage() {
                       OPENING HOURS
                     </span>
                   </div>
-                  <span className="px-3 py-1 rounded-full bg-[#FDD275]/50 text-[#5B4300] border border-[#C9A24B]/35 text-[11px] font-bold uppercase tracking-wider">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#795902]">
                     Fresh Dum Daily
                   </span>
                 </div>
@@ -434,7 +429,7 @@ export function ContactPage() {
               </div>
             </div>
 
-            {/* Embedded Map Card */}
+            {/* Embedded Google Map Card */}
             <div className="bg-[#FFF1EC] rounded-xl p-4 shadow-xs border border-[#C9A24B]/30 flex flex-col gap-3">
               <div className="flex items-center justify-between px-1 pt-1">
                 <div className="flex items-center gap-2">
@@ -447,14 +442,15 @@ export function ContactPage() {
               </div>
 
               <div className="w-full h-72 rounded-lg relative overflow-hidden flex flex-col justify-between p-4 border border-[#C9A24B]/30 bg-[#FAEBE5]">
-                <ResilientImage
-                  src={RESTAURANT_INFO.mapImageUrl}
-                  alt="Map showing 290 Ilford Lane, Ilford, IG1 2LP"
-                  fallbackLabel="290 Ilford Lane, Ilford"
-                  className="absolute inset-0 w-full h-full object-cover"
+                <iframe
+                  title="Map showing 290 Ilford Lane, Ilford, IG1 2LP"
+                  src={RESTAURANT_INFO.mapsEmbedUrl}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="absolute inset-0 w-full h-full border-0"
                 />
 
-                <div className="relative z-10 flex justify-end">
+                <div className="relative z-10 flex justify-end pointer-events-none">
                   <span className="bg-[#3A000D]/90 text-[#FFF8F6] backdrop-blur-md px-3 py-1 rounded-md text-xs uppercase font-semibold tracking-wider flex items-center gap-1.5 shadow-sm border border-[#C9A24B]/45">
                     <Navigation className="w-3.5 h-3.5 text-[#FDD275]" aria-hidden="true" />
                     <span>IG1 2LP</span>
@@ -491,7 +487,7 @@ export function ContactPage() {
         </div>
       </section>
 
-      {/* 4. NIZAMI HOSPITALITY PROMISE BANNER */}
+      {/* 4. VISIT INVITATION BANNER */}
       <section className="w-full bg-[#FAEBE5] py-10 px-5 sm:px-6 lg:px-12 border-t border-[#C9A24B]/20">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
           <div className="flex flex-col sm:flex-row items-center gap-4">
@@ -500,17 +496,17 @@ export function ContactPage() {
             </div>
             <div>
               <h3 className="font-serif text-xl font-semibold text-[#3A000D]">
-                The Nizami Dastarkhwan Experience
+                Visit Hyderabadi Mehfil in Ilford
               </h3>
               <p className="text-sm sm:text-base text-[#554243]">
-                Cooked slow in sealed clay handis with pure saffron, aged basmati &amp; royal spices.
+                Cooked slow in sealed handis with pure saffron, aged basmati rice, and fresh spices.
               </p>
             </div>
           </div>
 
           <a
             href={RESTAURANT_INFO.phoneHref}
-            className="px-6 py-3 bg-[#5A0F1F] hover:bg-[#3A000D] text-[#FFF8F6] text-xs sm:text-sm font-bold uppercase tracking-wider rounded-lg transition-colors inline-flex items-center gap-2 shadow-sm shrink-0"
+            className="px-6 py-3 bg-[#5A0F1F] hover:bg-[#3A000D] text-[#FFF8F6] text-xs sm:text-sm font-bold uppercase tracking-wider rounded-lg transition-colors inline-flex items-center gap-2 shadow-sm shrink-0 whitespace-nowrap"
           >
             <Phone className="w-4 h-4 text-[#FFDF9E]" aria-hidden="true" />
             <span>Book a Table</span>

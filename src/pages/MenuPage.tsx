@@ -127,31 +127,44 @@ export function MenuPage({ initialSection }: MenuPageProps) {
   const extrasItems = EXTRAS_ITEMS.filter((item) => matchesFilter(item.dietary));
   const lassiItems = LASSI_ITEMS.filter((item) => matchesFilter(item.dietary));
 
-  const renderPriceBadge = (price: string, large = false) => (
-    <div
-      className={`inline-flex items-baseline rounded-full bg-[#FFF1EC] border border-[#C9A24B]/45 shadow-xs shrink-0 ${
-        large ? 'px-3.5 py-1' : 'px-3 py-0.5'
+  const renderPrice = (price: string, large = false) => (
+    <span
+      className={`font-serif font-bold text-[#3A000D] tabular-nums tracking-tight shrink-0 ${
+        large ? 'text-xl sm:text-2xl' : 'text-base sm:text-lg'
       }`}
     >
-      <span className="text-xs font-semibold text-[#C9A24B] mr-0.5">£</span>
-      <span
-        className={`font-serif font-bold text-[#795902] tabular-nums tracking-tight ${
-          large ? 'text-xl sm:text-2xl' : 'text-base sm:text-lg'
-        }`}
-      >
-        {price}
-      </span>
-    </div>
+      <span className="text-xs font-semibold text-[#795902] mr-0.5">£</span>
+      {price}
+    </span>
   );
 
-  const renderDishThumb = (imageUrl: string | undefined, name: string, sizeClass = 'w-22 h-22 sm:w-24 sm:h-24') => {
+  const renderDishCardImage = (imageUrl: string | undefined, name: string) => {
     if (!imageUrl) return null;
     return (
       <button
         type="button"
         onClick={() => setLightboxDish({ name, imageUrl })}
         aria-label={`View photo of ${name}`}
-        className={`group/img relative ${sizeClass} rounded-xl overflow-hidden border border-[#C9A24B]/35 bg-[#F4E5E0] shrink-0 shadow-xs cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5A0F1F]`}
+        className="group/img relative w-full aspect-[4/3] overflow-hidden bg-[#F4E5E0] block cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5A0F1F]"
+      >
+        <ResilientImage
+          src={imageUrl}
+          alt={name}
+          fallbackLabel={name}
+          className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500 ease-out"
+        />
+      </button>
+    );
+  };
+
+  const renderListDishThumb = (imageUrl: string | undefined, name: string) => {
+    if (!imageUrl) return null;
+    return (
+      <button
+        type="button"
+        onClick={() => setLightboxDish({ name, imageUrl })}
+        aria-label={`View photo of ${name}`}
+        className="group/img relative w-28 sm:w-32 aspect-[4/3] rounded-lg overflow-hidden border border-[#C9A24B]/30 bg-[#F4E5E0] shrink-0 cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5A0F1F]"
       >
         <ResilientImage
           src={imageUrl}
@@ -165,16 +178,13 @@ export function MenuPage({ initialSection }: MenuPageProps) {
 
   return (
     <div className="flex flex-col w-full bg-gradient-to-b from-[#FFF8F6] via-[#FFF6EB] to-[#FFF1EC]">
-      {/* 1. REGAL DARK HERO BANNER */}
+      {/* 1. MENU HEADER BANNER */}
       <section className="relative w-full bg-[#3A000D] text-[#FFF8F6] overflow-hidden py-14 md:py-20">
-        <div className="absolute inset-0 jaali-lattice pointer-events-none opacity-30" />
-        <div className="absolute -top-28 -right-28 w-80 h-80 bg-[#5A0F1F] rounded-full blur-3xl opacity-60 pointer-events-none" />
-        <div className="absolute -bottom-24 -left-20 w-72 h-72 bg-[#795902] rounded-full blur-3xl opacity-20 pointer-events-none" />
-
+        <div className="absolute -top-28 -right-28 w-80 h-80 bg-[#5A0F1F] rounded-full blur-3xl opacity-50 pointer-events-none" />
         <div className="relative z-10 max-w-5xl mx-auto px-5 sm:px-6 lg:px-12 text-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#5A0F1F]/90 text-[#FFDF9E] text-xs font-bold uppercase tracking-[0.2em] mb-4 border border-[#C9A24B]/45">
+          <div className="inline-flex items-center gap-2 text-[#FFDF9E] text-xs font-bold uppercase tracking-[0.22em] mb-3">
             <UtensilsCrossed className="w-3.5 h-3.5 text-[#E8A317]" aria-hidden="true" />
-            <span>CHEF SELECTION</span>
+            <span>Chef Selection</span>
           </div>
 
           <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#FFF8F6] mb-4">
@@ -189,7 +199,7 @@ export function MenuPage({ initialSection }: MenuPageProps) {
 
           <p className="text-base sm:text-lg text-[#F4E5E0] max-w-2xl mx-auto mt-3 leading-relaxed">
             Experience the rich flavors of Hyderabad with our authentic chicken and lamb dum
-            biryani, served in a warm and inviting atmosphere at Hyderabadi Mehfil.
+            biryani, served fresh at 290 Ilford Lane.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mt-7 text-xs sm:text-sm font-semibold text-[#FFDF9E]">
@@ -228,7 +238,7 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                   key={category.id}
                   type="button"
                   onClick={() => scrollToSection(category.id)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all border shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5A0F1F] ${
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all border shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5A0F1F] whitespace-nowrap ${
                     isActive
                       ? 'bg-[#5A0F1F] text-[#FFF8F6] border-[#C9A24B] shadow-sm'
                       : 'bg-[#FAEBE5] text-[#554243] border-[#C9A24B]/25 hover:bg-[#F4E5E0] hover:text-[#3A000D]'
@@ -262,7 +272,7 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                   type="button"
                   aria-pressed={isSelected}
                   onClick={() => setDietaryFilter(option.id)}
-                  className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all border cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5A0F1F] ${
+                  className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all border cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5A0F1F] whitespace-nowrap ${
                     isSelected
                       ? isVegOption
                         ? 'bg-[#15803D] text-white border-[#15803D] shadow-xs'
@@ -289,16 +299,16 @@ export function MenuPage({ initialSection }: MenuPageProps) {
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
               <div>
                 <span className="text-xs font-bold uppercase tracking-widest text-[#795902]">
-                  Limited Royal Service
+                  Kitchen Schedule
                 </span>
                 <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#3A000D] mt-1">
                   DAILY &amp; WEEKEND SPECIAL
                 </h2>
                 <p className="text-sm sm:text-base text-[#554243] mt-1">
-                  Slow-cooked handis and royal heritage recipes prepared on scheduled calendar days.
+                  Slow-cooked handis and heritage recipes prepared on scheduled days of the week.
                 </p>
               </div>
-              <span className="self-start md:self-auto inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#3A000D] bg-[#FFF1EC] border border-[#C9A24B]/40 px-3.5 py-1.5 rounded-full">
+              <span className="self-start md:self-auto inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#795902]">
                 <CalendarClock className="w-4 h-4 text-[#795902]" aria-hidden="true" />
                 <span>Day-Wise Schedule</span>
               </span>
@@ -308,27 +318,25 @@ export function MenuPage({ initialSection }: MenuPageProps) {
               {specials.map((item) => (
                 <article
                   key={item.id}
-                  className="bg-white rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between border border-[#C9A24B]/30 hover:border-[#C9A24B]/60"
+                  className="bg-white rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between border border-[#C9A24B]/30 hover:border-[#C9A24B]/60"
                 >
                   <div>
-                    <div className="flex items-center justify-between gap-2 mb-4">
-                      <span className="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-[#5A0F1F] text-[#FFDF9E] border border-[#C9A24B]/45">
-                        {item.dayLabel}
-                      </span>
-                      {renderPriceBadge(item.price, true)}
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-serif text-xl font-semibold text-[#3A000D] mb-2">
-                          {item.name}
-                        </h3>
-                        <p className="text-sm text-[#554243] leading-relaxed">{item.description}</p>
+                    {renderDishCardImage(item.imageUrl, item.name)}
+                    <div className="p-6">
+                      <div className="flex items-baseline justify-between gap-2 mb-2">
+                        <span className="text-[11px] font-bold uppercase tracking-wider text-[#795902]">
+                          {item.dayLabel}
+                        </span>
+                        {renderPrice(item.price, true)}
                       </div>
-                      {renderDishThumb(item.imageUrl, item.name, 'w-20 h-20 sm:w-24 sm:h-24')}
+                      <h3 className="font-serif text-xl font-semibold text-[#3A000D] mb-2">
+                        {item.name}
+                      </h3>
+                      <p className="text-sm text-[#554243] leading-relaxed">{item.description}</p>
                     </div>
                   </div>
-                  <div className="mt-5 pt-3.5 border-t border-[#EEDFDA] flex items-center justify-between">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#795902]">
+                  <div className="px-6 py-3.5 border-t border-[#EEDFDA] flex items-center justify-between bg-[#FFFDFB]">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#554243]">
                       {item.scheduleTag}
                     </span>
                     <Flame className="w-4 h-4 text-[#C9A24B]" aria-hidden="true" />
@@ -362,7 +370,7 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                   }`}
                 >
                   <div>
-                    <div className="flex items-start justify-between gap-2 mb-2">
+                    <div className="flex items-start justify-between gap-2 mb-1.5">
                       <div className="flex items-center gap-2">
                         {item.isVeg && (
                           <span
@@ -374,17 +382,15 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                           {item.name}
                         </h3>
                       </div>
-                      {renderPriceBadge(item.price)}
+                      {renderPrice(item.price)}
                     </div>
                     {item.portion && (
                       <span
-                        className={`inline-block px-2.5 py-0.5 mb-3 rounded-full text-[10px] font-bold uppercase tracking-wider border ${
-                          item.isVeg
-                            ? 'bg-[#15803D]/10 border-[#15803D]/30 text-[#15803D]'
-                            : 'bg-[#F4E5E0] border-[#C9A24B]/30 text-[#3A000D]'
+                        className={`block text-[11px] font-bold uppercase tracking-wider mb-2.5 ${
+                          item.isVeg ? 'text-[#15803D]' : 'text-[#795902]'
                         }`}
                       >
-                        {item.isVeg ? `Veg · ${item.portion}` : item.portion}
+                        {item.isVeg ? `Vegetarian · ${item.portion}` : item.portion}
                       </span>
                     )}
                     <p className="text-sm text-[#554243] leading-relaxed">{item.description}</p>
@@ -406,11 +412,11 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                 TANDOOR
               </h2>
               <p className="text-sm sm:text-base text-[#554243] mt-1">
-                Charcoal grilled with house-ground marinades and saffron oils.
+                Charcoal grilled with house-ground marinades and aromatic oils.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {tandoor.map((item) => {
                 const activeTandoorOption = item.selectablePortions?.find(
                   (p) => p.label === tandooriPortion
@@ -422,18 +428,43 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                 return (
                   <article
                     key={item.id}
-                    className={`bg-white rounded-xl p-5 shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between border ${
+                    className={`bg-white rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between border ${
                       item.isVeg
                         ? 'border-[#15803D]/35 hover:border-[#15803D]/60'
                         : 'border-[#C9A24B]/30 hover:border-[#C9A24B]/60'
                     }`}
                   >
                     <div>
-                      <div className="flex items-center justify-between gap-2 mb-3">
-                        {renderPriceBadge(displayedPrice)}
+                      {renderDishCardImage(item.imageUrl, item.name)}
+                      <div className="p-5">
+                        <div className="flex items-center justify-between gap-2 mb-2">
+                          {item.badge ? (
+                            <span className="text-[11px] font-bold uppercase tracking-wider text-[#5A0F1F]">
+                              {item.badge}
+                            </span>
+                          ) : item.portion ? (
+                            <span
+                              className={`text-[11px] font-bold uppercase tracking-wider ${
+                                item.isVeg ? 'text-[#15803D]' : 'text-[#795902]'
+                              }`}
+                            >
+                              {item.isVeg ? `Veg · ${item.portion}` : item.portion}
+                            </span>
+                          ) : (
+                            <span className="text-[11px] font-bold uppercase tracking-wider text-[#795902]">
+                              Tandoor
+                            </span>
+                          )}
+                          {renderPrice(displayedPrice)}
+                        </div>
 
-                        {item.selectablePortions ? (
-                          <div className="flex gap-1 bg-[#FAEBE5] rounded-lg p-0.5 border border-[#C9A24B]/40">
+                        <h3 className="font-serif text-lg font-semibold text-[#3A000D] mb-1.5">
+                          {item.name}
+                        </h3>
+                        <p className="text-sm text-[#554243] leading-relaxed">{item.description}</p>
+
+                        {item.selectablePortions && (
+                          <div className="mt-4 inline-flex gap-1 bg-[#FAEBE5] rounded-lg p-1 border border-[#C9A24B]/35">
                             {item.selectablePortions.map((opt) => {
                               const selected = tandooriPortion === opt.label;
                               return (
@@ -443,7 +474,7 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                                   onClick={() =>
                                     setTandooriPortion(opt.label as 'Half' | 'Full')
                                   }
-                                  className={`px-2.5 py-0.5 text-xs font-bold rounded transition-colors cursor-pointer ${
+                                  className={`px-3 py-1 text-xs font-bold rounded-md transition-colors cursor-pointer whitespace-nowrap ${
                                     selected
                                       ? 'bg-[#5A0F1F] text-[#FFF8F6]'
                                       : 'text-[#554243] hover:text-[#3A000D]'
@@ -454,31 +485,7 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                               );
                             })}
                           </div>
-                        ) : item.badge ? (
-                          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#5A0F1F] text-[#FFF8F6] border border-[#C9A24B]/35">
-                            {item.badge}
-                          </span>
-                        ) : item.portion ? (
-                          <span
-                            className={`text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${
-                              item.isVeg
-                                ? 'text-[#15803D] bg-[#15803D]/10 border-[#15803D]/25'
-                                : 'text-[#795902] bg-[#F4E5E0] border-[#C9A24B]/25'
-                            }`}
-                          >
-                            {item.isVeg ? `Veg · ${item.portion}` : item.portion}
-                          </span>
-                        ) : null}
-                      </div>
-
-                      <div className="flex items-start justify-between gap-3">
-                        <div className="flex-1 min-w-0">
-                          <h3 className="font-serif text-lg font-semibold text-[#3A000D] mb-1.5">
-                            {item.name}
-                          </h3>
-                          <p className="text-sm text-[#554243] leading-relaxed">{item.description}</p>
-                        </div>
-                        {renderDishThumb(item.imageUrl, item.name, 'w-20 h-20')}
+                        )}
                       </div>
                     </div>
                   </article>
@@ -499,7 +506,7 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                 PLATTERS
               </h2>
               <p className="text-sm sm:text-base text-[#554243] mt-1">
-                Designed for grand sharing or bespoke personal tasting.
+                Crafted for solo tasting or sharing at the table.
               </p>
             </div>
 
@@ -509,70 +516,62 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                 return (
                   <article
                     key={platter.id}
-                    className="bg-white rounded-xl p-6 sm:p-7 shadow-xs hover:shadow-md transition-shadow border border-[#C9A24B]/35"
+                    className="bg-white rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-shadow border border-[#C9A24B]/35 flex flex-col"
                   >
-                    {platter.imageUrl && (
-                      <button
-                        type="button"
-                        onClick={() =>
-                          setLightboxDish({ name: platter.name, imageUrl: platter.imageUrl! })
-                        }
-                        aria-label={`View photo of ${platter.name}`}
-                        className="group/img relative w-full aspect-[16/10] rounded-xl overflow-hidden border border-[#C9A24B]/30 bg-[#F4E5E0] mb-5 block cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5A0F1F]"
-                      >
-                        <ResilientImage
-                          src={platter.imageUrl}
-                          alt={platter.name}
-                          fallbackLabel={platter.name}
-                          className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500 ease-out"
-                        />
-                      </button>
-                    )}
+                    {renderDishCardImage(platter.imageUrl, platter.name)}
 
-                    <div className="flex items-start justify-between gap-4 mb-3">
+                    <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
                       <div>
-                        <span className="inline-block px-3 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-[#FAEBE5] border border-[#C9A24B]/35 text-[#3A000D]">
-                          {platter.tag}
-                        </span>
-                        <h3 className="font-serif text-2xl font-semibold text-[#3A000D] mt-2">
-                          {platter.name}
-                        </h3>
+                        <div className="flex items-start justify-between gap-4 mb-2">
+                          <div>
+                            <span className="block text-[11px] font-bold uppercase tracking-wider text-[#795902]">
+                              {platter.tag}
+                            </span>
+                            <h3 className="font-serif text-2xl font-semibold text-[#3A000D] mt-1">
+                              {platter.name}
+                            </h3>
+                          </div>
+                          {renderPrice(platter.price, true)}
+                        </div>
+
+                        <p className="text-sm sm:text-base text-[#554243] mb-4">
+                          {platter.description}
+                        </p>
                       </div>
-                      {renderPriceBadge(platter.price, true)}
+
+                      <div>
+                        <button
+                          type="button"
+                          aria-expanded={isExpanded}
+                          onClick={() => togglePlatter(platter.id)}
+                          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#795902] hover:text-[#3A000D] transition-colors py-1.5 cursor-pointer"
+                        >
+                          <span>
+                            {isExpanded ? 'Hide Platter Contents' : 'Explore Platter Contents'}
+                          </span>
+                          <ChevronDown
+                            className={`w-4 h-4 transition-transform duration-200 ${
+                              isExpanded ? 'rotate-180' : ''
+                            }`}
+                            aria-hidden="true"
+                          />
+                        </button>
+
+                        {isExpanded && (
+                          <ul className="mt-4 pt-4 border-t border-[#EEDFDA] space-y-2">
+                            {platter.contents.map((line) => (
+                              <li
+                                key={line}
+                                className="flex items-center gap-2.5 text-sm text-[#211A17]"
+                              >
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#C9A24B] shrink-0" />
+                                <span>{line}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
                     </div>
-
-                    <p className="text-sm sm:text-base text-[#554243] mb-4">
-                      {platter.description}
-                    </p>
-
-                    <button
-                      type="button"
-                      aria-expanded={isExpanded}
-                      onClick={() => togglePlatter(platter.id)}
-                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#795902] hover:text-[#3A000D] transition-colors py-1.5 cursor-pointer"
-                    >
-                      <span>{isExpanded ? 'Hide Platter Contents' : 'Explore Platter Contents'}</span>
-                      <ChevronDown
-                        className={`w-4 h-4 transition-transform duration-200 ${
-                          isExpanded ? 'rotate-180' : ''
-                        }`}
-                        aria-hidden="true"
-                      />
-                    </button>
-
-                    {isExpanded && (
-                      <ul className="mt-4 pt-4 border-t border-[#EEDFDA] space-y-2">
-                        {platter.contents.map((line) => (
-                          <li
-                            key={line}
-                            className="flex items-center gap-2.5 text-sm text-[#211A17]"
-                          >
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#C9A24B] shrink-0" />
-                            <span>{line}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
                   </article>
                 );
               })}
@@ -580,19 +579,18 @@ export function MenuPage({ initialSection }: MenuPageProps) {
           </section>
         )}
 
-        {/* SECTION 5: HYDERABADI DUM BIRYANI (Selectable Portion Chips) */}
+        {/* SECTION 5: HYDERABADI DUM BIRYANI */}
         {biryanis.length > 0 && (
           <section id="biryani" className="scroll-mt-36">
             <div className="mb-8">
               <span className="text-xs font-bold uppercase tracking-widest text-[#795902]">
-                Crown Jewel of Nizam&apos;s Kitchen
+                Signature Handi Biryanis
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#3A000D] mt-1">
                 HYDERABADI DUM BIRYANI
               </h2>
               <p className="text-sm sm:text-base text-[#554243] mt-1">
-                Slow-cooked in dough-sealed handis with long-grain basmati, saffron, and whole royal
-                spices.
+                Slow-cooked in sealed handis with long-grain basmati, saffron, and whole spices.
               </p>
             </div>
 
@@ -605,85 +603,74 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                 return (
                   <article
                     key={biryani.id}
-                    className="bg-gradient-to-br from-white via-[#FFFDF9] to-[#FFF5E6] rounded-2xl p-6 sm:p-7 shadow-sm flex flex-col justify-between border-2 border-[#C9A24B]/45 hover:border-[#C9A24B] transition-colors"
+                    className="bg-white rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between border-2 border-[#C9A24B]/45 hover:border-[#C9A24B] transition-colors"
                   >
                     <div>
-                      {biryani.imageUrl && (
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setLightboxDish({ name: biryani.name, imageUrl: biryani.imageUrl! })
-                          }
-                          aria-label={`View photo of ${biryani.name}`}
-                          className="group/img relative w-full aspect-[16/10] rounded-xl overflow-hidden border border-[#C9A24B]/35 bg-[#F4E5E0] mb-5 block cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5A0F1F]"
-                        >
-                          <ResilientImage
-                            src={biryani.imageUrl}
-                            alt={biryani.name}
-                            fallbackLabel={biryani.name}
-                            className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500 ease-out"
-                          />
-                        </button>
-                      )}
+                      {renderDishCardImage(biryani.imageUrl, biryani.name)}
 
-                      <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-                        <span className="px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-[#5A0F1F] text-[#FFDF9E] border border-[#C9A24B]/50">
-                          {biryani.tag}
-                        </span>
-                        <div className="text-right">
-                          {renderPriceBadge(selectedSize.price, true)}
-                          <span className="block text-[10px] font-semibold uppercase tracking-wider text-[#554243] mt-1">
-                            {selectedSize.label} portion
+                      <div className="p-6 sm:p-7">
+                        <div className="flex flex-wrap items-baseline justify-between gap-3 mb-2">
+                          <span className="text-[11px] font-bold uppercase tracking-wider text-[#795902]">
+                            {biryani.tag}
                           </span>
+                          <div className="text-right">
+                            {renderPrice(selectedSize.price, true)}
+                            <span className="block text-[10px] font-semibold uppercase tracking-wider text-[#554243]">
+                              {selectedSize.label} portion
+                            </span>
+                          </div>
+                        </div>
+
+                        <h3 className="font-serif text-2xl font-bold text-[#3A000D] mb-2">
+                          {biryani.name}
+                        </h3>
+                        <p className="text-sm sm:text-base text-[#554243] leading-relaxed mb-6">
+                          {biryani.description}
+                        </p>
+
+                        {/* Selectable Portion Size Controls */}
+                        <div className="bg-[#FFF1EC] p-4 rounded-xl mb-5 border border-[#C9A24B]/30">
+                          <span className="block text-[11px] font-bold uppercase tracking-wider text-[#554243] mb-2.5">
+                            Select Portion Size:
+                          </span>
+                          <div className="grid grid-cols-3 gap-2">
+                            {biryani.sizes.map((size) => {
+                              const active = selectedSizeKey === size.key;
+                              return (
+                                <button
+                                  key={size.key}
+                                  type="button"
+                                  aria-pressed={active}
+                                  onClick={() =>
+                                    setBiryaniSizes((prev) => ({
+                                      ...prev,
+                                      [biryani.id]: size.key,
+                                    }))
+                                  }
+                                  className={`py-2.5 px-2 sm:px-3 text-center rounded-xl text-xs sm:text-sm font-bold transition-all border cursor-pointer ${
+                                    active
+                                      ? 'bg-[#5A0F1F] text-[#FFF8F6] border-[#C9A24B] shadow-sm'
+                                      : 'bg-[#FAEBE5] text-[#554243] border-[#EEDFDA] hover:bg-[#F4E5E0] hover:text-[#3A000D]'
+                                  }`}
+                                >
+                                  <span className="block">{size.label}</span>
+                                  <span className="block text-[11px] font-normal opacity-90">
+                                    {size.serves}
+                                  </span>
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        <div className="pt-4 border-t border-[#EEDFDA] flex items-center gap-2 text-xs sm:text-sm text-[#554243]">
+                          <CheckCircle2
+                            className="w-4 h-4 text-[#795902] shrink-0"
+                            aria-hidden="true"
+                          />
+                          <span>{biryani.accompaniment}</span>
                         </div>
                       </div>
-
-                      <h3 className="font-serif text-2xl font-bold text-[#3A000D] mb-2">
-                        {biryani.name}
-                      </h3>
-                      <p className="text-sm sm:text-base text-[#554243] leading-relaxed mb-6">
-                        {biryani.description}
-                      </p>
-
-                      {/* Selectable Portion Size Chips */}
-                      <div className="bg-[#FFF1EC] p-4 rounded-xl mb-5 border border-[#C9A24B]/30">
-                        <span className="block text-[11px] font-bold uppercase tracking-wider text-[#554243] mb-2.5">
-                          Select Portion Size:
-                        </span>
-                        <div className="grid grid-cols-3 gap-2">
-                          {biryani.sizes.map((size) => {
-                            const active = selectedSizeKey === size.key;
-                            return (
-                              <button
-                                key={size.key}
-                                type="button"
-                                aria-pressed={active}
-                                onClick={() =>
-                                  setBiryaniSizes((prev) => ({
-                                    ...prev,
-                                    [biryani.id]: size.key,
-                                  }))
-                                }
-                                className={`py-2.5 px-2 sm:px-3 text-center rounded-xl text-xs sm:text-sm font-bold transition-all border cursor-pointer ${
-                                  active
-                                    ? 'bg-[#5A0F1F] text-[#FFF8F6] border-[#C9A24B] shadow-sm'
-                                    : 'bg-[#FAEBE5] text-[#554243] border-[#EEDFDA] hover:bg-[#F4E5E0] hover:text-[#3A000D]'
-                                }`}
-                              >
-                                <span className="block">{size.label}</span>
-                                <span className="block text-[11px] font-normal opacity-90">
-                                  {size.serves}
-                                </span>
-                              </button>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="pt-4 border-t border-[#EEDFDA] flex items-center gap-2 text-xs sm:text-sm text-[#554243]">
-                      <CheckCircle2 className="w-4 h-4 text-[#795902] shrink-0" aria-hidden="true" />
-                      <span>{biryani.accompaniment}</span>
                     </div>
                   </article>
                 );
@@ -715,13 +702,16 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                       key={dish.id}
                       className="bg-white p-5 rounded-xl shadow-xs flex items-center justify-between gap-4 border border-[#C9A24B]/30 hover:border-[#C9A24B]/60 transition-colors"
                     >
-                      <div>
-                        <h3 className="font-serif text-lg sm:text-xl font-semibold text-[#3A000D]">
-                          {dish.name}
-                        </h3>
-                        <p className="text-sm text-[#554243] mt-1">{dish.description}</p>
+                      <div className="flex items-center gap-4 min-w-0 flex-1">
+                        {renderListDishThumb(dish.imageUrl, dish.name)}
+                        <div className="min-w-0">
+                          <h3 className="font-serif text-lg sm:text-xl font-semibold text-[#3A000D]">
+                            {dish.name}
+                          </h3>
+                          <p className="text-sm text-[#554243] mt-1">{dish.description}</p>
+                        </div>
                       </div>
-                      {renderPriceBadge(dish.price)}
+                      {renderPrice(dish.price)}
                     </article>
                   ))}
                 </div>
@@ -749,22 +739,20 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                       className="bg-white p-5 rounded-xl shadow-xs flex items-center justify-between gap-4 border border-[#C9A24B]/30 hover:border-[#C9A24B]/60 transition-colors"
                     >
                       <div className="flex items-center gap-4 min-w-0 flex-1">
-                        {renderDishThumb(dish.imageUrl, dish.name, 'w-18 h-18 sm:w-20 sm:h-20')}
+                        {renderListDishThumb(dish.imageUrl, dish.name)}
                         <div className="min-w-0">
-                          <div className="flex flex-wrap items-center gap-2">
-                            <h3 className="font-serif text-lg sm:text-xl font-semibold text-[#3A000D]">
-                              {dish.name}
-                            </h3>
-                            {dish.badge && (
-                              <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-[#5A0F1F] text-[#FFDF9E] uppercase font-bold tracking-wider border border-[#C9A24B]/35">
-                                {dish.badge}
-                              </span>
-                            )}
-                          </div>
+                          {dish.badge && (
+                            <span className="block text-[10px] uppercase font-bold tracking-wider text-[#795902] mb-0.5">
+                              {dish.badge}
+                            </span>
+                          )}
+                          <h3 className="font-serif text-lg sm:text-xl font-semibold text-[#3A000D]">
+                            {dish.name}
+                          </h3>
                           <p className="text-sm text-[#554243] mt-1">{dish.description}</p>
                         </div>
                       </div>
-                      {renderPriceBadge(dish.price)}
+                      {renderPrice(dish.price)}
                     </article>
                   ))}
                 </div>
@@ -793,52 +781,52 @@ export function MenuPage({ initialSection }: MenuPageProps) {
               {mandis.map((mandi) => (
                 <article
                   key={mandi.id}
-                  className="bg-white rounded-xl p-6 shadow-xs flex flex-col justify-between border border-[#C9A24B]/30 hover:border-[#C9A24B]/60 transition-colors"
+                  className="bg-white rounded-xl overflow-hidden shadow-xs flex flex-col justify-between border border-[#C9A24B]/30 hover:border-[#C9A24B]/60 transition-colors"
                 >
-                  <div className="flex items-start justify-between gap-3.5 mb-5">
-                    <div className="flex-1 min-w-0">
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-[#795902] px-2.5 py-0.5 rounded-full bg-[#F4E5E0] border border-[#C9A24B]/30 inline-block">
+                  <div>
+                    {renderDishCardImage(mandi.imageUrl, mandi.name)}
+                    <div className="p-6">
+                      <span className="block text-[11px] font-bold uppercase tracking-wider text-[#795902]">
                         {mandi.tag}
                       </span>
-                      <h3 className="font-serif text-2xl font-bold text-[#3A000D] mt-2.5 mb-2">
+                      <h3 className="font-serif text-2xl font-bold text-[#3A000D] mt-1.5 mb-2">
                         {mandi.name}
                       </h3>
-                      <p className="text-sm text-[#554243] leading-relaxed">
-                        {mandi.description}
-                      </p>
+                      <p className="text-sm text-[#554243] leading-relaxed">{mandi.description}</p>
                     </div>
-                    {renderDishThumb(mandi.imageUrl, mandi.name, 'w-22 h-22 sm:w-24 sm:h-24')}
                   </div>
 
-                  <div className="bg-[#FFF1EC] p-3.5 rounded-xl space-y-2 border border-[#C9A24B]/30">
-                    {mandi.tiers.map((tier, index) => (
-                      <div
-                        key={tier.label}
-                        className={`flex items-center justify-between text-sm ${
-                          index === mandi.tiers.length - 1 && mandi.tiers.length > 1
-                            ? 'pt-1.5 border-t border-[#EEDFDA]'
-                            : ''
-                        }`}
-                      >
-                        <span
-                          className={
-                            tier.highlight
-                              ? 'text-[#3A000D] font-bold'
-                              : 'text-[#554243] font-medium'
-                          }
-                        >
-                          {tier.label}:
-                        </span>
-                        <span
-                          className={`font-bold tabular-nums ${
-                            tier.highlight ? 'text-[#795902] text-base' : 'text-[#3A000D]'
+                  <div className="px-6 pb-6">
+                    <div className="bg-[#FFF1EC] p-3.5 rounded-xl space-y-2 border border-[#C9A24B]/30">
+                      {mandi.tiers.map((tier, index) => (
+                        <div
+                          key={tier.label}
+                          className={`flex items-center justify-between text-sm ${
+                            index === mandi.tiers.length - 1 && mandi.tiers.length > 1
+                              ? 'pt-1.5 border-t border-[#EEDFDA]'
+                              : ''
                           }`}
                         >
-                          <span className="text-xs text-[#C9A24B] mr-0.5">£</span>
-                          {tier.price}
-                        </span>
-                      </div>
-                    ))}
+                          <span
+                            className={
+                              tier.highlight
+                                ? 'text-[#3A000D] font-bold'
+                                : 'text-[#554243] font-medium'
+                            }
+                          >
+                            {tier.label}:
+                          </span>
+                          <span
+                            className={`font-bold tabular-nums ${
+                              tier.highlight ? 'text-[#795902] text-base' : 'text-[#3A000D]'
+                            }`}
+                          >
+                            <span className="text-xs text-[#C9A24B] mr-0.5">£</span>
+                            {tier.price}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </article>
               ))}
@@ -867,20 +855,18 @@ export function MenuPage({ initialSection }: MenuPageProps) {
               {vegItems.map((item) => (
                 <article
                   key={item.id}
-                  className="bg-white rounded-xl p-6 shadow-xs flex flex-col justify-between border border-[#15803D]/30 hover:border-[#15803D]/60 transition-colors"
+                  className="bg-white rounded-xl overflow-hidden shadow-xs flex flex-col justify-between border border-[#15803D]/30 hover:border-[#15803D]/60 transition-colors"
                 >
                   <div>
-                    <div className="flex items-start justify-between gap-2 mb-3">
-                      <h3 className="font-serif text-xl font-semibold text-[#3A000D]">
-                        {item.name}
-                      </h3>
-                      {renderPriceBadge(item.price)}
-                    </div>
-                    <div className="flex items-start gap-3.5">
-                      <p className="text-sm text-[#554243] leading-relaxed flex-1">
-                        {item.description}
-                      </p>
-                      {renderDishThumb(item.imageUrl, item.name, 'w-20 h-20')}
+                    {renderDishCardImage(item.imageUrl, item.name)}
+                    <div className="p-6">
+                      <div className="flex items-start justify-between gap-2 mb-2">
+                        <h3 className="font-serif text-xl font-semibold text-[#3A000D]">
+                          {item.name}
+                        </h3>
+                        {renderPrice(item.price)}
+                      </div>
+                      <p className="text-sm text-[#554243] leading-relaxed">{item.description}</p>
                     </div>
                   </div>
                 </article>
@@ -900,7 +886,7 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                 MEHFIL-E-ROTI
               </h2>
               <p className="text-sm sm:text-base text-[#554243] mt-1">
-                Freshly slapped against hot earthen walls and brushed with golden clarified butter.
+                Freshly baked in our clay tandoor and brushed with melted butter.
               </p>
             </div>
 
@@ -908,17 +894,17 @@ export function MenuPage({ initialSection }: MenuPageProps) {
               {rotiItems.map((item) => (
                 <article
                   key={item.id}
-                  className="bg-white p-4 rounded-xl shadow-xs text-center border border-[#C9A24B]/30 hover:border-[#C9A24B]/60 transition-colors flex flex-col items-center justify-between gap-2"
+                  className="bg-white rounded-xl overflow-hidden shadow-xs text-center border border-[#C9A24B]/30 hover:border-[#C9A24B]/60 transition-colors flex flex-col justify-between"
                 >
-                  <div className="flex flex-col items-center gap-2">
-                    {renderPriceBadge(item.price)}
-                    {renderDishThumb(item.imageUrl, item.name, 'w-16 h-16')}
-                  </div>
                   <div>
-                    <h3 className="font-serif text-base font-bold text-[#3A000D] mb-1">
-                      {item.name}
-                    </h3>
-                    <p className="text-xs text-[#554243] leading-snug">{item.description}</p>
+                    {renderDishCardImage(item.imageUrl, item.name)}
+                    <div className="p-4">
+                      <div className="mb-1.5">{renderPrice(item.price)}</div>
+                      <h3 className="font-serif text-base font-bold text-[#3A000D] mb-1">
+                        {item.name}
+                      </h3>
+                      <p className="text-xs text-[#554243] leading-snug">{item.description}</p>
+                    </div>
                   </div>
                 </article>
               ))}
@@ -947,7 +933,7 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                       className="flex items-center justify-between py-3 first:pt-1 last:pb-1"
                     >
                       <span className="text-base font-semibold text-[#3A000D]">{extra.name}</span>
-                      {renderPriceBadge(extra.price)}
+                      {renderPrice(extra.price)}
                     </div>
                   ))}
                 </div>
@@ -958,7 +944,7 @@ export function MenuPage({ initialSection }: MenuPageProps) {
               <section id="lassi" className="scroll-mt-36">
                 <div className="mb-6">
                   <span className="text-xs font-bold uppercase tracking-widest text-[#795902]">
-                    Chilled Royal Beverages
+                    Chilled Yogurt Drinks
                   </span>
                   <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#3A000D] mt-1">
                     MEHFIL-E-LASSI
@@ -977,7 +963,7 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                     >
                       <div>
                         {lassi.badge && (
-                          <span className="inline-block text-[10px] px-2.5 py-0.5 rounded-full bg-[#795902] text-white uppercase font-bold tracking-wider mb-1.5">
+                          <span className="block text-[10px] text-[#795902] uppercase font-bold tracking-wider mb-1">
                             {lassi.badge}
                           </span>
                         )}
@@ -986,7 +972,7 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                         </h3>
                         <p className="text-sm text-[#554243] mt-0.5">{lassi.description}</p>
                       </div>
-                      {renderPriceBadge(lassi.price, Boolean(lassi.badge))}
+                      {renderPrice(lassi.price, Boolean(lassi.badge))}
                     </article>
                   ))}
                 </div>
@@ -1009,7 +995,10 @@ export function MenuPage({ initialSection }: MenuPageProps) {
         >
           <div className="relative max-w-2xl w-full bg-[#FFF8F6] rounded-xl overflow-hidden shadow-2xl border border-[#C9A24B]/50">
             <div className="flex items-center justify-between gap-4 px-5 py-3.5 bg-[#3A000D] text-[#FFF8F6] border-b border-[#C9A24B]/30">
-              <span id="menu-lightbox-title" className="font-serif text-base sm:text-lg text-[#FFDF9E] truncate">
+              <span
+                id="menu-lightbox-title"
+                className="font-serif text-base sm:text-lg text-[#FFDF9E] truncate"
+              >
                 {lightboxDish.name}
               </span>
               <button

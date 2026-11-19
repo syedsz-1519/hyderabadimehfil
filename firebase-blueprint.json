@@ -1,0 +1,53 @@
+{
+  "entities": {
+    "Review": {
+      "title": "Review",
+      "description": "A verified diner reflection submitted on the Hyderabadi Mehfil website.",
+      "type": "object",
+      "properties": {
+        "authorUid": {
+          "type": "string",
+          "description": "Firebase Auth UID of the authenticated diner who submitted the review.",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of the guest reviewer.",
+          "minLength": 2,
+          "maxLength": 60
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Guest context or location subtitle such as Verified Diner · Ilford.",
+          "minLength": 2,
+          "maxLength": 60
+        },
+        "stars": {
+          "type": "integer",
+          "description": "Whole-number star rating from 1 to 5."
+        },
+        "quote": {
+          "type": "string",
+          "description": "Written dining reflection from the guest.",
+          "minLength": 10,
+          "maxLength": 500
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp recorded when the review was created."
+        }
+      },
+      "required": ["authorUid", "name", "subtitle", "stars", "quote", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/reviews/{reviewId}": {
+      "schema": {
+        "$ref": "#/entities/Review"
+      },
+      "description": "Publicly readable verified guest reviews created by authenticated diners."
+    }
+  }
+}
