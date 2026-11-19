@@ -23,6 +23,7 @@ import {
   MENU_CATEGORIES,
   MURGH_CURRIES,
   PLATTER_ITEMS,
+  RESTAURANT_INFO,
   ROTI_ITEMS,
   STARTERS_ITEMS,
   TANDOOR_ITEMS,
@@ -179,15 +180,31 @@ export function MenuPage({ initialSection }: MenuPageProps) {
   return (
     <div className="flex flex-col w-full bg-gradient-to-b from-[#FFF8F6] via-[#FFF6EB] to-[#FFF1EC]">
       {/* 1. MENU HEADER BANNER */}
-      <section className="relative w-full bg-[#3A000D] text-[#FFF8F6] overflow-hidden py-14 md:py-20">
-        <div className="absolute -top-28 -right-28 w-80 h-80 bg-[#5A0F1F] rounded-full blur-3xl opacity-50 pointer-events-none" />
+      <section className="relative w-full bg-[#261410] text-[#FFF8F6] overflow-hidden py-16 md:py-24">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <ResilientImage
+            src={RESTAURANT_INFO.menuHeroImageUrl}
+            alt="Hyderabadi Mehfil feast spread of copper biryani handis, charcoal kebabs, curries, and garlic naan"
+            eager
+            className="w-full h-full object-cover object-center opacity-85"
+          />
+        </div>
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-t from-[#3A000D]/80 via-[#3A000D]/45 to-[#1B1411]/35 pointer-events-none"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(27,20,17,0.44)_0%,transparent_72%)] pointer-events-none"
+        />
+
         <div className="relative z-10 max-w-5xl mx-auto px-5 sm:px-6 lg:px-12 text-center">
-          <div className="inline-flex items-center gap-2 text-[#FFDF9E] text-xs font-bold uppercase tracking-[0.22em] mb-3">
+          <div className="inline-flex items-center gap-2 text-[#FFDF9E] text-xs font-bold uppercase tracking-[0.22em] mb-3 drop-shadow-[0_2px_6px_rgba(0,0,0,0.65)]">
             <UtensilsCrossed className="w-3.5 h-3.5 text-[#E8A317]" aria-hidden="true" />
             <span>Chef Selection</span>
           </div>
 
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#FFF8F6] mb-4">
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#FFF8F6] mb-4 drop-shadow-[0_4px_16px_rgba(0,0,0,0.75)]">
             MENU
           </h1>
 
@@ -197,22 +214,22 @@ export function MenuPage({ initialSection }: MenuPageProps) {
             <div className="flex-1 h-px bg-gradient-to-l from-transparent to-[#FFDF9E]/70" />
           </div>
 
-          <p className="text-base sm:text-lg text-[#F4E5E0] max-w-2xl mx-auto mt-3 leading-relaxed">
+          <p className="text-base sm:text-lg text-[#FFF8F6] max-w-2xl mx-auto mt-3 leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)]">
             Experience the rich flavors of Hyderabad with our authentic chicken and lamb dum
             biryani, served fresh at 290 Ilford Lane.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mt-7 text-xs sm:text-sm font-semibold text-[#FFDF9E]">
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mt-7 text-xs sm:text-sm font-semibold text-[#FFDF9E] drop-shadow-[0_2px_6px_rgba(0,0,0,0.65)]">
             <span className="inline-flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4 text-[#E8A317]" aria-hidden="true" />
               <span>100% Halal</span>
             </span>
-            <span className="text-[#C9A24B]/50">•</span>
+            <span className="text-[#C9A24B]/60">•</span>
             <span className="inline-flex items-center gap-1.5">
               <Flame className="w-4 h-4 text-[#E8A317]" aria-hidden="true" />
               <span>Authentic Dum Pukht</span>
             </span>
-            <span className="text-[#C9A24B]/50">•</span>
+            <span className="text-[#C9A24B]/60">•</span>
             <span className="inline-flex items-center gap-1.5">
               <Users className="w-4 h-4 text-[#E8A317]" aria-hidden="true" />
               <span>Feast Platters Available</span>
@@ -229,7 +246,7 @@ export function MenuPage({ initialSection }: MenuPageProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <div
             ref={navScrollRef}
-            className="flex items-center gap-2 overflow-x-auto py-3 no-scrollbar text-nowrap"
+            className="flex items-center lg:flex-wrap lg:justify-center gap-2 overflow-x-auto lg:overflow-x-visible py-2.5 no-scrollbar text-nowrap"
           >
             {MENU_CATEGORIES.map((category) => {
               const isActive = activeCategory === category.id;
@@ -363,37 +380,40 @@ export function MenuPage({ initialSection }: MenuPageProps) {
               {starters.map((item) => (
                 <article
                   key={item.id}
-                  className={`bg-white rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between border ${
+                  className={`bg-white rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between border ${
                     item.isVeg
                       ? 'border-[#15803D]/35 hover:border-[#15803D]/60'
                       : 'border-[#C9A24B]/30 hover:border-[#C9A24B]/60'
                   }`}
                 >
                   <div>
-                    <div className="flex items-start justify-between gap-2 mb-1.5">
-                      <div className="flex items-center gap-2">
-                        {item.isVeg && (
-                          <span
-                            title="Vegetarian"
-                            className="w-2.5 h-2.5 rounded-full bg-[#15803D] inline-block shrink-0"
-                          />
-                        )}
-                        <h3 className="font-serif text-xl font-semibold text-[#3A000D]">
-                          {item.name}
-                        </h3>
+                    {renderDishCardImage(item.imageUrl, item.name)}
+                    <div className="p-6">
+                      <div className="flex items-start justify-between gap-2 mb-1.5">
+                        <div className="flex items-center gap-2">
+                          {item.isVeg && (
+                            <span
+                              title="Vegetarian"
+                              className="w-2.5 h-2.5 rounded-full bg-[#15803D] inline-block shrink-0"
+                            />
+                          )}
+                          <h3 className="font-serif text-xl font-semibold text-[#3A000D]">
+                            {item.name}
+                          </h3>
+                        </div>
+                        {renderPrice(item.price)}
                       </div>
-                      {renderPrice(item.price)}
+                      {item.portion && (
+                        <span
+                          className={`block text-[11px] font-bold uppercase tracking-wider mb-2.5 ${
+                            item.isVeg ? 'text-[#15803D]' : 'text-[#795902]'
+                          }`}
+                        >
+                          {item.isVeg ? `Vegetarian · ${item.portion}` : item.portion}
+                        </span>
+                      )}
+                      <p className="text-sm text-[#554243] leading-relaxed">{item.description}</p>
                     </div>
-                    {item.portion && (
-                      <span
-                        className={`block text-[11px] font-bold uppercase tracking-wider mb-2.5 ${
-                          item.isVeg ? 'text-[#15803D]' : 'text-[#795902]'
-                        }`}
-                      >
-                        {item.isVeg ? `Vegetarian · ${item.portion}` : item.portion}
-                      </span>
-                    )}
-                    <p className="text-sm text-[#554243] leading-relaxed">{item.description}</p>
                   </div>
                 </article>
               ))}
@@ -961,16 +981,19 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                           : 'bg-white border-[#C9A24B]/30 hover:border-[#C9A24B]/60'
                       }`}
                     >
-                      <div>
-                        {lassi.badge && (
-                          <span className="block text-[10px] text-[#795902] uppercase font-bold tracking-wider mb-1">
-                            {lassi.badge}
-                          </span>
-                        )}
-                        <h3 className="font-serif text-lg sm:text-xl font-semibold text-[#3A000D]">
-                          {lassi.name}
-                        </h3>
-                        <p className="text-sm text-[#554243] mt-0.5">{lassi.description}</p>
+                      <div className="flex items-center gap-4 min-w-0 flex-1">
+                        {renderListDishThumb(lassi.imageUrl, lassi.name)}
+                        <div className="min-w-0">
+                          {lassi.badge && (
+                            <span className="block text-[10px] text-[#795902] uppercase font-bold tracking-wider mb-1">
+                              {lassi.badge}
+                            </span>
+                          )}
+                          <h3 className="font-serif text-lg sm:text-xl font-semibold text-[#3A000D]">
+                            {lassi.name}
+                          </h3>
+                          <p className="text-sm text-[#554243] mt-0.5">{lassi.description}</p>
+                        </div>
                       </div>
                       {renderPrice(lassi.price, Boolean(lassi.badge))}
                     </article>

@@ -133,16 +133,16 @@ export function ReviewModal({ isOpen, onClose }: ReviewModalProps) {
           handleResetAndClose();
         }
       }}
-      className="fixed inset-0 z-50 bg-[#1B1411]/75 backdrop-blur-sm flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 bg-[#141217]/80 backdrop-blur-sm flex items-center justify-center p-4"
     >
-      <div className="relative w-full max-w-lg bg-[#FFF8F6] rounded-xl shadow-2xl border border-[#C9A24B]/45 overflow-hidden">
+      <div className="relative w-full max-w-lg bg-[#211D25] rounded-xl shadow-2xl border border-[#D4AF37]/45 overflow-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between gap-4 px-6 py-4 bg-[#3A000D] text-[#FFF8F6] border-b border-[#C9A24B]/30">
+        <div className="flex items-center justify-between gap-4 px-6 py-4 bg-[#18151B] text-[#F7F1E3] border-b border-[#D4AF37]/30">
           <div>
-            <h2 id="write-review-title" className="font-serif text-xl sm:text-2xl font-semibold">
+            <h2 id="write-review-title" className="font-serif text-xl sm:text-2xl font-semibold text-[#ECC55F]">
               Write a Guest Review
             </h2>
-            <p className="text-xs text-[#EEDFDA] mt-0.5">
+            <p className="text-xs text-[#D8CFC4] mt-0.5">
               Share your experience dining at 290 Ilford Lane
             </p>
           </div>
@@ -151,7 +151,7 @@ export function ReviewModal({ isOpen, onClose }: ReviewModalProps) {
             aria-label="Close review modal"
             disabled={isSubmitting}
             onClick={handleResetAndClose}
-            className="p-1.5 rounded-full hover:bg-white/10 text-[#FFF8F6] transition-colors cursor-pointer disabled:opacity-50"
+            className="p-1.5 rounded-full hover:bg-white/10 text-[#F7F1E3] transition-colors cursor-pointer disabled:opacity-50"
           >
             <X className="w-5 h-5" aria-hidden="true" />
           </button>
@@ -159,19 +159,19 @@ export function ReviewModal({ isOpen, onClose }: ReviewModalProps) {
 
         {submitted ? (
           <div className="p-7 text-center">
-            <div className="w-12 h-12 rounded-full bg-[#15803D]/10 text-[#15803D] flex items-center justify-center mx-auto mb-4">
+            <div className="w-12 h-12 rounded-full bg-[#166534]/25 text-[#4ADE80] border border-[#4ADE80]/30 flex items-center justify-center mx-auto mb-4">
               <CheckCircle2 className="w-7 h-7" aria-hidden="true" />
             </div>
-            <h3 className="font-serif text-2xl font-semibold text-[#3A000D] mb-2">
+            <h3 className="font-serif text-2xl font-semibold text-[#F7F1E3] mb-2">
               Thank You for Your Review
             </h3>
-            <p className="text-sm text-[#554243] leading-relaxed mb-6">
+            <p className="text-sm text-[#D8CFC4] leading-relaxed mb-6">
               Your reflection has been saved and is now visible in Guest Reflections below.
             </p>
             <button
               type="button"
               onClick={handleResetAndClose}
-              className="px-6 py-2.5 bg-[#5A0F1F] hover:bg-[#3A000D] text-[#FFF8F6] text-xs font-bold uppercase tracking-wider rounded-lg transition-colors cursor-pointer"
+              className="px-6 py-2.5 bg-gradient-to-r from-[#C99B35] via-[#F0C75E] to-[#D4A63B] text-[#1D1810] text-xs font-bold uppercase tracking-wider rounded-lg transition-all hover:brightness-110 cursor-pointer"
             >
               Done
             </button>
@@ -180,7 +180,7 @@ export function ReviewModal({ isOpen, onClose }: ReviewModalProps) {
           <form noValidate onSubmit={handleSubmit} className="p-6 space-y-4">
             {/* Star Rating Selector */}
             <div>
-              <span className="block text-xs font-bold uppercase tracking-wider text-[#211A17] mb-2">
+              <span className="block text-xs font-bold uppercase tracking-wider text-[#F7F1E3] mb-2">
                 Your Rating
               </span>
               <div className="flex items-center gap-1.5" role="radiogroup" aria-label="Star rating">
@@ -196,18 +196,18 @@ export function ReviewModal({ isOpen, onClose }: ReviewModalProps) {
                       onMouseEnter={() => setHoveredRating(starValue)}
                       onMouseLeave={() => setHoveredRating(null)}
                       onClick={() => setRating(starValue)}
-                      className="p-1 rounded-md hover:scale-110 transition-transform cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5A0F1F]"
+                      className="p-1 rounded-md hover:scale-110 transition-transform cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F0C75E]"
                     >
                       <Star
                         className={`w-7 h-7 transition-colors ${
-                          filled ? 'text-[#E8A317] fill-[#E8A317]' : 'text-[#C9A24B]/40'
+                          filled ? 'text-[#F0C75E] fill-[#F0C75E]' : 'text-[#D4AF37]/35'
                         }`}
                         aria-hidden="true"
                       />
                     </button>
                   );
                 })}
-                <span className="ml-2 text-xs font-semibold text-[#554243] tabular-nums">
+                <span className="ml-2 text-xs font-semibold text-[#D8CFC4] tabular-nums">
                   {rating} / 5
                 </span>
               </div>
@@ -218,7 +218,7 @@ export function ReviewModal({ isOpen, onClose }: ReviewModalProps) {
               <div>
                 <label
                   htmlFor="review-name"
-                  className="block text-xs font-bold uppercase tracking-wider text-[#211A17] mb-1.5"
+                  className="block text-xs font-bold uppercase tracking-wider text-[#F7F1E3] mb-1.5"
                 >
                   Your Name *
                 </label>
@@ -230,14 +230,14 @@ export function ReviewModal({ isOpen, onClose }: ReviewModalProps) {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g. Ayesha K."
-                  className="w-full bg-white border border-[#DAC0C2] text-[#211A17] placeholder:text-[#877273] text-sm px-3.5 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E8A317]/40 focus:border-[#795902]"
+                  className="w-full bg-[#18151B] border border-[#D4AF37]/30 text-[#F7F1E3] placeholder:text-[#B4A89B] text-sm px-3.5 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F0C75E]/35 focus:border-[#F0C75E]"
                 />
               </div>
 
               <div>
                 <label
                   htmlFor="review-subtitle"
-                  className="block text-xs font-bold uppercase tracking-wider text-[#211A17] mb-1.5"
+                  className="block text-xs font-bold uppercase tracking-wider text-[#F7F1E3] mb-1.5"
                 >
                   Neighborhood or Visit
                 </label>
@@ -248,7 +248,7 @@ export function ReviewModal({ isOpen, onClose }: ReviewModalProps) {
                   value={subtitle}
                   onChange={(e) => setSubtitle(e.target.value)}
                   placeholder="e.g. Dined In · Ilford"
-                  className="w-full bg-white border border-[#DAC0C2] text-[#211A17] placeholder:text-[#877273] text-sm px-3.5 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E8A317]/40 focus:border-[#795902]"
+                  className="w-full bg-[#18151B] border border-[#D4AF37]/30 text-[#F7F1E3] placeholder:text-[#B4A89B] text-sm px-3.5 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F0C75E]/35 focus:border-[#F0C75E]"
                 />
               </div>
             </div>
@@ -258,11 +258,11 @@ export function ReviewModal({ isOpen, onClose }: ReviewModalProps) {
               <div className="flex items-baseline justify-between mb-1.5">
                 <label
                   htmlFor="review-quote"
-                  className="block text-xs font-bold uppercase tracking-wider text-[#211A17]"
+                  className="block text-xs font-bold uppercase tracking-wider text-[#F7F1E3]"
                 >
                   Your Review *
                 </label>
-                <span className="text-[11px] text-[#877273] tabular-nums">
+                <span className="text-[11px] text-[#B4A89B] tabular-nums">
                   {quote.length}/{REVIEW_CONSTRAINTS.QUOTE_MAX}
                 </span>
               </div>
@@ -274,21 +274,21 @@ export function ReviewModal({ isOpen, onClose }: ReviewModalProps) {
                 value={quote}
                 onChange={(e) => setQuote(e.target.value)}
                 placeholder="Tell future guests what you ordered and how your meal was..."
-                className="w-full bg-white border border-[#DAC0C2] text-[#211A17] placeholder:text-[#877273] text-sm p-3.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E8A317]/40 focus:border-[#795902] resize-y"
+                className="w-full bg-[#18151B] border border-[#D4AF37]/30 text-[#F7F1E3] placeholder:text-[#B4A89B] text-sm p-3.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F0C75E]/35 focus:border-[#F0C75E] resize-y"
               />
             </div>
 
             {/* Verified Reviewer Bar */}
-            <div className="rounded-lg bg-[#FFF1EC] border border-[#C9A24B]/35 p-3 flex flex-wrap items-center justify-between gap-2 text-xs">
+            <div className="rounded-lg bg-[#27222C] border border-[#D4AF37]/30 p-3 flex flex-wrap items-center justify-between gap-2 text-xs">
               {user && user.emailVerified ? (
                 <>
-                  <span className="text-[#3A000D] font-medium truncate">
-                    Posting as <strong className="font-semibold">{user.email}</strong>
+                  <span className="text-[#F7F1E3] font-medium truncate">
+                    Posting as <strong className="font-semibold text-[#ECC55F]">{user.email}</strong>
                   </span>
                   <button
                     type="button"
                     onClick={() => void signOutReviewer()}
-                    className="inline-flex items-center gap-1 text-[#795902] hover:text-[#3A000D] font-semibold cursor-pointer"
+                    className="inline-flex items-center gap-1 text-[#ECC55F] hover:text-[#F7F1E3] font-semibold cursor-pointer"
                   >
                     <LogOut className="w-3.5 h-3.5" aria-hidden="true" />
                     <span>Switch Account</span>
@@ -296,14 +296,14 @@ export function ReviewModal({ isOpen, onClose }: ReviewModalProps) {
                 </>
               ) : (
                 <>
-                  <span className="text-[#554243]">
+                  <span className="text-[#D8CFC4]">
                     Quick Google verification ensures genuine diner reviews.
                   </span>
                   <button
                     type="button"
                     disabled={isSigningIn}
                     onClick={handleGoogleSignIn}
-                    className="px-3 py-1.5 rounded-md bg-white border border-[#C9A24B]/50 text-[#3A000D] font-semibold hover:bg-[#FAEBE5] transition-colors cursor-pointer disabled:opacity-60 whitespace-nowrap"
+                    className="px-3 py-1.5 rounded-md bg-[#18151B] border border-[#D4AF37]/50 text-[#ECC55F] font-semibold hover:bg-[#322B39] transition-colors cursor-pointer disabled:opacity-60 whitespace-nowrap"
                   >
                     {isSigningIn ? 'Signing in...' : 'Sign in with Google'}
                   </button>
@@ -314,7 +314,7 @@ export function ReviewModal({ isOpen, onClose }: ReviewModalProps) {
             {errorMsg && (
               <p
                 role="alert"
-                className="text-xs font-medium text-[#BA1A1A] bg-[#BA1A1A]/5 border border-[#BA1A1A]/20 rounded-lg px-3 py-2"
+                className="text-xs font-medium text-[#FCA5A5] bg-[#7F1D1D]/25 border border-[#FCA5A5]/35 rounded-lg px-3 py-2"
               >
                 {errorMsg}
               </p>
@@ -325,14 +325,14 @@ export function ReviewModal({ isOpen, onClose }: ReviewModalProps) {
                 type="button"
                 disabled={isSubmitting}
                 onClick={handleResetAndClose}
-                className="px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-[#554243] hover:text-[#3A000D] cursor-pointer"
+                className="px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-[#D8CFC4] hover:text-[#F7F1E3] cursor-pointer"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={isSubmitting || isSigningIn}
-                className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-[#C9A24B] via-[#E8A317] to-[#C9A24B] text-[#241600] text-xs font-bold uppercase tracking-wider rounded-lg shadow-sm hover:brightness-105 transition-all cursor-pointer disabled:opacity-60 whitespace-nowrap"
+                className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-[#C99B35] via-[#F0C75E] to-[#D4A63B] text-[#1D1810] text-xs font-bold uppercase tracking-wider rounded-lg shadow-sm hover:brightness-110 transition-all cursor-pointer disabled:opacity-60 whitespace-nowrap"
               >
                 {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />}
                 <span>

@@ -4,19 +4,16 @@
   --font-serif: "Playfair Display", Georgia, Cambria, "Times New Roman", serif;
   --font-sans: "Manrope", ui-sans-serif, system-ui, -apple-system, sans-serif;
 
-  --color-burgundy: #5A0F1F;
-  --color-burgundy-deep: #3A000D;
-  --color-saffron: #E8A317;
-  --color-gold: #C9A24B;
-  --color-gold-ink: #795902;
-  --color-cream: #FBF5EA;
-  --color-surface: #FFF8F6;
-  --color-surface-low: #FFF1EC;
-  --color-surface-mid: #FAEBE5;
-  --color-surface-high: #F4E5E0;
-  --color-charcoal: #1B1411;
-  --color-ink: #211A17;
-  --color-ink-muted: #554243;
+  --color-obsidian-deep: #141217;
+  --color-obsidian: #1A171D;
+  --color-charcoal-slate: #211D25;
+  --color-surface: #27222C;
+  --color-surface-elevated: #2E2834;
+  --color-saffron: #F0C75E;
+  --color-gold: #D4AF37;
+  --color-gold-bright: #ECC55F;
+  --color-ivory: #F7F1E3;
+  --color-ink-muted: #D8CFC4;
 }
 
 @layer base {
@@ -24,8 +21,8 @@
   body {
     margin: 0;
     padding: 0;
-    background-color: #FFF8F6;
-    color: #211A17;
+    background-color: #1A171D;
+    color: #F7F1E3;
     font-family: var(--font-sans);
     overscroll-behavior-y: none;
   }
@@ -49,8 +46,8 @@
 
 .jaali-lattice {
   background-image:
-    radial-gradient(circle at center, rgba(201, 162, 75, 0.11) 1.5px, transparent 1.5px),
-    radial-gradient(circle at center, rgba(201, 162, 75, 0.06) 1.5px, transparent 1.5px);
+    radial-gradient(circle at center, rgba(212, 175, 55, 0.13) 1.5px, transparent 1.5px),
+    radial-gradient(circle at center, rgba(212, 175, 55, 0.06) 1.5px, transparent 1.5px);
   background-size: 24px 24px;
   background-position: 0 0, 12px 12px;
 }

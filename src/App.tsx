@@ -56,7 +56,7 @@ export default function App() {
   return (
     <ErrorBoundary>
       <MotionConfig reducedMotion="user">
-        <div className="min-h-screen flex flex-col bg-[#FFF8F6] text-[#211A17]">
+        <div className="min-h-screen flex flex-col bg-[#1A171D] text-[#F7F1E3]">
           <Header currentPage={currentPage} onNavigate={handleNavigate} />
 
           <main className="flex-1 w-full pt-16 md:pt-20">
