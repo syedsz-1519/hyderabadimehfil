@@ -25,7 +25,9 @@ function resolveRouteFromLocation(): PageRoute {
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageRoute>(() => resolveRouteFromLocation());
-  const [menuTargetSection, setMenuTargetSection] = useState<string | undefined>(undefined);
+  const [menuTargetRequest, setMenuTargetRequest] = useState<{ id: string; nonce: number } | undefined>(
+    undefined
+  );
 
   useEffect(() => {
     const handlePopState = () => {
@@ -41,14 +43,20 @@ export default function App() {
 
   const handleNavigate = (page: PageRoute, sectionId?: string) => {
     setCurrentPage(page);
-    setMenuTargetSection(page === 'menu' ? sectionId : undefined);
+    setMenuTargetRequest(
+      page === 'menu' && sectionId ? { id: sectionId, nonce: Date.now() } : undefined
+    );
 
     const nextHash = page === 'home' ? '' : `#${page}`;
     if (window.location.hash !== nextHash) {
       window.history.pushState(null, '', nextHash || window.location.pathname);
     }
 
-    if (!sectionId) {
+    if (page === 'home' && sectionId) {
+      window.setTimeout(() => {
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+      }, 90);
+    } else if (!sectionId) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
@@ -61,7 +69,7 @@ export default function App() {
 
           <main className="flex-1 w-full pt-16 md:pt-20">
             {currentPage === 'home' && <HomePage onNavigate={handleNavigate} />}
-            {currentPage === 'menu' && <MenuPage initialSection={menuTargetSection} />}
+            {currentPage === 'menu' && <MenuPage initialSectionRequest={menuTargetRequest} />}
             {currentPage === 'contact' && <ContactPage />}
           </main>
 

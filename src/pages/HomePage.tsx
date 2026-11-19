@@ -289,7 +289,10 @@ export function HomePage({ onNavigate }: HomePageProps) {
       <PromoVideoSection onNavigate={onNavigate} />
 
       {/* 4. POPULAR MAIN COURSE */}
-      <section className="py-16 md:py-24 bg-[#1A171D] border-y border-[#D4AF37]/20">
+      <section
+        id="popular-dishes"
+        className="py-16 md:py-24 bg-[#1A171D] border-y border-[#D4AF37]/20 scroll-mt-20"
+      >
         <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-12">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
             <div className="max-w-3xl">
@@ -498,7 +501,10 @@ export function HomePage({ onNavigate }: HomePageProps) {
       )}
 
       {/* 5. TESTIMONIALS SECTION WITH WRITE A REVIEW */}
-      <section className="py-16 md:py-24 bg-[#1A171D] relative overflow-hidden border-t border-[#D4AF37]/20">
+      <section
+        id="testimonials"
+        className="py-16 md:py-24 bg-[#1A171D] relative overflow-hidden border-t border-[#D4AF37]/20 scroll-mt-20"
+      >
         <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-6 lg:px-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
             <div>

@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { Menu, X, Phone, Instagram } from 'lucide-react';
-import { PageRoute, RESTAURANT_INFO } from '../data/restaurantData';
+import { useEffect, useState } from 'react';
+import { Menu, X, Phone, Instagram, ChevronDown, Compass, UtensilsCrossed } from 'lucide-react';
+import { MENU_CATEGORIES, PageRoute, RESTAURANT_INFO } from '../data/restaurantData';
 import { ResilientImage } from './ResilientImage';
 
 interface HeaderProps {
@@ -14,8 +14,33 @@ const NAV_ITEMS: Array<{ id: PageRoute; label: string }> = [
   { id: 'contact', label: 'CONTACT US' },
 ];
 
+const HOME_SECTIONS: Array<{ id: string; label: string }> = [
+  { id: 'our-story', label: 'Our Story' },
+  { id: 'promo-film', label: 'Kitchen Film' },
+  { id: 'popular-dishes', label: 'Popular Dishes' },
+  { id: 'gallery', label: 'Gallery' },
+  { id: 'testimonials', label: 'Guest Reviews' },
+  { id: 'faq', label: 'FAQ' },
+];
+
 export function Header({ currentPage, onNavigate }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileSectionsGroup, setMobileSectionsGroup] = useState<'home' | 'menu'>(
+    currentPage === 'menu' ? 'menu' : 'home'
+  );
+
+  useEffect(() => {
+    setMobileSectionsGroup(currentPage === 'menu' ? 'menu' : 'home');
+  }, [currentPage]);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileMenuOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileMenuOpen]);
 
   const handleNavClick = (page: PageRoute, sectionId?: string) => {
     setMobileMenuOpen(false);
@@ -24,25 +49,25 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-[#18151B]/95 backdrop-blur-md border-b border-[#D4AF37]/35 shadow-[0_4px_24px_rgba(10,8,12,0.45)]">
-      <div className="h-16 md:h-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between gap-4">
+      <div className="h-16 md:h-20 max-w-7xl mx-auto px-3 sm:px-6 lg:px-12 flex items-center justify-between gap-2 sm:gap-4">
         {/* Brand Emblem & Wordmark */}
         <button
           type="button"
           onClick={() => handleNavClick('home')}
-          className="flex items-center gap-3 text-left transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F0C75E] rounded-lg cursor-pointer"
+          className="flex items-center gap-2.5 sm:gap-3 text-left transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F0C75E] rounded-lg cursor-pointer min-w-0 flex-1 md:flex-initial"
         >
           <ResilientImage
             src={RESTAURANT_INFO.logoUrl}
             alt="Hyderabadi Mehfil Emblem Logo"
             eager
             fallbackLabel="HM"
-            className="h-10 w-10 md:h-11 md:w-11 rounded-full object-cover shrink-0 shadow-sm border border-[#D4AF37]/65 bg-[#18151B]"
+            className="h-9 w-9 sm:h-10 sm:w-10 md:h-11 md:w-11 rounded-full object-cover shrink-0 shadow-sm border border-[#D4AF37]/65 bg-[#18151B]"
           />
           <div className="flex flex-col min-w-0">
-            <span className="font-serif text-sm sm:text-base md:text-lg font-semibold tracking-wider text-[#F7F1E3] leading-tight truncate">
+            <span className="font-serif text-xs sm:text-base md:text-lg font-semibold tracking-wider text-[#F7F1E3] leading-tight truncate">
               HYDERABADI MEHFIL
             </span>
-            <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.16em] text-[#ECC55F] leading-tight truncate">
+            <span className="text-[8px] sm:text-[10px] font-bold uppercase tracking-[0.14em] sm:tracking-[0.16em] text-[#ECC55F] leading-tight truncate">
               {RESTAURANT_INFO.tagline}
             </span>
           </div>
@@ -71,7 +96,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
         </nav>
 
         {/* Right Actions */}
-        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+        <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
           <a
             href={RESTAURANT_INFO.instagramUrl}
             target="_blank"
@@ -79,13 +104,13 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
             aria-label="Instagram profile"
             className="text-[#ECC55F] hover:text-[#F7F1E3] transition-colors p-2 rounded-full hover:bg-white/10 border border-[#D4AF37]/35 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F0C75E]"
           >
-            <Instagram className="w-[18px] h-[18px]" aria-hidden="true" />
+            <Instagram className="w-[17px] h-[17px] sm:w-[18px] sm:h-[18px]" aria-hidden="true" />
           </a>
 
           <button
             type="button"
             onClick={() => handleNavClick('menu')}
-            className="inline-flex items-center justify-center px-4 py-2 bg-gradient-to-r from-[#C99B35] via-[#F0C75E] to-[#D4A63B] text-[#1D1810] text-xs font-bold uppercase rounded-lg shadow-md hover:brightness-110 active:scale-[0.98] transition-all tracking-wider cursor-pointer border border-[#FCE59C]/45 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F7F1E3] whitespace-nowrap"
+            className="hidden sm:inline-flex items-center justify-center px-4 py-2 bg-gradient-to-r from-[#C99B35] via-[#F0C75E] to-[#D4A63B] text-[#1D1810] text-xs font-bold uppercase rounded-lg shadow-md hover:brightness-110 active:scale-[0.98] transition-all tracking-wider cursor-pointer border border-[#FCE59C]/45 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F7F1E3] whitespace-nowrap"
           >
             Menu
           </button>
@@ -93,7 +118,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
           <a
             href={RESTAURANT_INFO.phoneHref}
             aria-label="Call Restaurant"
-            className="md:hidden text-[#ECC55F] hover:text-[#F7F1E3] p-2 rounded-full hover:bg-white/10 border border-[#D4AF37]/35"
+            className="hidden sm:inline-flex md:hidden text-[#ECC55F] hover:text-[#F7F1E3] p-2 rounded-full hover:bg-white/10 border border-[#D4AF37]/35"
           >
             <Phone className="w-[18px] h-[18px]" aria-hidden="true" />
           </a>
@@ -114,25 +139,97 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
         </div>
       </div>
 
-      {/* Mobile Slide-Down Drawer */}
+      {/* Mobile Dropdown Navigation Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#211D25] border-t border-[#D4AF37]/30 px-5 py-4 space-y-2 shadow-xl">
-          {NAV_ITEMS.map((item) => {
-            const isActive = currentPage === item.id;
-            return (
+        <div
+          aria-label="Mobile Navigation"
+          className="md:hidden bg-[#211D25] border-t border-[#D4AF37]/35 px-4 py-4 space-y-4 shadow-2xl max-h-[calc(100vh-4rem)] overflow-y-auto"
+        >
+          {/* Main Pages */}
+          <div className="space-y-1">
+            {NAV_ITEMS.map((item) => {
+              const isActive = currentPage === item.id;
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  aria-current={isActive ? 'page' : undefined}
+                  onClick={() => handleNavClick(item.id)}
+                  className={`w-full text-left font-semibold text-sm uppercase tracking-wider py-2.5 px-3 rounded-lg transition-colors cursor-pointer ${
+                    isActive
+                      ? 'text-[#ECC55F] bg-[#2D2733] border border-[#D4AF37]/35'
+                      : 'text-[#F7F1E3] hover:bg-white/5 border border-transparent'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Direct Section Jump Selector */}
+          <div className="rounded-xl bg-[#18151B] border border-[#D4AF37]/25 p-3 space-y-3">
+            <div className="flex items-center justify-between gap-2">
               <button
-                key={item.id}
                 type="button"
-                aria-current={isActive ? 'page' : undefined}
-                onClick={() => handleNavClick(item.id)}
-                className={`w-full text-left font-semibold text-sm uppercase tracking-wider py-2.5 px-2 rounded-lg transition-colors border-b border-white/10 last:border-b-0 ${
-                  isActive ? 'text-[#ECC55F] bg-[#2D2733]' : 'text-[#F7F1E3] hover:bg-white/5'
+                onClick={() => setMobileSectionsGroup('home')}
+                className={`flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg text-[11px] font-bold uppercase tracking-wider transition-colors cursor-pointer border ${
+                  mobileSectionsGroup === 'home'
+                    ? 'bg-[#27222C] text-[#ECC55F] border-[#D4AF37]/45'
+                    : 'bg-transparent text-[#B4A89B] border-transparent hover:text-[#F7F1E3]'
                 }`}
               >
-                {item.label}
+                <Compass className="w-3.5 h-3.5" aria-hidden="true" />
+                <span>Home Sections</span>
               </button>
-            );
-          })}
+              <button
+                type="button"
+                onClick={() => setMobileSectionsGroup('menu')}
+                className={`flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg text-[11px] font-bold uppercase tracking-wider transition-colors cursor-pointer border ${
+                  mobileSectionsGroup === 'menu'
+                    ? 'bg-[#27222C] text-[#ECC55F] border-[#D4AF37]/45'
+                    : 'bg-transparent text-[#B4A89B] border-transparent hover:text-[#F7F1E3]'
+                }`}
+              >
+                <UtensilsCrossed className="w-3.5 h-3.5" aria-hidden="true" />
+                <span>Menu Sections</span>
+                <ChevronDown
+                  className={`w-3.5 h-3.5 transition-transform ${
+                    mobileSectionsGroup === 'menu' ? 'rotate-180' : ''
+                  }`}
+                  aria-hidden="true"
+                />
+              </button>
+            </div>
+
+            {mobileSectionsGroup === 'home' ? (
+              <div className="grid grid-cols-2 gap-1.5">
+                {HOME_SECTIONS.map((sec) => (
+                  <button
+                    key={sec.id}
+                    type="button"
+                    onClick={() => handleNavClick('home', sec.id)}
+                    className="text-left px-3 py-2 rounded-lg bg-[#27222C]/70 hover:bg-[#2E2834] text-xs font-medium text-[#D8CFC4] hover:text-[#F7F1E3] border border-[#D4AF37]/20 transition-colors cursor-pointer truncate"
+                  >
+                    {sec.label}
+                  </button>
+                ))}
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 gap-1.5">
+                {MENU_CATEGORIES.map((category) => (
+                  <button
+                    key={category.id}
+                    type="button"
+                    onClick={() => handleNavClick('menu', category.id)}
+                    className="text-left px-3 py-2 rounded-lg bg-[#27222C]/70 hover:bg-[#2E2834] text-xs font-medium text-[#D8CFC4] hover:text-[#ECC55F] border border-[#D4AF37]/20 transition-colors cursor-pointer truncate"
+                  >
+                    {category.label}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       )}
     </header>

@@ -7,7 +7,9 @@ import {
   CalendarClock,
   ChevronDown,
   CheckCircle2,
+  Check,
   Leaf,
+  ListFilter,
   SlidersHorizontal,
   X,
 } from 'lucide-react';
@@ -31,7 +33,7 @@ import {
 } from '../data/restaurantData';
 
 interface MenuPageProps {
-  initialSection?: string;
+  initialSectionRequest?: { id: string; nonce: number };
 }
 
 const DIETARY_OPTIONS: Array<{ id: DietaryFilter; label: string }> = [
@@ -41,10 +43,11 @@ const DIETARY_OPTIONS: Array<{ id: DietaryFilter; label: string }> = [
   { id: 'spicy', label: 'Spicy & Specialties' },
 ];
 
-export function MenuPage({ initialSection }: MenuPageProps) {
+export function MenuPage({ initialSectionRequest }: MenuPageProps) {
   const [activeCategory, setActiveCategory] = useState<string>(
-    initialSection || MENU_CATEGORIES[0].id
+    initialSectionRequest?.id || MENU_CATEGORIES[0].id
   );
+  const [mobileSectionDropdownOpen, setMobileSectionDropdownOpen] = useState(false);
   const [dietaryFilter, setDietaryFilter] = useState<DietaryFilter>('all');
   const [tandooriPortion, setTandooriPortion] = useState<'Half' | 'Full'>('Half');
   const [biryaniSizes, setBiryaniSizes] = useState<Record<string, 'regular' | 'large' | 'family'>>({
@@ -57,7 +60,8 @@ export function MenuPage({ initialSection }: MenuPageProps) {
   });
   const [lightboxDish, setLightboxDish] = useState<{ name: string; imageUrl: string } | null>(null);
 
-  const navScrollRef = useRef<HTMLDivElement>(null);
+  const navContainerRef = useRef<HTMLElement>(null);
+  const manualLockUntilRef = useRef<number>(0);
 
   useEffect(() => {
     if (!lightboxDish) return;
@@ -69,19 +73,40 @@ export function MenuPage({ initialSection }: MenuPageProps) {
   }, [lightboxDish]);
 
   useEffect(() => {
-    if (initialSection) {
-      setActiveCategory(initialSection);
+    if (!mobileSectionDropdownOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileSectionDropdownOpen(false);
+    };
+    const handlePointerDown = (e: MouseEvent) => {
+      if (navContainerRef.current && !navContainerRef.current.contains(e.target as Node)) {
+        setMobileSectionDropdownOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('mousedown', handlePointerDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('mousedown', handlePointerDown);
+    };
+  }, [mobileSectionDropdownOpen]);
+
+  useEffect(() => {
+    if (initialSectionRequest?.id) {
+      setActiveCategory(initialSectionRequest.id);
+      setMobileSectionDropdownOpen(false);
+      manualLockUntilRef.current = Date.now() + 1100;
       const timer = window.setTimeout(() => {
-        document.getElementById(initialSection)?.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById(initialSectionRequest.id)?.scrollIntoView({ behavior: 'smooth' });
       }, 120);
       return () => window.clearTimeout(timer);
     }
-  }, [initialSection]);
+  }, [initialSectionRequest]);
 
   useEffect(() => {
     const sectionIds = MENU_CATEGORIES.map((c) => c.id);
     const observer = new IntersectionObserver(
       (entries) => {
+        if (Date.now() < manualLockUntilRef.current) return;
         const visible = entries.find((entry) => entry.isIntersecting);
         if (visible?.target?.id) {
           setActiveCategory(visible.target.id);
@@ -103,18 +128,6 @@ export function MenuPage({ initialSection }: MenuPageProps) {
     return dietary.includes(dietaryFilter);
   };
 
-  const scrollToSection = (id: string) => {
-    setActiveCategory(id);
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const togglePlatter = (id: string) => {
-    setExpandedPlatters((prev) => ({ ...prev, [id]: !prev[id] }));
-  };
-
   const specials = DAILY_WEEKEND_SPECIALS.filter((item) => matchesFilter(item.dietary));
   const starters = STARTERS_ITEMS.filter((item) => matchesFilter(item.dietary));
   const tandoor = TANDOOR_ITEMS.filter((item) => matchesFilter(item.dietary));
@@ -127,6 +140,46 @@ export function MenuPage({ initialSection }: MenuPageProps) {
   const rotiItems = ROTI_ITEMS.filter((item) => matchesFilter(item.dietary));
   const extrasItems = EXTRAS_ITEMS.filter((item) => matchesFilter(item.dietary));
   const lassiItems = LASSI_ITEMS.filter((item) => matchesFilter(item.dietary));
+
+  const sectionCounts: Record<string, number> = {
+    specials: specials.length,
+    starters: starters.length,
+    tandoor: tandoor.length,
+    platters: platters.length,
+    biryani: biryanis.length,
+    lamb: lambCurries.length,
+    murgh: murghCurries.length,
+    mandi: mandis.length,
+    veg: vegItems.length,
+    roti: rotiItems.length,
+    extras: extrasItems.length,
+    lassi: lassiItems.length,
+  };
+
+  const scrollToSection = (id: string) => {
+    setActiveCategory(id);
+    setMobileSectionDropdownOpen(false);
+    manualLockUntilRef.current = Date.now() + 1200;
+    const count = sectionCounts[id] ?? 0;
+    if (count === 0 && dietaryFilter !== 'all') {
+      setDietaryFilter('all');
+      window.setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+      return;
+    }
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const togglePlatter = (id: string) => {
+    setExpandedPlatters((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const activeCategoryMeta =
+    MENU_CATEGORIES.find((cat) => cat.id === activeCategory) || MENU_CATEGORIES[0];
 
   const renderPrice = (price: string, large = false) => (
     <span
@@ -238,16 +291,97 @@ export function MenuPage({ initialSection }: MenuPageProps) {
         </div>
       </section>
 
-      {/* 2. STICKY HORIZONTAL CATEGORY TABS */}
+      {/* 2. STICKY CATEGORY NAVIGATION: DROPDOWN ON MOBILE, WRAPPED PILLS ON DESKTOP */}
       <nav
+        ref={navContainerRef}
         aria-label="Menu Categories"
         className="sticky top-16 md:top-20 z-30 bg-[#18151B]/95 backdrop-blur-md border-b border-[#D4AF37]/30 shadow-xs"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-          <div
-            ref={navScrollRef}
-            className="flex items-center lg:flex-wrap lg:justify-center gap-2 overflow-x-auto lg:overflow-x-visible py-2.5 no-scrollbar text-nowrap"
+        {/* Mobile Section Dropdown Bar */}
+        <div className="lg:hidden px-4 py-2.5">
+          <button
+            type="button"
+            aria-expanded={mobileSectionDropdownOpen}
+            aria-haspopup="listbox"
+            onClick={() => setMobileSectionDropdownOpen((prev) => !prev)}
+            className="w-full flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl bg-[#27222C] border border-[#D4AF37]/45 text-left shadow-sm active:bg-[#2E2834] transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F0C75E]"
           >
+            <div className="flex items-center gap-2.5 min-w-0">
+              <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#C99B35] to-[#F0C75E] text-[#1D1810] flex items-center justify-center shrink-0">
+                <ListFilter className="w-4 h-4" aria-hidden="true" />
+              </span>
+              <div className="min-w-0">
+                <span className="block text-[10px] font-bold uppercase tracking-[0.18em] text-[#ECC55F] leading-tight">
+                  Menu Sections ({MENU_CATEGORIES.length})
+                </span>
+                <span className="block text-sm font-serif font-semibold text-[#F7F1E3] truncate leading-snug">
+                  {activeCategoryMeta.label}
+                </span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 shrink-0">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[#D8CFC4] bg-[#18151B] border border-[#D4AF37]/30 px-2.5 py-1 rounded-md">
+                Select
+              </span>
+              <ChevronDown
+                className={`w-4 h-4 text-[#ECC55F] transition-transform duration-200 ${
+                  mobileSectionDropdownOpen ? 'rotate-180' : ''
+                }`}
+                aria-hidden="true"
+              />
+            </div>
+          </button>
+
+          {mobileSectionDropdownOpen && (
+            <div
+              role="listbox"
+              aria-label="Select menu section"
+              className="mt-2 rounded-xl bg-[#211D25] border border-[#D4AF37]/40 shadow-2xl max-h-[65vh] overflow-y-auto p-2 grid grid-cols-2 gap-1.5"
+            >
+              {MENU_CATEGORIES.map((category) => {
+                const isActive = activeCategory === category.id;
+                const count = sectionCounts[category.id] ?? 0;
+                return (
+                  <button
+                    key={category.id}
+                    type="button"
+                    role="option"
+                    aria-selected={isActive}
+                    onClick={() => scrollToSection(category.id)}
+                    className={`w-full flex items-center justify-between gap-1.5 px-2.5 py-2.5 rounded-lg text-left transition-colors border cursor-pointer ${
+                      isActive
+                        ? 'bg-gradient-to-r from-[#C99B35] via-[#F0C75E] to-[#D4A63B] text-[#1D1810] border-[#FCE59C]/60 font-bold'
+                        : 'bg-[#27222C]/85 hover:bg-[#322B39] text-[#F7F1E3] border-[#D4AF37]/20 font-medium'
+                    }`}
+                  >
+                    <span className="text-[11px] uppercase tracking-wide leading-tight truncate">
+                      {category.label}
+                    </span>
+                    <div className="flex items-center gap-1 shrink-0">
+                      <span
+                        className={`text-[10px] font-bold px-1.5 py-0.5 rounded tabular-nums ${
+                          isActive
+                            ? 'bg-[#1D1810]/15 text-[#1D1810]'
+                            : count === 0
+                            ? 'bg-[#18151B] text-[#B4A89B]'
+                            : 'bg-[#18151B] text-[#ECC55F]'
+                        }`}
+                      >
+                        {count > 0 ? count : 'All'}
+                      </span>
+                      {isActive && <Check className="w-3 h-3 shrink-0" aria-hidden="true" />}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          )}
+        </div>
+
+        {/* Desktop Wrapped Category Bar */}
+        <div className="hidden lg:block max-w-7xl mx-auto px-12">
+          <div className="flex flex-wrap justify-center gap-2 py-2.5 text-nowrap">
             {MENU_CATEGORIES.map((category) => {
               const isActive = activeCategory === category.id;
               return (
