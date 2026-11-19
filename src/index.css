@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", Georgia, Cambria, "Times New Roman", serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --color-burgundy: #5A0F1F;
+  --color-burgundy-deep: #3A000D;
+  --color-saffron: #E8A317;
+  --color-gold: #C9A24B;
+  --color-gold-ink: #795902;
+  --color-cream: #FBF5EA;
+  --color-surface: #FFF8F6;
+  --color-surface-low: #FFF1EC;
+  --color-surface-mid: #FAEBE5;
+  --color-surface-high: #F4E5E0;
+  --color-charcoal: #1B1411;
+  --color-ink: #211A17;
+  --color-ink-muted: #554243;
+}
+
+@layer base {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #FFF8F6;
+    color: #211A17;
+    font-family: var(--font-sans);
+    overscroll-behavior-y: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-serif);
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.jaali-lattice {
+  background-image:
+    radial-gradient(circle at center, rgba(201, 162, 75, 0.11) 1.5px, transparent 1.5px),
+    radial-gradient(circle at center, rgba(201, 162, 75, 0.06) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
+}
+
+@keyframes slowHeroZoom {
+  0% {
+    transform: scale(1.02);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1.02);
+  }
+}
+
+.animate-hero-zoom {
+  animation: slowHeroZoom 22s ease-in-out infinite;
+}
+
+@keyframes steamDriftOne {
+  0% {
+    transform: translateY(0) scale(1) translateX(0);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.3;
+  }
+  65% {
+    opacity: 0.2;
+    transform: translateY(-35px) scale(1.15) translateX(12px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-75px) scale(1.3) translateX(18px);
+  }
+}
+
+@keyframes steamDriftTwo {
+  0% {
+    transform: translateY(0) scale(0.95) translateX(0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.26;
+  }
+  70% {
+    opacity: 0.18;
+    transform: translateY(-45px) scale(1.2) translateX(-14px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-90px) scale(1.35) translateX(-22px);
+  }
+}
+
+.steam-wisp-1 {
+  animation: steamDriftOne 8s infinite ease-out;
+}
+
+.steam-wisp-2 {
+  animation: steamDriftTwo 10s infinite ease-out 2.5s;
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 20s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-zoom,
+  .steam-wisp-1,
+  .steam-wisp-2,
+  .animate-spin-slow {
+    animation: none !important;
+  }
+}

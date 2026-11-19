@@ -1,0 +1,8 @@
+{
+  "name": "Hyderabadi Mehfil",
+  "description": "Authentic Hyderabadi Dum Biryani, Royal Mandi & Tandoor Cuisine at 290 Ilford Lane, Ilford, IG1 2LP.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
