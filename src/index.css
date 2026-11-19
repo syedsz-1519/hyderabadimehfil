@@ -128,11 +128,27 @@
   animation: spinSlow 20s linear infinite;
 }
 
+@keyframes igBubblePulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.ig-bubble-ring {
+  animation: igBubblePulse 2.4s ease-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-hero-zoom,
   .steam-wisp-1,
   .steam-wisp-2,
-  .animate-spin-slow {
+  .animate-spin-slow,
+  .ig-bubble-ring {
     animation: none !important;
   }
 }

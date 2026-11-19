@@ -9,7 +9,9 @@ import {
   CheckCircle2,
   Leaf,
   SlidersHorizontal,
+  X,
 } from 'lucide-react';
+import { ResilientImage } from '../components/ResilientImage';
 import {
   BIRYANI_ITEMS,
   DAILY_WEEKEND_SPECIALS,
@@ -52,8 +54,18 @@ export function MenuPage({ initialSection }: MenuPageProps) {
     'platter-mini': false,
     'platter-mix': false,
   });
+  const [lightboxDish, setLightboxDish] = useState<{ name: string; imageUrl: string } | null>(null);
 
   const navScrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!lightboxDish) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLightboxDish(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxDish]);
 
   useEffect(() => {
     if (initialSection) {
@@ -131,6 +143,25 @@ export function MenuPage({ initialSection }: MenuPageProps) {
       </span>
     </div>
   );
+
+  const renderDishThumb = (imageUrl: string | undefined, name: string, sizeClass = 'w-22 h-22 sm:w-24 sm:h-24') => {
+    if (!imageUrl) return null;
+    return (
+      <button
+        type="button"
+        onClick={() => setLightboxDish({ name, imageUrl })}
+        aria-label={`View photo of ${name}`}
+        className={`group/img relative ${sizeClass} rounded-xl overflow-hidden border border-[#C9A24B]/35 bg-[#F4E5E0] shrink-0 shadow-xs cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5A0F1F]`}
+      >
+        <ResilientImage
+          src={imageUrl}
+          alt={name}
+          fallbackLabel={name}
+          className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500 ease-out"
+        />
+      </button>
+    );
+  };
 
   return (
     <div className="flex flex-col w-full bg-gradient-to-b from-[#FFF8F6] via-[#FFF6EB] to-[#FFF1EC]">
@@ -286,10 +317,15 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                       </span>
                       {renderPriceBadge(item.price, true)}
                     </div>
-                    <h3 className="font-serif text-xl font-semibold text-[#3A000D] mb-2">
-                      {item.name}
-                    </h3>
-                    <p className="text-sm text-[#554243] leading-relaxed">{item.description}</p>
+                    <div className="flex items-start gap-4">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-serif text-xl font-semibold text-[#3A000D] mb-2">
+                          {item.name}
+                        </h3>
+                        <p className="text-sm text-[#554243] leading-relaxed">{item.description}</p>
+                      </div>
+                      {renderDishThumb(item.imageUrl, item.name, 'w-20 h-20 sm:w-24 sm:h-24')}
+                    </div>
                   </div>
                   <div className="mt-5 pt-3.5 border-t border-[#EEDFDA] flex items-center justify-between">
                     <span className="text-[11px] font-bold uppercase tracking-wider text-[#795902]">
@@ -435,10 +471,15 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                         ) : null}
                       </div>
 
-                      <h3 className="font-serif text-lg font-semibold text-[#3A000D] mb-1.5">
-                        {item.name}
-                      </h3>
-                      <p className="text-sm text-[#554243] leading-relaxed">{item.description}</p>
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-serif text-lg font-semibold text-[#3A000D] mb-1.5">
+                            {item.name}
+                          </h3>
+                          <p className="text-sm text-[#554243] leading-relaxed">{item.description}</p>
+                        </div>
+                        {renderDishThumb(item.imageUrl, item.name, 'w-20 h-20')}
+                      </div>
                     </div>
                   </article>
                 );
@@ -470,6 +511,24 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                     key={platter.id}
                     className="bg-white rounded-xl p-6 sm:p-7 shadow-xs hover:shadow-md transition-shadow border border-[#C9A24B]/35"
                   >
+                    {platter.imageUrl && (
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setLightboxDish({ name: platter.name, imageUrl: platter.imageUrl! })
+                        }
+                        aria-label={`View photo of ${platter.name}`}
+                        className="group/img relative w-full aspect-[16/10] rounded-xl overflow-hidden border border-[#C9A24B]/30 bg-[#F4E5E0] mb-5 block cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5A0F1F]"
+                      >
+                        <ResilientImage
+                          src={platter.imageUrl}
+                          alt={platter.name}
+                          fallbackLabel={platter.name}
+                          className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500 ease-out"
+                        />
+                      </button>
+                    )}
+
                     <div className="flex items-start justify-between gap-4 mb-3">
                       <div>
                         <span className="inline-block px-3 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-[#FAEBE5] border border-[#C9A24B]/35 text-[#3A000D]">
@@ -549,6 +608,24 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                     className="bg-gradient-to-br from-white via-[#FFFDF9] to-[#FFF5E6] rounded-2xl p-6 sm:p-7 shadow-sm flex flex-col justify-between border-2 border-[#C9A24B]/45 hover:border-[#C9A24B] transition-colors"
                   >
                     <div>
+                      {biryani.imageUrl && (
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setLightboxDish({ name: biryani.name, imageUrl: biryani.imageUrl! })
+                          }
+                          aria-label={`View photo of ${biryani.name}`}
+                          className="group/img relative w-full aspect-[16/10] rounded-xl overflow-hidden border border-[#C9A24B]/35 bg-[#F4E5E0] mb-5 block cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5A0F1F]"
+                        >
+                          <ResilientImage
+                            src={biryani.imageUrl}
+                            alt={biryani.name}
+                            fallbackLabel={biryani.name}
+                            className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500 ease-out"
+                          />
+                        </button>
+                      )}
+
                       <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
                         <span className="px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-[#5A0F1F] text-[#FFDF9E] border border-[#C9A24B]/50">
                           {biryani.tag}
@@ -671,18 +748,21 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                       key={dish.id}
                       className="bg-white p-5 rounded-xl shadow-xs flex items-center justify-between gap-4 border border-[#C9A24B]/30 hover:border-[#C9A24B]/60 transition-colors"
                     >
-                      <div>
-                        <div className="flex flex-wrap items-center gap-2">
-                          <h3 className="font-serif text-lg sm:text-xl font-semibold text-[#3A000D]">
-                            {dish.name}
-                          </h3>
-                          {dish.badge && (
-                            <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-[#5A0F1F] text-[#FFDF9E] uppercase font-bold tracking-wider border border-[#C9A24B]/35">
-                              {dish.badge}
-                            </span>
-                          )}
+                      <div className="flex items-center gap-4 min-w-0 flex-1">
+                        {renderDishThumb(dish.imageUrl, dish.name, 'w-18 h-18 sm:w-20 sm:h-20')}
+                        <div className="min-w-0">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <h3 className="font-serif text-lg sm:text-xl font-semibold text-[#3A000D]">
+                              {dish.name}
+                            </h3>
+                            {dish.badge && (
+                              <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-[#5A0F1F] text-[#FFDF9E] uppercase font-bold tracking-wider border border-[#C9A24B]/35">
+                                {dish.badge}
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-sm text-[#554243] mt-1">{dish.description}</p>
                         </div>
-                        <p className="text-sm text-[#554243] mt-1">{dish.description}</p>
                       </div>
                       {renderPriceBadge(dish.price)}
                     </article>
@@ -715,16 +795,19 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                   key={mandi.id}
                   className="bg-white rounded-xl p-6 shadow-xs flex flex-col justify-between border border-[#C9A24B]/30 hover:border-[#C9A24B]/60 transition-colors"
                 >
-                  <div>
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#795902] px-2.5 py-0.5 rounded-full bg-[#F4E5E0] border border-[#C9A24B]/30 inline-block">
-                      {mandi.tag}
-                    </span>
-                    <h3 className="font-serif text-2xl font-bold text-[#3A000D] mt-2.5 mb-2">
-                      {mandi.name}
-                    </h3>
-                    <p className="text-sm text-[#554243] leading-relaxed mb-6">
-                      {mandi.description}
-                    </p>
+                  <div className="flex items-start justify-between gap-3.5 mb-5">
+                    <div className="flex-1 min-w-0">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-[#795902] px-2.5 py-0.5 rounded-full bg-[#F4E5E0] border border-[#C9A24B]/30 inline-block">
+                        {mandi.tag}
+                      </span>
+                      <h3 className="font-serif text-2xl font-bold text-[#3A000D] mt-2.5 mb-2">
+                        {mandi.name}
+                      </h3>
+                      <p className="text-sm text-[#554243] leading-relaxed">
+                        {mandi.description}
+                      </p>
+                    </div>
+                    {renderDishThumb(mandi.imageUrl, mandi.name, 'w-22 h-22 sm:w-24 sm:h-24')}
                   </div>
 
                   <div className="bg-[#FFF1EC] p-3.5 rounded-xl space-y-2 border border-[#C9A24B]/30">
@@ -787,13 +870,18 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                   className="bg-white rounded-xl p-6 shadow-xs flex flex-col justify-between border border-[#15803D]/30 hover:border-[#15803D]/60 transition-colors"
                 >
                   <div>
-                    <div className="flex items-start justify-between gap-2 mb-2.5">
+                    <div className="flex items-start justify-between gap-2 mb-3">
                       <h3 className="font-serif text-xl font-semibold text-[#3A000D]">
                         {item.name}
                       </h3>
                       {renderPriceBadge(item.price)}
                     </div>
-                    <p className="text-sm text-[#554243] leading-relaxed">{item.description}</p>
+                    <div className="flex items-start gap-3.5">
+                      <p className="text-sm text-[#554243] leading-relaxed flex-1">
+                        {item.description}
+                      </p>
+                      {renderDishThumb(item.imageUrl, item.name, 'w-20 h-20')}
+                    </div>
                   </div>
                 </article>
               ))}
@@ -820,9 +908,12 @@ export function MenuPage({ initialSection }: MenuPageProps) {
               {rotiItems.map((item) => (
                 <article
                   key={item.id}
-                  className="bg-white p-4 rounded-xl shadow-xs text-center border border-[#C9A24B]/30 hover:border-[#C9A24B]/60 transition-colors flex flex-col items-center justify-between"
+                  className="bg-white p-4 rounded-xl shadow-xs text-center border border-[#C9A24B]/30 hover:border-[#C9A24B]/60 transition-colors flex flex-col items-center justify-between gap-2"
                 >
-                  <div className="mb-2">{renderPriceBadge(item.price)}</div>
+                  <div className="flex flex-col items-center gap-2">
+                    {renderPriceBadge(item.price)}
+                    {renderDishThumb(item.imageUrl, item.name, 'w-16 h-16')}
+                  </div>
                   <div>
                     <h3 className="font-serif text-base font-bold text-[#3A000D] mb-1">
                       {item.name}
@@ -904,6 +995,44 @@ export function MenuPage({ initialSection }: MenuPageProps) {
           </div>
         )}
       </div>
+
+      {/* Dish Photo Lightbox */}
+      {lightboxDish && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="menu-lightbox-title"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setLightboxDish(null);
+          }}
+          className="fixed inset-0 z-50 bg-[#1B1411]/90 backdrop-blur-md flex items-center justify-center p-4"
+        >
+          <div className="relative max-w-2xl w-full bg-[#FFF8F6] rounded-xl overflow-hidden shadow-2xl border border-[#C9A24B]/50">
+            <div className="flex items-center justify-between gap-4 px-5 py-3.5 bg-[#3A000D] text-[#FFF8F6] border-b border-[#C9A24B]/30">
+              <span id="menu-lightbox-title" className="font-serif text-base sm:text-lg text-[#FFDF9E] truncate">
+                {lightboxDish.name}
+              </span>
+              <button
+                type="button"
+                aria-label="Close photo preview"
+                onClick={() => setLightboxDish(null)}
+                className="p-1.5 rounded-full hover:bg-white/10 text-[#FFF8F6] cursor-pointer"
+              >
+                <X className="w-5 h-5" aria-hidden="true" />
+              </button>
+            </div>
+            <div className="bg-[#1B1411] flex items-center justify-center max-h-[70vh] overflow-hidden">
+              <ResilientImage
+                src={lightboxDish.imageUrl}
+                alt={lightboxDish.name}
+                eager
+                fallbackLabel={lightboxDish.name}
+                className="max-h-[70vh] w-auto object-contain"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

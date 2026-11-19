@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { motion } from 'motion/react';
 import {
   Utensils,
   Flame,
@@ -87,14 +88,14 @@ export function HomePage({ onNavigate }: HomePageProps) {
         {/* Slow-zoom atmospheric dish backdrop */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-cover bg-center animate-hero-zoom opacity-45 pointer-events-none"
+          className="absolute inset-0 bg-cover bg-center animate-hero-zoom opacity-50 pointer-events-none"
           style={{ backgroundImage: `url("${RESTAURANT_INFO.heroImageUrl}")` }}
         />
 
-        {/* Multi-stage scrims for crisp WCAG AA legibility */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1B1411]/95 via-[#3A000D]/80 to-[#5A0F1F]/70 pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(27,20,17,0.78)_100%)] pointer-events-none" />
-        <div className="absolute inset-0 jaali-lattice opacity-30 pointer-events-none" />
+        {/* Multi-stage scrims for crisp WCAG AA legibility with translucent backdrop */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1B1411]/80 via-[#3A000D]/45 to-[#5A0F1F]/40 pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(27,20,17,0.48)_100%)] pointer-events-none" />
+        <div className="absolute inset-0 jaali-lattice opacity-25 pointer-events-none" />
 
         {/* Ambient warm saffron steam wisps */}
         <div aria-hidden="true" className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -334,11 +335,16 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
           {/* 4 Editorial Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7">
-            {POPULAR_MAIN_COURSES.map((dish) => (
-              <article
+            {POPULAR_MAIN_COURSES.map((dish, idx) => (
+              <motion.article
                 key={dish.id}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.55, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                whileHover={{ y: -4 }}
                 onClick={() => onNavigate('menu', dish.menuSection)}
-                className="group bg-[#FFFFFF] rounded-xl overflow-hidden shadow-sm hover:shadow-xl border border-[#C9A24B]/30 hover:border-[#C9A24B] transition-all duration-300 flex flex-col hover:-translate-y-1 cursor-pointer"
+                className="group bg-[#FFFFFF] rounded-xl overflow-hidden shadow-sm hover:shadow-xl border border-[#C9A24B]/30 hover:border-[#C9A24B] transition-[box-shadow,border-color] duration-300 flex flex-col cursor-pointer"
               >
                 <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#F4E5E0]">
                   <ResilientImage
@@ -381,7 +387,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                     {renderDishIcon(dish.id)}
                   </div>
                 </div>
-              </article>
+              </motion.article>
             ))}
           </div>
         </div>
@@ -521,9 +527,13 @@ export function HomePage({ onNavigate }: HomePageProps) {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-            {TESTIMONIALS.map((review) => (
-              <article
+            {TESTIMONIALS.map((review, idx) => (
+              <motion.article
                 key={review.id}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.55, delay: idx * 0.12, ease: [0.22, 1, 0.36, 1] }}
                 className="bg-[#FFFFFF] p-7 sm:p-9 rounded-xl shadow-sm hover:shadow-md relative flex flex-col justify-between border border-[#C9A24B]/30 transition-shadow"
               >
                 <span
@@ -569,7 +579,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                     </span>
                   </div>
                 </div>
-              </article>
+              </motion.article>
             ))}
           </div>
 

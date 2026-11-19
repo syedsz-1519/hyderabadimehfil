@@ -9,6 +9,7 @@ export interface SpecialItem {
   name: string;
   price: string;
   description: string;
+  imageUrl?: string;
   dietary: Array<Exclude<DietaryFilter, 'all'>>;
 }
 
@@ -20,6 +21,7 @@ export interface SimpleDishItem {
   badge?: string;
   description: string;
   isVeg?: boolean;
+  imageUrl?: string;
   dietary: Array<Exclude<DietaryFilter, 'all'>>;
 }
 
@@ -31,6 +33,7 @@ export interface TandoorItem {
   badge?: string;
   description: string;
   isVeg?: boolean;
+  imageUrl?: string;
   selectablePortions?: Array<{ label: string; price: string }>;
   dietary: Array<Exclude<DietaryFilter, 'all'>>;
 }
@@ -41,6 +44,7 @@ export interface PlatterItem {
   name: string;
   price: string;
   description: string;
+  imageUrl?: string;
   contents: string[];
   dietary: Array<Exclude<DietaryFilter, 'all'>>;
 }
@@ -51,6 +55,7 @@ export interface BiryaniItem {
   name: string;
   description: string;
   accompaniment: string;
+  imageUrl?: string;
   sizes: Array<{
     key: 'regular' | 'large' | 'family';
     label: string;
@@ -65,6 +70,7 @@ export interface MandiItem {
   tag: string;
   name: string;
   description: string;
+  imageUrl?: string;
   tiers: Array<{ label: string; price: string; highlight?: boolean }>;
   dietary: Array<Exclude<DietaryFilter, 'all'>>;
 }
@@ -94,8 +100,7 @@ export const RESTAURANT_INFO = {
   hoursMain: 'Every day except Friday: 12 Noon – 11 PM',
   hoursFriday: 'Friday: 2 PM – 11 PM',
   copyright: '© 2026 Hyderabadi Mehfil. All rights reserved.',
-  logoUrl:
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuB7gvayRQOR-v7l_lHaT4wv9XIC3wzlaITRPmgmNQpG3HRPIubLY9r4YgtNnHvHs9bx4q0VQS42ck5O_Ay95kZv33x1KNry1zOnFsAbpohf_fmUhuVO5Eb3V6STZEdPfvXmimA5wcz0A0V7nfl36AYkmlKmDZiRIytHvJz1OvNCGX0mrsUAECGil263aJRo50cOey_uypo5XAY5EMRYaV_iKJB4hduA7d7rzQUJT1qZAnZhhLBelLlniA',
+  logoUrl: '/assets/aistudio/WhatsApp_Image_2026-11-19_at_5.06.25_PM_ea53848c.jpeg',
   heroImageUrl:
     'https://lh3.googleusercontent.com/aida/ALJJyrCCfN1ldIZ1mCW5ZUbTgo4oYAjkpXN_hag_Vdj09M2Ww-uj9oXNWCFzFdrJ6rQHIycgrcPXW6gpS_yy_yCBxfXAjsP0blza2ozhbPUFGbEBLXInnz9oOgUxrizS6ySmTJg3DJMifH0WkAvK1lM6KkW0zFCNOzB9SLb19biVHegc6dQ0oKzkNhfHxOpYVd-43nMmobft3D2oXthh4mgxMYqWjKukZUVXdIYE9WiMAuT7wQ',
   mapImageUrl:
@@ -277,6 +282,7 @@ export const DAILY_WEEKEND_SPECIALS: SpecialItem[] = [
     name: 'Dalcha, Khichdi, Kheema',
     price: '6.99',
     description: 'A traditional Hyderabadi comfort meal. Rich, hearty and full of flavor.',
+    imageUrl: '/assets/dishes/daily.jpg',
     dietary: ['halal'],
   },
   {
@@ -287,6 +293,7 @@ export const DAILY_WEEKEND_SPECIALS: SpecialItem[] = [
     price: '6.99',
     description:
       'A rich and comforting trio of traditional flavors: hearty dalcha, aromatic bagara rice and perfectly spiced mutton fry.',
+    imageUrl: '/assets/dishes/dalcha.jpg',
     dietary: ['halal', 'spicy'],
   },
   {
@@ -297,6 +304,7 @@ export const DAILY_WEEKEND_SPECIALS: SpecialItem[] = [
     price: '7.99',
     description:
       'A slow-cooked delicacy made with wheat, lentils and tender meat. Rich, creamy and packed with aromatic spices for a hearty flavor.',
+    imageUrl: '/assets/dishes/haleem.jpg',
     dietary: ['halal', 'spicy'],
   },
   {
@@ -307,6 +315,7 @@ export const DAILY_WEEKEND_SPECIALS: SpecialItem[] = [
     price: '6.99',
     description:
       'Slow-cooked trotters curry with traditional spices and herbs. Nutritious, hearty and full-bodied in flavor.',
+    imageUrl: '/assets/dishes/maragh.jpg',
     dietary: ['halal'],
   },
   {
@@ -326,6 +335,7 @@ export const DAILY_WEEKEND_SPECIALS: SpecialItem[] = [
     name: 'Paya (Sunday)',
     price: '8.99',
     description: 'Rich, spiced mutton soup simmered to perfection. Warm, flavorful and full of aromatic notes.',
+    imageUrl: '/assets/dishes/paya.jpg',
     dietary: ['halal', 'spicy'],
   },
 ];
@@ -386,6 +396,7 @@ export const TANDOOR_ITEMS: TandoorItem[] = [
     price: '7.99',
     portion: '6 pcs',
     description: 'Assorted tikka pieces grilled to smoky perfection.',
+    imageUrl: '/assets/dishes/tikka.jpg',
     dietary: ['halal'],
   },
   {
@@ -404,6 +415,7 @@ export const TANDOOR_ITEMS: TandoorItem[] = [
     price: '9.99',
     portion: '2 pcs',
     description: 'Spicy grilled chicken drumsticks with bold flavors.',
+    imageUrl: '/assets/dishes/tangdi.jpg',
     dietary: ['halal', 'spicy'],
   },
   {
@@ -412,6 +424,7 @@ export const TANDOOR_ITEMS: TandoorItem[] = [
     price: '14.99',
     badge: 'Royal Classic',
     description: 'Tender lamb pieces, pan-seared and spiced to perfection, with rich, aromatic flavors.',
+    imageUrl: '/assets/dishes/pathar.jpg',
     dietary: ['halal', 'spicy'],
   },
   {
@@ -428,6 +441,7 @@ export const TANDOOR_ITEMS: TandoorItem[] = [
     price: '9.99',
     portion: '4 pcs',
     description: 'Spicy minced lamb kebabs grilled over charcoal.',
+    imageUrl: '/assets/dishes/sheekh.jpg',
     dietary: ['halal', 'spicy'],
   },
   {
@@ -445,6 +459,7 @@ export const TANDOOR_ITEMS: TandoorItem[] = [
     price: '11.99',
     portion: '5 pcs',
     description: 'Succulent lamb chops marinated and grilled for a smoky taste.',
+    imageUrl: '/assets/dishes/chops.jpg',
     dietary: ['halal'],
   },
 ];
@@ -456,6 +471,7 @@ export const PLATTER_ITEMS: PlatterItem[] = [
     name: 'Mehfil-e-Kebab Mini',
     price: '10.99',
     description: 'A sampler of chicken tikka, malai, sheekh and lamb chop. Ideal for one.',
+    imageUrl: '/assets/dishes/kebabmini.jpg',
     contents: [
       'Zaffrani Chicken Tikka (2 pcs)',
       'Murg Malai Tikka (2 pcs)',
@@ -470,6 +486,7 @@ export const PLATTER_ITEMS: PlatterItem[] = [
     name: 'Mehfil-e-Kebab (Mix)',
     price: '17.99',
     description: 'A hearty platter of assorted chicken, lamb chops and kebabs to share.',
+    imageUrl: '/assets/dishes/kebabmix.jpg',
     contents: [
       'Zafrani Chicken Tikka (3 pcs)',
       'Murg Hariyali Tikka (3 pcs)',
@@ -488,6 +505,7 @@ export const BIRYANI_ITEMS: BiryaniItem[] = [
     name: 'Mehfil-e-Lamb Biryani',
     description: 'Tender lamb layered with aromatic dum biryani rice.',
     accompaniment: 'Served with Mirchi Ka Salan & Raita',
+    imageUrl: '/assets/dishes/pop_biryani.jpg',
     sizes: [
       { key: 'regular', label: 'Regular', serves: '1 Person', price: '7.99' },
       { key: 'large', label: 'Large', serves: '2-3 Persons', price: '15.99' },
@@ -502,6 +520,7 @@ export const BIRYANI_ITEMS: BiryaniItem[] = [
     description:
       'Classic Hyderabadi biryani with juicy chicken simmered on dum inside seasoned pots, releasing fragrant steam when unsealed.',
     accompaniment: 'Served with Mirchi Ka Salan & Raita',
+    imageUrl: '/assets/dishes/chbiryani.jpg',
     sizes: [
       { key: 'regular', label: 'Regular', serves: '1 Person', price: '6.99' },
       { key: 'large', label: 'Large', serves: '2-3 Persons', price: '13.99' },
@@ -556,6 +575,7 @@ export const MURGH_CURRIES: SimpleDishItem[] = [
     name: 'Achari Chicken',
     price: '7.99',
     description: 'Tangy chicken curry with pickle-style seasoning.',
+    imageUrl: '/assets/dishes/achari.jpg',
     dietary: ['halal', 'spicy'],
   },
   {
@@ -563,6 +583,7 @@ export const MURGH_CURRIES: SimpleDishItem[] = [
     name: 'Butter Chicken',
     price: '7.99',
     description: 'Creamy tomato-based chicken curry, mildly spiced.',
+    imageUrl: '/assets/dishes/butter.jpg',
     dietary: ['halal'],
   },
   {
@@ -570,6 +591,7 @@ export const MURGH_CURRIES: SimpleDishItem[] = [
     name: 'Hariyali Chicken',
     price: '7.99',
     description: 'Chicken curry in a fresh green herb and spinach-style masala.',
+    imageUrl: '/assets/dishes/hariyali.jpg',
     dietary: ['halal'],
   },
   {
@@ -587,6 +609,7 @@ export const MANDI_ITEMS: MandiItem[] = [
     tag: 'Slow Pit Roast',
     name: 'Lamb Mandi',
     description: 'Slow-roasted lamb over spiced mandi rice, cooked with delicate spices.',
+    imageUrl: '/assets/dishes/pop_mandi.jpg',
     tiers: [
       { label: 'Regular', price: '11.99' },
       { label: 'Large', price: '19.99' },
@@ -599,6 +622,7 @@ export const MANDI_ITEMS: MandiItem[] = [
     tag: 'Clay Roasted',
     name: 'Chicken Mandi',
     description: 'Juicy roasted chicken with fragrant mandi rice.',
+    imageUrl: '/assets/dishes/mandichk.jpg',
     tiers: [
       { label: 'Regular', price: '9.99' },
       { label: 'Large', price: '17.99' },
@@ -622,6 +646,7 @@ export const MANDI_ITEMS: MandiItem[] = [
     tag: 'Charcoal Grilled',
     name: 'Chicken Faham Mandi',
     description: 'Smoky, charcoal-style grilled chicken served over fragrant mandi rice.',
+    imageUrl: '/assets/dishes/mandichk.jpg',
     tiers: [
       { label: 'Large', price: '18.99' },
       { label: 'Family', price: '33.99', highlight: true },
@@ -644,6 +669,7 @@ export const MANDI_ITEMS: MandiItem[] = [
     tag: 'Banquet Sharing',
     name: 'Platter Mandi',
     description: 'A sharing platter of roasted meats served over fragrant mandi rice.',
+    imageUrl: '/assets/dishes/mandiplat.jpg',
     tiers: [{ label: 'Large', price: '27.99', highlight: true }],
     dietary: ['halal', 'spicy'],
   },
@@ -673,6 +699,7 @@ export const VEG_ITEMS: SimpleDishItem[] = [
     name: 'Mix Veg Curry',
     price: '7.99',
     isVeg: true,
+    imageUrl: '/assets/dishes/veg.jpg',
     description:
       'A hearty blend of fresh vegetables cooked in a rich, aromatic gravy. Balanced spices create a comforting and wholesome dish.',
     dietary: ['veg'],
@@ -745,6 +772,7 @@ export const ROTI_ITEMS: SimpleDishItem[] = [
     name: 'Tandoori Roti',
     price: '2.49',
     isVeg: true,
+    imageUrl: '/assets/dishes/naan.jpg',
     description: 'Whole wheat flatbread from the tandoor.',
     dietary: ['veg'],
   },

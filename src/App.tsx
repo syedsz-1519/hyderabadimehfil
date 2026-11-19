@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+import { MotionConfig } from 'motion/react';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
+import { InstagramBubble } from './components/InstagramBubble';
 import { MobileStickyBar } from './components/MobileStickyBar';
 import { PageRoute } from './data/restaurantData';
 import { ContactPage } from './pages/ContactPage';
@@ -51,17 +53,20 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FFF8F6] text-[#211A17]">
-      <Header currentPage={currentPage} onNavigate={handleNavigate} />
+    <MotionConfig reducedMotion="user">
+      <div className="min-h-screen flex flex-col bg-[#FFF8F6] text-[#211A17]">
+        <Header currentPage={currentPage} onNavigate={handleNavigate} />
 
-      <main className="flex-1 w-full pt-16 md:pt-20">
-        {currentPage === 'home' && <HomePage onNavigate={handleNavigate} />}
-        {currentPage === 'menu' && <MenuPage initialSection={menuTargetSection} />}
-        {currentPage === 'contact' && <ContactPage />}
-      </main>
+        <main className="flex-1 w-full pt-16 md:pt-20">
+          {currentPage === 'home' && <HomePage onNavigate={handleNavigate} />}
+          {currentPage === 'menu' && <MenuPage initialSection={menuTargetSection} />}
+          {currentPage === 'contact' && <ContactPage />}
+        </main>
 
-      <Footer />
-      <MobileStickyBar />
-    </div>
+        <Footer />
+        <InstagramBubble />
+        <MobileStickyBar />
+      </div>
+    </MotionConfig>
   );
 }
