@@ -6,3 +6,9 @@ coverage/
 *.log
 .env*
 !.env.example
+*.pem
+*firebase-adminsdk*.json
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
