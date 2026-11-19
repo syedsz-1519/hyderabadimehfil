@@ -27,6 +27,7 @@ import {
 } from '../data/restaurantData';
 import { ResilientImage } from '../components/ResilientImage';
 import { ReviewModal } from '../components/ReviewModal';
+import { FrequentlyAskedQuestions } from '../components/FrequentlyAskedQuestions';
 import { type GuestReview, subscribeToReviews } from '../services/reviews';
 
 interface HomePageProps {
@@ -580,9 +581,16 @@ export function HomePage({ onNavigate }: HomePageProps) {
               </motion.article>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* Ilford Visit Callout Strip */}
-          <div className="mt-12 bg-[#FFF8F6] rounded-xl p-6 sm:p-8 border border-[#C9A24B]/35 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+      {/* 6. FREQUENTLY ASKED QUESTIONS */}
+      <FrequentlyAskedQuestions onNavigate={onNavigate} />
+
+      {/* 7. ILFORD VISIT CALLOUT STRIP */}
+      <section className="py-12 md:py-16 bg-[#F4E5E0] border-t border-[#C9A24B]/20">
+        <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-12">
+          <div className="bg-[#FFF8F6] rounded-xl p-6 sm:p-8 border border-[#C9A24B]/35 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4 text-center md:text-left">
               <div className="hidden sm:flex w-12 h-12 rounded-full bg-[#5A0F1F] text-[#FFDF9E] items-center justify-center shrink-0">
                 <MapPin className="w-5 h-5" aria-hidden="true" />

@@ -82,6 +82,15 @@ export interface ExtraItem {
   dietary: Array<Exclude<DietaryFilter, 'all'>>;
 }
 
+export interface FaqItem {
+  id: string;
+  question: string;
+  answer: string;
+  actionLabel?: string;
+  actionRoute?: PageRoute;
+  actionSection?: string;
+}
+
 export const RESTAURANT_INFO = {
   name: 'Hyderabadi Mehfil',
   fullTitle: 'Hyderabadi Mehfil Restaurant',
@@ -822,5 +831,54 @@ export const LASSI_ITEMS: SimpleDishItem[] = [
     isVeg: true,
     description: 'A large serving of chilled lassi for the table.',
     dietary: ['veg'],
+  },
+];
+
+export const FAQ_ITEMS: FaqItem[] = [
+  {
+    id: 'faq-dietary',
+    question: 'Do you cater for dietary restrictions, vegetarians, and food allergies?',
+    answer:
+      'Yes. We offer dedicated vegetarian dishes including Veg Biryani, Chilli Paneer, Gobi 65, Mix Veg Curry, Paneer Curry, and Malai Paneer Tikka, alongside freshly baked breads and yogurt lassi. If you or anyone in your party has allergies such as nuts, dairy, or gluten, please inform our staff before ordering so our kitchen can advise on ingredients and preparation.',
+    actionLabel: 'Browse Vegetarian Menu',
+    actionRoute: 'menu',
+    actionSection: 'veg',
+  },
+  {
+    id: 'faq-parking',
+    question: 'Where can I park near 290 Ilford Lane?',
+    answer:
+      'Pay-and-display street parking bays are available along Ilford Lane and nearby residential side streets outside peak restriction hours, with public car parks a short walk away in Ilford town centre. We are also easily reached on foot from Ilford Station (Elizabeth line) and local bus routes stopping right along Ilford Lane.',
+  },
+  {
+    id: 'faq-groups',
+    question: 'Do you take large group bookings and family reservations?',
+    answer:
+      'Yes, families and large groups are always welcome at Hyderabadi Mehfil. For parties of 6 or more—or weekend evening tables—we recommend calling +44 20 8637 3224 or sending a message in advance so we can arrange comfortable seating and prepare sharing platters fresh for your arrival.',
+    actionLabel: 'Request a Group Booking',
+    actionRoute: 'contact',
+  },
+  {
+    id: 'faq-halal-spice',
+    question: 'Is all meat 100% Halal, and can spice levels be adjusted?',
+    answer:
+      'All poultry and lamb served at Hyderabadi Mehfil are 100% Halal-certified and sourced fresh daily. While traditional Hyderabadi Dum Biryani and curries carry authentic spice warmth, milder options such as Butter Chicken, Lamb Malai, and Malai Paneer Tikka are available, and our kitchen can tailor heat levels on cooked-to-order curries upon request.',
+    actionLabel: 'Explore All Dishes',
+    actionRoute: 'menu',
+  },
+  {
+    id: 'faq-takeaway-hours',
+    question: 'Can I pre-order takeaway for collection, and what are your Friday hours?',
+    answer:
+      'Yes, you can call +44 20 8637 3224 ahead to place a fresh takeaway order for convenient collection at 290 Ilford Lane. We are open 12 Noon to 11 PM every day except Friday; on Fridays we open from 2 PM to 11 PM following Jummah prayers.',
+  },
+  {
+    id: 'faq-platters',
+    question: 'Do you offer family sharing pots and platters for private gatherings?',
+    answer:
+      'We serve generous Family-size Lamb and Chicken Dum Biryani portions (serving 4–5 guests), communal Mandi sharing platters such as Platter Mandi and Mix Mandi, and assorted Kebab Platters ideal for home gatherings and celebrations. For larger custom event trays, get in touch with our kitchen team ahead of your event date.',
+    actionLabel: 'View Biryanis & Platters',
+    actionRoute: 'menu',
+    actionSection: 'platters',
   },
 ];
