@@ -23,11 +23,43 @@ function resolveRouteFromLocation(): PageRoute {
   return 'home';
 }
 
+export type ThemeMode = 'light' | 'dark';
+
+function resolveInitialTheme(): ThemeMode {
+  if (typeof document !== 'undefined' && document.documentElement.classList.contains('dark')) {
+    return 'dark';
+  }
+  try {
+    return localStorage.getItem('hm-theme') === 'dark' ? 'dark' : 'light';
+  } catch {
+    return 'light';
+  }
+}
+
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageRoute>(() => resolveRouteFromLocation());
+  const [theme, setTheme] = useState<ThemeMode>(() => resolveInitialTheme());
   const [menuTargetRequest, setMenuTargetRequest] = useState<{ id: string; nonce: number } | undefined>(
     undefined
   );
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+    try {
+      localStorage.setItem('hm-theme', theme);
+    } catch {
+      // Ignore storage errors in restricted contexts
+    }
+  }, [theme]);
+
+  const handleToggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   useEffect(() => {
     const handlePopState = () => {
@@ -64,8 +96,13 @@ export default function App() {
   return (
     <ErrorBoundary>
       <MotionConfig reducedMotion="user">
-        <div className="min-h-screen flex flex-col bg-[#1A171D] text-[#F7F1E3]">
-          <Header currentPage={currentPage} onNavigate={handleNavigate} />
+        <div className="min-h-screen flex flex-col bg-[#FAF5EA] dark:bg-[#1A171D] text-[#1F1A17] dark:text-[#F7F1E3] transition-colors duration-200">
+          <Header
+            currentPage={currentPage}
+            onNavigate={handleNavigate}
+            theme={theme}
+            onToggleTheme={handleToggleTheme}
+          />
 
           <main className="flex-1 w-full pt-16 md:pt-20">
             {currentPage === 'home' && <HomePage onNavigate={handleNavigate} />}

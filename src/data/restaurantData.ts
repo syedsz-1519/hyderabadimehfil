@@ -110,7 +110,7 @@ export const RESTAURANT_INFO = {
   hoursMain: 'Every day except Friday: 12 Noon – 11 PM',
   hoursFriday: 'Friday: 2 PM – 11 PM',
   copyright: '© 2026 Hyderabadi Mehfil. All rights reserved.',
-  logoUrl: '/assets/aistudio/WhatsApp_Image_2026-11-19_at_5.06.25_PM_ea53848c.jpeg',
+  logoUrl: '/assets/aistudio/image_f2d48441.png',
   heroImageUrl: '/src/assets/images/hero_biryani_feast_1795095626213.jpg',
   storyImageUrl: '/src/assets/images/story_uk_kitchen_1795101289775.jpg',
   menuHeroImageUrl: '/src/assets/images/hero_menu_feast_1795100676516.jpg',

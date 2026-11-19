@@ -68,7 +68,7 @@ export function ContactPage() {
   };
 
   return (
-    <div className="flex flex-col w-full bg-[#1A171D]">
+    <div className="flex flex-col w-full bg-[#FAF5EA] dark:bg-[#1A171D] transition-colors">
       {/* 1. TOP HEADER BANNER */}
       <section className="relative w-full bg-[#18151B] text-[#F7F1E3] overflow-hidden py-16 lg:py-24 shadow-lg">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -115,7 +115,7 @@ export function ContactPage() {
 
       {/* 2. AMBIENT PHOTO VIGNETTE BAND */}
       <section className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-12 -mt-7 relative z-20">
-        <div className="bg-[#27222C] rounded-xl shadow-lg overflow-hidden p-3 lg:p-4 grid grid-cols-1 md:grid-cols-3 gap-3 border border-[#D4AF37]/35">
+        <div className="bg-white dark:bg-[#27222C] rounded-xl shadow-lg overflow-hidden p-3 lg:p-4 grid grid-cols-1 md:grid-cols-3 gap-3 border border-[#D4AF37]/35">
           {CONTACT_VIGNETTES.map((item) => (
             <div
               key={item.title}
@@ -142,19 +142,19 @@ export function ContactPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* LEFT COLUMN: SEND US A MESSAGE */}
           <div className="lg:col-span-6">
-            <div className="bg-[#27222C] rounded-xl p-6 sm:p-8 lg:p-10 shadow-md border border-[#D4AF37]/35 relative overflow-hidden">
+            <div className="bg-white dark:bg-[#27222C] rounded-xl p-6 sm:p-8 lg:p-10 shadow-md border border-[#D4AF37]/35 relative overflow-hidden">
               <div className="flex items-center gap-2 mb-2 pt-1">
-                <Mail className="w-4 h-4 text-[#ECC55F]" aria-hidden="true" />
-                <span className="text-xs uppercase tracking-[0.2em] text-[#ECC55F] font-bold">
+                <Mail className="w-4 h-4 text-[#9A6B10] dark:text-[#ECC55F]" aria-hidden="true" />
+                <span className="text-xs uppercase tracking-[0.2em] text-[#9A6B10] dark:text-[#ECC55F] font-bold">
                   Direct Inquiry
                 </span>
               </div>
 
-              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#F7F1E3] mb-3">
+              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3] mb-3">
                 SEND US A MESSAGE
               </h2>
 
-              <p className="text-sm sm:text-base text-[#D8CFC4] mb-7 leading-relaxed">
+              <p className="text-sm sm:text-base text-[#4E4237] dark:text-[#D8CFC4] mb-7 leading-relaxed">
                 Whether inquiring about table bookings, group catering, or takeaway orders, our team
                 is happy to help.
               </p>
@@ -164,13 +164,13 @@ export function ContactPage() {
                 <div className="flex flex-col gap-1.5">
                   <label
                     htmlFor="userName"
-                    className="text-xs sm:text-sm font-semibold text-[#F7F1E3] uppercase tracking-wide"
+                    className="text-xs sm:text-sm font-semibold text-[#1F1A17] dark:text-[#F7F1E3] uppercase tracking-wide"
                   >
                     Your name
                   </label>
                   <div className="relative flex items-center">
                     <User
-                      className="w-4 h-4 absolute left-4 text-[#ECC55F] pointer-events-none"
+                      className="w-4 h-4 absolute left-4 text-[#9A6B10] dark:text-[#ECC55F] pointer-events-none"
                       aria-hidden="true"
                     />
                     <input
@@ -185,11 +185,11 @@ export function ContactPage() {
                       placeholder="Enter your name"
                       required
                       aria-invalid={Boolean(errors.name)}
-                      className="w-full bg-[#1B181F] border border-[#D4AF37]/30 text-[#F7F1E3] placeholder:text-[#B4A89B] text-sm sm:text-base pl-11 pr-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F0C75E]/35 focus:border-[#F0C75E] transition-all"
+                      className="w-full bg-[#FAF5EA] dark:bg-[#1B181F] border border-[#D4AF37]/35 dark:border-[#D4AF37]/30 text-[#1F1A17] dark:text-[#F7F1E3] placeholder:text-[#8A7968] dark:placeholder:text-[#B4A89B] text-sm sm:text-base pl-11 pr-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/40 dark:focus:ring-[#F0C75E]/35 focus:border-[#9A6B10] dark:focus:border-[#F0C75E] transition-all"
                     />
                   </div>
                   {errors.name && (
-                    <p role="alert" className="text-xs font-medium text-[#FCA5A5]">
+                    <p role="alert" className="text-xs font-medium text-[#B91C1C] dark:text-[#FCA5A5]">
                       {errors.name}
                     </p>
                   )}
@@ -199,13 +199,13 @@ export function ContactPage() {
                 <div className="flex flex-col gap-1.5">
                   <label
                     htmlFor="userEmail"
-                    className="text-xs sm:text-sm font-semibold text-[#F7F1E3] uppercase tracking-wide"
+                    className="text-xs sm:text-sm font-semibold text-[#1F1A17] dark:text-[#F7F1E3] uppercase tracking-wide"
                   >
                     Your email
                   </label>
                   <div className="relative flex items-center">
                     <AtSign
-                      className="w-4 h-4 absolute left-4 text-[#ECC55F] pointer-events-none"
+                      className="w-4 h-4 absolute left-4 text-[#9A6B10] dark:text-[#ECC55F] pointer-events-none"
                       aria-hidden="true"
                     />
                     <input
@@ -220,11 +220,11 @@ export function ContactPage() {
                       placeholder="Enter your email address"
                       required
                       aria-invalid={Boolean(errors.email)}
-                      className="w-full bg-[#1B181F] border border-[#D4AF37]/30 text-[#F7F1E3] placeholder:text-[#B4A89B] text-sm sm:text-base pl-11 pr-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F0C75E]/35 focus:border-[#F0C75E] transition-all"
+                      className="w-full bg-[#FAF5EA] dark:bg-[#1B181F] border border-[#D4AF37]/35 dark:border-[#D4AF37]/30 text-[#1F1A17] dark:text-[#F7F1E3] placeholder:text-[#8A7968] dark:placeholder:text-[#B4A89B] text-sm sm:text-base pl-11 pr-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/40 dark:focus:ring-[#F0C75E]/35 focus:border-[#9A6B10] dark:focus:border-[#F0C75E] transition-all"
                     />
                   </div>
                   {errors.email && (
-                    <p role="alert" className="text-xs font-medium text-[#FCA5A5]">
+                    <p role="alert" className="text-xs font-medium text-[#B91C1C] dark:text-[#FCA5A5]">
                       {errors.email}
                     </p>
                   )}
@@ -234,13 +234,13 @@ export function ContactPage() {
                 <div className="flex flex-col gap-1.5">
                   <label
                     htmlFor="userSubject"
-                    className="text-xs sm:text-sm font-semibold text-[#F7F1E3] uppercase tracking-wide"
+                    className="text-xs sm:text-sm font-semibold text-[#1F1A17] dark:text-[#F7F1E3] uppercase tracking-wide"
                   >
                     Subject
                   </label>
                   <div className="relative flex items-center">
                     <MessageSquare
-                      className="w-4 h-4 absolute left-4 text-[#ECC55F] pointer-events-none"
+                      className="w-4 h-4 absolute left-4 text-[#9A6B10] dark:text-[#ECC55F] pointer-events-none"
                       aria-hidden="true"
                     />
                     <input
@@ -255,11 +255,11 @@ export function ContactPage() {
                       placeholder="How can we help you?"
                       required
                       aria-invalid={Boolean(errors.subject)}
-                      className="w-full bg-[#1B181F] border border-[#D4AF37]/30 text-[#F7F1E3] placeholder:text-[#B4A89B] text-sm sm:text-base pl-11 pr-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F0C75E]/35 focus:border-[#F0C75E] transition-all"
+                      className="w-full bg-[#FAF5EA] dark:bg-[#1B181F] border border-[#D4AF37]/35 dark:border-[#D4AF37]/30 text-[#1F1A17] dark:text-[#F7F1E3] placeholder:text-[#8A7968] dark:placeholder:text-[#B4A89B] text-sm sm:text-base pl-11 pr-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/40 dark:focus:ring-[#F0C75E]/35 focus:border-[#9A6B10] dark:focus:border-[#F0C75E] transition-all"
                     />
                   </div>
                   {errors.subject && (
-                    <p role="alert" className="text-xs font-medium text-[#FCA5A5]">
+                    <p role="alert" className="text-xs font-medium text-[#B91C1C] dark:text-[#FCA5A5]">
                       {errors.subject}
                     </p>
                   )}
@@ -270,11 +270,13 @@ export function ContactPage() {
                   <div className="flex justify-between items-baseline">
                     <label
                       htmlFor="userMessage"
-                      className="text-xs sm:text-sm font-semibold text-[#F7F1E3] uppercase tracking-wide"
+                      className="text-xs sm:text-sm font-semibold text-[#1F1A17] dark:text-[#F7F1E3] uppercase tracking-wide"
                     >
                       Your message (optional)
                     </label>
-                    <span className="text-xs text-[#B4A89B] font-medium">Optional</span>
+                    <span className="text-xs text-[#6B5B4E] dark:text-[#B4A89B] font-medium">
+                      Optional
+                    </span>
                   </div>
                   <textarea
                     id="userMessage"
@@ -283,14 +285,14 @@ export function ContactPage() {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Write your message..."
-                    className="w-full bg-[#1B181F] border border-[#D4AF37]/30 text-[#F7F1E3] placeholder:text-[#B4A89B] text-sm sm:text-base p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F0C75E]/35 focus:border-[#F0C75E] transition-all resize-y"
+                    className="w-full bg-[#FAF5EA] dark:bg-[#1B181F] border border-[#D4AF37]/35 dark:border-[#D4AF37]/30 text-[#1F1A17] dark:text-[#F7F1E3] placeholder:text-[#8A7968] dark:placeholder:text-[#B4A89B] text-sm sm:text-base p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/40 dark:focus:ring-[#F0C75E]/35 focus:border-[#9A6B10] dark:focus:border-[#F0C75E] transition-all resize-y"
                   />
                 </div>
 
                 <div className="pt-1">
                   <button
                     type="submit"
-                    className="w-full py-3.5 px-6 bg-gradient-to-r from-[#C99B35] via-[#F0C75E] to-[#D4A63B] text-[#1D1810] text-sm font-bold uppercase tracking-wider rounded-lg shadow-md hover:brightness-110 active:scale-[0.99] transition-all flex items-center justify-center gap-2.5 cursor-pointer group focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F7F1E3]"
+                    className="w-full py-3.5 px-6 bg-gradient-to-r from-[#C99B35] via-[#F0C75E] to-[#D4A63B] text-[#1D1810] text-sm font-bold uppercase tracking-wider rounded-lg shadow-md hover:brightness-110 active:scale-[0.99] transition-all flex items-center justify-center gap-2.5 cursor-pointer group focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#9A6B10] dark:focus-visible:outline-[#F7F1E3]"
                   >
                     <span>SEND MESSAGE</span>
                     <Send
@@ -303,10 +305,10 @@ export function ContactPage() {
                 {submittedName && (
                   <div
                     role="status"
-                    className="mt-2 p-4 rounded-lg bg-[#1D1921] border border-[#D4AF37]/50 text-[#F7F1E3] text-sm flex items-start gap-3 shadow-xs"
+                    className="mt-2 p-4 rounded-lg bg-[#F2E9D6] dark:bg-[#1D1921] border border-[#D4AF37]/50 text-[#1F1A17] dark:text-[#F7F1E3] text-sm flex items-start gap-3 shadow-xs"
                   >
                     <CheckCircle2
-                      className="w-5 h-5 text-[#ECC55F] shrink-0 mt-0.5"
+                      className="w-5 h-5 text-[#9A6B10] dark:text-[#ECC55F] shrink-0 mt-0.5"
                       aria-hidden="true"
                     />
                     <div className="flex-1">
@@ -317,7 +319,7 @@ export function ContactPage() {
                       <button
                         type="button"
                         onClick={() => setSubmittedName(null)}
-                        className="mt-1.5 text-xs font-bold uppercase tracking-wider text-[#ECC55F] hover:underline cursor-pointer"
+                        className="mt-1.5 text-xs font-bold uppercase tracking-wider text-[#9A6B10] dark:text-[#ECC55F] hover:underline cursor-pointer"
                       >
                         Send Another Inquiry
                       </button>
@@ -332,18 +334,18 @@ export function ContactPage() {
           <div className="lg:col-span-6 flex flex-col gap-5">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Address Card */}
-              <div className="bg-[#27222C] rounded-xl p-6 shadow-xs border border-[#D4AF37]/30 flex flex-col justify-between">
+              <div className="bg-white dark:bg-[#27222C] rounded-xl p-6 shadow-xs border border-[#D4AF37]/30 flex flex-col justify-between">
                 <div>
-                  <div className="w-10 h-10 rounded-full bg-[#18151B] border border-[#D4AF37]/45 text-[#ECC55F] flex items-center justify-center mb-4">
+                  <div className="w-10 h-10 rounded-full bg-[#FAF5EA] dark:bg-[#18151B] border border-[#D4AF37]/45 text-[#9A6B10] dark:text-[#ECC55F] flex items-center justify-center mb-4">
                     <MapPin className="w-5 h-5" aria-hidden="true" />
                   </div>
-                  <span className="text-[11px] uppercase tracking-widest text-[#ECC55F] font-bold block mb-1">
+                  <span className="text-[11px] uppercase tracking-widest text-[#9A6B10] dark:text-[#ECC55F] font-bold block mb-1">
                     ADDRESS
                   </span>
-                  <p className="font-serif text-xl font-semibold text-[#F7F1E3]">
+                  <p className="font-serif text-xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3]">
                     {RESTAURANT_INFO.addressLine1}
                   </p>
-                  <p className="text-sm sm:text-base text-[#D8CFC4] mb-4">
+                  <p className="text-sm sm:text-base text-[#4E4237] dark:text-[#D8CFC4] mb-4">
                     {RESTAURANT_INFO.addressLine2}
                   </p>
                 </div>
@@ -351,7 +353,7 @@ export function ContactPage() {
                   href={RESTAURANT_INFO.mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#ECC55F] uppercase hover:text-[#F7F1E3] transition-colors mt-2"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#9A6B10] hover:text-[#1F1A17] dark:text-[#ECC55F] dark:hover:text-[#F7F1E3] uppercase transition-colors mt-2"
                 >
                   <span>Get Directions</span>
                   <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
@@ -359,27 +361,27 @@ export function ContactPage() {
               </div>
 
               {/* Phone Card */}
-              <div className="bg-[#27222C] rounded-xl p-6 shadow-xs border border-[#D4AF37]/30 flex flex-col justify-between">
+              <div className="bg-white dark:bg-[#27222C] rounded-xl p-6 shadow-xs border border-[#D4AF37]/30 flex flex-col justify-between">
                 <div>
-                  <div className="w-10 h-10 rounded-full bg-[#18151B] border border-[#D4AF37]/45 text-[#ECC55F] flex items-center justify-center mb-4">
+                  <div className="w-10 h-10 rounded-full bg-[#FAF5EA] dark:bg-[#18151B] border border-[#D4AF37]/45 text-[#9A6B10] dark:text-[#ECC55F] flex items-center justify-center mb-4">
                     <Phone className="w-5 h-5" aria-hidden="true" />
                   </div>
-                  <span className="text-[11px] uppercase tracking-widest text-[#ECC55F] font-bold block mb-1">
+                  <span className="text-[11px] uppercase tracking-widest text-[#9A6B10] dark:text-[#ECC55F] font-bold block mb-1">
                     PHONE
                   </span>
                   <a
                     href={RESTAURANT_INFO.phoneHref}
-                    className="font-serif text-xl font-semibold text-[#F7F1E3] hover:text-[#ECC55F] transition-colors block mb-2 tabular-nums"
+                    className="font-serif text-xl font-semibold text-[#1F1A17] hover:text-[#9A6B10] dark:text-[#F7F1E3] dark:hover:text-[#ECC55F] transition-colors block mb-2 tabular-nums"
                   >
                     {RESTAURANT_INFO.phoneDisplay}
                   </a>
-                  <p className="text-sm text-[#D8CFC4]">
+                  <p className="text-sm text-[#4E4237] dark:text-[#D8CFC4]">
                     Direct line for table reservations and fresh takeaway orders.
                   </p>
                 </div>
                 <a
                   href={RESTAURANT_INFO.phoneHref}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#ECC55F] uppercase hover:text-[#F7F1E3] transition-colors mt-4"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#9A6B10] hover:text-[#1F1A17] dark:text-[#ECC55F] dark:hover:text-[#F7F1E3] uppercase transition-colors mt-4"
                 >
                   <PhoneForwarded className="w-4 h-4" aria-hidden="true" />
                   <span>Tap to Call</span>
@@ -387,46 +389,54 @@ export function ContactPage() {
               </div>
 
               {/* Opening Hours Card */}
-              <div className="bg-[#27222C] rounded-xl p-6 shadow-xs border border-[#D4AF37]/30 sm:col-span-2">
+              <div className="bg-white dark:bg-[#27222C] rounded-xl p-6 shadow-xs border border-[#D4AF37]/30 sm:col-span-2">
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <div className="w-10 h-10 rounded-full bg-[#18151B] border border-[#D4AF37]/45 text-[#ECC55F] flex items-center justify-center mb-3">
+                    <div className="w-10 h-10 rounded-full bg-[#FAF5EA] dark:bg-[#18151B] border border-[#D4AF37]/45 text-[#9A6B10] dark:text-[#ECC55F] flex items-center justify-center mb-3">
                       <Clock className="w-5 h-5" aria-hidden="true" />
                     </div>
-                    <span className="text-[11px] uppercase tracking-widest text-[#ECC55F] font-bold block mb-2">
+                    <span className="text-[11px] uppercase tracking-widest text-[#9A6B10] dark:text-[#ECC55F] font-bold block mb-2">
                       OPENING HOURS
                     </span>
                   </div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#ECC55F]">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#9A6B10] dark:text-[#ECC55F]">
                     Fresh Dum Daily
                   </span>
                 </div>
 
                 <div className="space-y-3 mt-2 text-sm sm:text-base">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-2 border-b border-[#D4AF37]/20">
-                    <span className="text-[#D8CFC4] font-semibold">Every day except Friday:</span>
-                    <span className="text-[#F7F1E3] font-bold">12 Noon – 11 PM</span>
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-2 border-b border-[#D4AF37]/25 dark:border-[#D4AF37]/20">
+                    <span className="text-[#4E4237] dark:text-[#D8CFC4] font-semibold">
+                      Every day except Friday:
+                    </span>
+                    <span className="text-[#1F1A17] dark:text-[#F7F1E3] font-bold">
+                      12 Noon – 11 PM
+                    </span>
                   </div>
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-                    <span className="text-[#D8CFC4] font-semibold">Friday:</span>
-                    <span className="text-[#F7F1E3] font-bold">2 PM – 11 PM</span>
+                    <span className="text-[#4E4237] dark:text-[#D8CFC4] font-semibold">
+                      Friday:
+                    </span>
+                    <span className="text-[#1F1A17] dark:text-[#F7F1E3] font-bold">
+                      2 PM – 11 PM
+                    </span>
                   </div>
                 </div>
               </div>
 
               {/* Email Card */}
-              <div className="bg-[#27222C] rounded-xl p-6 shadow-xs border border-[#D4AF37]/30 sm:col-span-2 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="bg-white dark:bg-[#27222C] rounded-xl p-6 shadow-xs border border-[#D4AF37]/30 sm:col-span-2 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="flex items-center gap-4 min-w-0">
-                  <div className="w-10 h-10 rounded-full bg-[#18151B] border border-[#D4AF37]/45 text-[#ECC55F] flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-full bg-[#FAF5EA] dark:bg-[#18151B] border border-[#D4AF37]/45 text-[#9A6B10] dark:text-[#ECC55F] flex items-center justify-center shrink-0">
                     <Mail className="w-5 h-5" aria-hidden="true" />
                   </div>
                   <div className="min-w-0">
-                    <span className="text-[11px] uppercase tracking-widest text-[#ECC55F] font-bold block">
+                    <span className="text-[11px] uppercase tracking-widest text-[#9A6B10] dark:text-[#ECC55F] font-bold block">
                       EMAIL
                     </span>
                     <a
                       href={RESTAURANT_INFO.emailHref}
-                      className="text-base sm:text-lg text-[#F7F1E3] hover:text-[#ECC55F] font-semibold transition-colors block truncate"
+                      className="text-base sm:text-lg text-[#1F1A17] hover:text-[#9A6B10] dark:text-[#F7F1E3] dark:hover:text-[#ECC55F] font-semibold transition-colors block truncate"
                     >
                       {RESTAURANT_INFO.email}
                     </a>
@@ -434,7 +444,7 @@ export function ContactPage() {
                 </div>
                 <a
                   href={RESTAURANT_INFO.emailHref}
-                  className="self-start sm:self-auto px-4 py-2 bg-[#18151B] border border-[#D4AF37]/45 text-[#ECC55F] text-xs font-bold uppercase rounded-lg hover:bg-[#322B39] transition-colors shrink-0"
+                  className="self-start sm:self-auto px-4 py-2 bg-[#FAF5EA] hover:bg-[#F2E9D6] dark:bg-[#18151B] dark:hover:bg-[#322B39] border border-[#D4AF37]/45 text-[#9A6B10] dark:text-[#ECC55F] text-xs font-bold uppercase rounded-lg transition-colors shrink-0"
                 >
                   Write Email
                 </a>
@@ -442,15 +452,17 @@ export function ContactPage() {
             </div>
 
             {/* Embedded Google Map Card */}
-            <div className="bg-[#27222C] rounded-xl p-4 shadow-xs border border-[#D4AF37]/30 flex flex-col gap-3">
+            <div className="bg-white dark:bg-[#27222C] rounded-xl p-4 shadow-xs border border-[#D4AF37]/30 flex flex-col gap-3">
               <div className="flex items-center justify-between px-1 pt-1">
                 <div className="flex items-center gap-2">
-                  <Compass className="w-4 h-4 text-[#ECC55F]" aria-hidden="true" />
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#F7F1E3]">
+                  <Compass className="w-4 h-4 text-[#9A6B10] dark:text-[#ECC55F]" aria-hidden="true" />
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#1F1A17] dark:text-[#F7F1E3]">
                     FIND US IN ILFORD
                   </span>
                 </div>
-                <span className="text-xs text-[#B4A89B] font-medium">East London</span>
+                <span className="text-xs text-[#6B5B4E] dark:text-[#B4A89B] font-medium">
+                  East London
+                </span>
               </div>
 
               <div className="w-full h-72 rounded-lg relative overflow-hidden flex flex-col justify-between p-4 border border-[#D4AF37]/30 bg-[#1B181F]">
@@ -500,17 +512,17 @@ export function ContactPage() {
       </section>
 
       {/* 4. VISIT INVITATION BANNER */}
-      <section className="w-full bg-[#211D25] py-10 px-5 sm:px-6 lg:px-12 border-t border-[#D4AF37]/20">
+      <section className="w-full bg-[#F2E9D6] dark:bg-[#211D25] py-10 px-5 sm:px-6 lg:px-12 border-t border-[#D4AF37]/25 dark:border-[#D4AF37]/20 transition-colors">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
           <div className="flex flex-col sm:flex-row items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-[#18151B] border border-[#D4AF37]/45 text-[#ECC55F] flex items-center justify-center shrink-0 shadow-sm">
+            <div className="w-12 h-12 rounded-full bg-white dark:bg-[#18151B] border border-[#D4AF37]/45 text-[#9A6B10] dark:text-[#ECC55F] flex items-center justify-center shrink-0 shadow-sm">
               <Flame className="w-6 h-6" aria-hidden="true" />
             </div>
             <div>
-              <h3 className="font-serif text-xl font-semibold text-[#F7F1E3]">
+              <h3 className="font-serif text-xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3]">
                 Visit Hyderabadi Mehfil in Ilford
               </h3>
-              <p className="text-sm sm:text-base text-[#D8CFC4]">
+              <p className="text-sm sm:text-base text-[#4E4237] dark:text-[#D8CFC4]">
                 Cooked slow in sealed handis with pure saffron, aged basmati rice, and fresh spices.
               </p>
             </div>

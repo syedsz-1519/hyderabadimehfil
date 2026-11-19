@@ -91,13 +91,15 @@ export function HomePage({ onNavigate }: HomePageProps) {
   const renderDishIcon = (id: string) => {
     switch (id) {
       case 'popular-dessert':
-        return <IceCreamBowl className="w-4 h-4 text-[#ECC55F]" aria-hidden="true" />;
+        return (
+          <IceCreamBowl className="w-4 h-4 text-[#9A6B10] dark:text-[#ECC55F]" aria-hidden="true" />
+        );
       case 'popular-lamb-biryani':
-        return <Flame className="w-4 h-4 text-[#ECC55F]" aria-hidden="true" />;
+        return <Flame className="w-4 h-4 text-[#9A6B10] dark:text-[#ECC55F]" aria-hidden="true" />;
       case 'popular-mojito':
-        return <Wine className="w-4 h-4 text-[#ECC55F]" aria-hidden="true" />;
+        return <Wine className="w-4 h-4 text-[#9A6B10] dark:text-[#ECC55F]" aria-hidden="true" />;
       default:
-        return <Soup className="w-4 h-4 text-[#ECC55F]" aria-hidden="true" />;
+        return <Soup className="w-4 h-4 text-[#9A6B10] dark:text-[#ECC55F]" aria-hidden="true" />;
     }
   };
 
@@ -181,54 +183,78 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       {/* 2. AUTHENTIC STORY SPLIT SECTION */}
-      <section id="our-story" className="relative py-16 md:py-24 bg-[#1A171D] scroll-mt-20">
+      <section
+        id="our-story"
+        className="relative py-16 md:py-24 bg-[#FAF5EA] dark:bg-[#1A171D] scroll-mt-20 transition-colors"
+      >
         <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             {/* Left Storytelling Card */}
             <div className="lg:col-span-7">
-              <div className="bg-[#27222C] rounded-xl p-7 sm:p-11 shadow-sm border border-[#D4AF37]/30 relative overflow-hidden">
+              <div className="bg-white dark:bg-[#27222C] rounded-xl p-7 sm:p-11 shadow-sm border border-[#D4AF37]/35 dark:border-[#D4AF37]/30 relative overflow-hidden">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="h-[2px] w-8 bg-[#D4AF37]" />
-                  <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#ECC55F]">
+                  <span className="h-[2px] w-8 bg-[#C99B35] dark:bg-[#D4AF37]" />
+                  <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#9A6B10] dark:text-[#ECC55F]">
                     Tradition &amp; Craft
                   </span>
                 </div>
 
-                <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#F7F1E3] tracking-tight mb-5">
+                <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3] tracking-tight mb-5">
                   Authentic Hyderabadi Biryani Cuisine in Ilford
                 </h2>
 
-                <p className="font-serif text-lg text-[#ECC55F]/90 italic mb-4 leading-relaxed">
+                <p className="font-serif text-lg text-[#9A6B10] dark:text-[#ECC55F]/90 italic mb-4 leading-relaxed">
                   &ldquo;Savor the taste of Hyderabad&apos;s finest biryani and dishes at our
                   restaurant.&rdquo;
                 </p>
 
-                <p className="text-base text-[#D8CFC4] leading-relaxed mb-8">
+                <p className="text-base text-[#4E4237] dark:text-[#D8CFC4] leading-relaxed mb-8">
                   Experience the rich flavors of Hyderabad with our authentic chicken and lamb dum
                   biryani, crafted fresh every day right here on Ilford Lane, London.
                 </p>
 
                 {/* Culinary Craft Highlights */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 p-5 rounded-lg bg-[#1D1921] border border-[#D4AF37]/25">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 p-5 rounded-lg bg-[#F2E9D6] dark:bg-[#1D1921] border border-[#D4AF37]/30 dark:border-[#D4AF37]/25">
                   <div className="flex flex-col">
-                    <ChefHat className="w-5 h-5 text-[#ECC55F] mb-2" aria-hidden="true" />
-                    <span className="font-serif text-base font-bold text-[#F7F1E3]">Dum Pukht</span>
-                    <span className="text-xs text-[#B4A89B] mt-0.5">Sealed slow handi cooking</span>
+                    <ChefHat
+                      className="w-5 h-5 text-[#9A6B10] dark:text-[#ECC55F] mb-2"
+                      aria-hidden="true"
+                    />
+                    <span className="font-serif text-base font-bold text-[#1F1A17] dark:text-[#F7F1E3]">
+                      Dum Pukht
+                    </span>
+                    <span className="text-xs text-[#6B5B4E] dark:text-[#B4A89B] mt-0.5">
+                      Sealed slow handi cooking
+                    </span>
                   </div>
                   <div className="flex flex-col">
-                    <Flame className="w-5 h-5 text-[#ECC55F] mb-2" aria-hidden="true" />
-                    <span className="font-serif text-base font-bold text-[#F7F1E3]">Whole Spices</span>
-                    <span className="text-xs text-[#B4A89B] mt-0.5">Saffron, cardamom &amp; mace</span>
+                    <Flame
+                      className="w-5 h-5 text-[#9A6B10] dark:text-[#ECC55F] mb-2"
+                      aria-hidden="true"
+                    />
+                    <span className="font-serif text-base font-bold text-[#1F1A17] dark:text-[#F7F1E3]">
+                      Whole Spices
+                    </span>
+                    <span className="text-xs text-[#6B5B4E] dark:text-[#B4A89B] mt-0.5">
+                      Saffron, cardamom &amp; mace
+                    </span>
                   </div>
                   <div className="flex flex-col">
-                    <Utensils className="w-5 h-5 text-[#ECC55F] mb-2" aria-hidden="true" />
-                    <span className="font-serif text-base font-bold text-[#F7F1E3]">Mandi &amp; Grills</span>
-                    <span className="text-xs text-[#B4A89B] mt-0.5">Traditional feast platters</span>
+                    <Utensils
+                      className="w-5 h-5 text-[#9A6B10] dark:text-[#ECC55F] mb-2"
+                      aria-hidden="true"
+                    />
+                    <span className="font-serif text-base font-bold text-[#1F1A17] dark:text-[#F7F1E3]">
+                      Mandi &amp; Grills
+                    </span>
+                    <span className="text-xs text-[#6B5B4E] dark:text-[#B4A89B] mt-0.5">
+                      Traditional feast platters
+                    </span>
                   </div>
                 </div>
 
                 {/* Kitchen Attribution Row */}
-                <div className="mt-7 pt-5 border-t border-[#D4AF37]/20 flex flex-wrap items-center justify-between gap-4">
+                <div className="mt-7 pt-5 border-t border-[#D4AF37]/25 dark:border-[#D4AF37]/20 flex flex-wrap items-center justify-between gap-4">
                   <div className="flex items-center gap-3">
                     <ResilientImage
                       src={RESTAURANT_INFO.logoUrl}
@@ -237,10 +263,10 @@ export function HomePage({ onNavigate }: HomePageProps) {
                       className="w-10 h-10 rounded-full object-cover border border-[#D4AF37]/60 bg-[#18151B] shrink-0"
                     />
                     <div>
-                      <span className="block text-xs font-bold text-[#F7F1E3]">
+                      <span className="block text-xs font-bold text-[#1F1A17] dark:text-[#F7F1E3]">
                         Hyderabadi Mehfil Kitchen
                       </span>
-                      <span className="block text-xs text-[#B4A89B]">
+                      <span className="block text-xs text-[#6B5B4E] dark:text-[#B4A89B]">
                         290 Ilford Lane · Freshly Prepared Daily
                       </span>
                     </div>
@@ -248,7 +274,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                   <button
                     type="button"
                     onClick={() => onNavigate('menu')}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#ECC55F] hover:text-[#F7F1E3] transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#9A6B10] hover:text-[#1F1A17] dark:text-[#ECC55F] dark:hover:text-[#F7F1E3] transition-colors cursor-pointer"
                   >
                     <span>View Full Menu</span>
                     <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -259,7 +285,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
             {/* Right Feature Dish Card */}
             <div className="lg:col-span-5">
-              <div className="relative group rounded-xl overflow-hidden shadow-lg bg-[#27222C] border border-[#D4AF37]/35">
+              <div className="relative group rounded-xl overflow-hidden shadow-lg bg-white dark:bg-[#27222C] border border-[#D4AF37]/35">
                 <div className="aspect-[4/3] w-full overflow-hidden">
                   <ResilientImage
                     src={RESTAURANT_INFO.storyImageUrl}
@@ -267,14 +293,14 @@ export function HomePage({ onNavigate }: HomePageProps) {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
                 </div>
-                <div className="p-6 bg-[#27222C] border-t border-[#D4AF37]/20">
-                  <span className="block text-[11px] font-bold uppercase tracking-wider text-[#ECC55F] mb-1">
+                <div className="p-6 bg-white dark:bg-[#27222C] border-t border-[#D4AF37]/25 dark:border-[#D4AF37]/20">
+                  <span className="block text-[11px] font-bold uppercase tracking-wider text-[#9A6B10] dark:text-[#ECC55F] mb-1">
                     290 Ilford Lane Kitchen
                   </span>
-                  <h3 className="font-serif text-2xl font-semibold text-[#F7F1E3]">
+                  <h3 className="font-serif text-2xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3]">
                     Dough-Sealed Dum Pukht
                   </h3>
-                  <p className="text-sm text-[#D8CFC4] mt-1.5 leading-relaxed">
+                  <p className="text-sm text-[#4E4237] dark:text-[#D8CFC4] mt-1.5 leading-relaxed">
                     Every handi is freshly prepared in our London kitchen and sealed slow so saffron,
                     green cardamom, and tender cuts lock in their true aroma.
                   </p>
@@ -291,21 +317,24 @@ export function HomePage({ onNavigate }: HomePageProps) {
       {/* 4. POPULAR MAIN COURSE */}
       <section
         id="popular-dishes"
-        className="py-16 md:py-24 bg-[#1A171D] border-y border-[#D4AF37]/20 scroll-mt-20"
+        className="py-16 md:py-24 bg-[#FAF5EA] dark:bg-[#1A171D] border-y border-[#D4AF37]/25 dark:border-[#D4AF37]/20 scroll-mt-20 transition-colors"
       >
         <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-12">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
             <div className="max-w-3xl">
               <div className="flex items-center gap-2.5 mb-2.5">
-                <Utensils className="w-5 h-5 text-[#ECC55F]" aria-hidden="true" />
-                <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.18em] text-[#ECC55F]">
+                <Utensils
+                  className="w-5 h-5 text-[#9A6B10] dark:text-[#ECC55F]"
+                  aria-hidden="true"
+                />
+                <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.18em] text-[#9A6B10] dark:text-[#ECC55F]">
                   Kitchen Favorites
                 </span>
               </div>
-              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#F7F1E3] tracking-tight mb-3">
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3] tracking-tight mb-3">
                 Popular Main Course
               </h2>
-              <p className="text-base sm:text-lg text-[#D8CFC4] leading-relaxed">
+              <p className="text-base sm:text-lg text-[#4E4237] dark:text-[#D8CFC4] leading-relaxed">
                 We serve comfort on a plate. Our menu is filled with classic, wholesome dishes made
                 with love. It&apos;s the kind of food that brings people together and makes you want
                 to come back for more.
@@ -315,7 +344,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
             <button
               type="button"
               onClick={() => onNavigate('menu')}
-              className="self-start lg:self-end inline-flex items-center gap-2 px-6 py-3.5 bg-gradient-to-r from-[#C99B35] via-[#F0C75E] to-[#D4A63B] text-[#1D1810] text-xs sm:text-sm font-bold uppercase tracking-wider rounded-lg shadow-md border border-[#FCE59C]/50 hover:brightness-110 transition-all cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F7F1E3] whitespace-nowrap"
+              className="self-start lg:self-end inline-flex items-center gap-2 px-6 py-3.5 bg-gradient-to-r from-[#C99B35] via-[#F0C75E] to-[#D4A63B] text-[#1D1810] text-xs sm:text-sm font-bold uppercase tracking-wider rounded-lg shadow-md border border-[#FCE59C]/50 hover:brightness-110 transition-all cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#9A6B10] dark:focus-visible:outline-[#F7F1E3] whitespace-nowrap"
             >
               <span>Explore Menu</span>
               <ArrowRight className="w-4 h-4 text-[#1D1810]" aria-hidden="true" />
@@ -333,9 +362,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 transition={{ duration: 0.55, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
                 whileHover={{ y: -4 }}
                 onClick={() => onNavigate('menu', dish.menuSection)}
-                className="group bg-[#27222C] rounded-xl overflow-hidden shadow-sm hover:shadow-xl border border-[#D4AF37]/25 hover:border-[#D4AF37]/70 transition-[box-shadow,border-color] duration-300 flex flex-col cursor-pointer"
+                className="group bg-white dark:bg-[#27222C] rounded-xl overflow-hidden shadow-sm hover:shadow-xl border border-[#D4AF37]/30 dark:border-[#D4AF37]/25 hover:border-[#D4AF37]/80 dark:hover:border-[#D4AF37]/70 transition-[box-shadow,border-color] duration-300 flex flex-col cursor-pointer"
               >
-                <div className="aspect-[4/3] w-full overflow-hidden bg-[#1D1921]">
+                <div className="aspect-[4/3] w-full overflow-hidden bg-[#F2E9D6] dark:bg-[#1D1921]">
                   <ResilientImage
                     src={dish.imageUrl}
                     alt={dish.alt}
@@ -346,31 +375,31 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
                 <div className="p-5 flex flex-col flex-1 justify-between">
                   <div>
-                    <span className="block text-[11px] font-bold uppercase tracking-wider text-[#ECC55F] mb-1">
+                    <span className="block text-[11px] font-bold uppercase tracking-wider text-[#9A6B10] dark:text-[#ECC55F] mb-1">
                       {dish.tag}
                     </span>
                     <div className="flex items-start justify-between gap-2 mb-2.5">
-                      <h3 className="font-serif text-xl font-semibold text-[#F7F1E3] group-hover:text-[#ECC55F] transition-colors leading-snug">
+                      <h3 className="font-serif text-xl font-semibold text-[#1F1A17] group-hover:text-[#9A6B10] dark:text-[#F7F1E3] dark:group-hover:text-[#ECC55F] transition-colors leading-snug">
                         {dish.name}
                       </h3>
                       <div className="shrink-0 text-right">
-                        <span className="font-serif font-bold text-lg text-[#ECC55F] tabular-nums">
+                        <span className="font-serif font-bold text-lg text-[#9A6B10] dark:text-[#ECC55F] tabular-nums">
                           {dish.price}
                         </span>
                         {dish.priceNote && (
-                          <span className="block text-[10px] font-semibold text-[#B4A89B] uppercase tracking-wide">
+                          <span className="block text-[10px] font-semibold text-[#6B5B4E] dark:text-[#B4A89B] uppercase tracking-wide">
                             {dish.priceNote}
                           </span>
                         )}
                       </div>
                     </div>
-                    <p className="text-sm text-[#D8CFC4] leading-relaxed mb-4">
+                    <p className="text-sm text-[#4E4237] dark:text-[#D8CFC4] leading-relaxed mb-4">
                       {dish.description}
                     </p>
                   </div>
 
-                  <div className="pt-3 border-t border-[#D4AF37]/20 flex items-center justify-between">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#ECC55F]">
+                  <div className="pt-3 border-t border-[#D4AF37]/25 dark:border-[#D4AF37]/20 flex items-center justify-between">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#9A6B10] dark:text-[#ECC55F]">
                       {dish.footerLabel}
                     </span>
                     {renderDishIcon(dish.id)}
@@ -503,18 +532,18 @@ export function HomePage({ onNavigate }: HomePageProps) {
       {/* 5. TESTIMONIALS SECTION WITH WRITE A REVIEW */}
       <section
         id="testimonials"
-        className="py-16 md:py-24 bg-[#1A171D] relative overflow-hidden border-t border-[#D4AF37]/20 scroll-mt-20"
+        className="py-16 md:py-24 bg-[#FAF5EA] dark:bg-[#1A171D] relative overflow-hidden border-t border-[#D4AF37]/25 dark:border-[#D4AF37]/20 scroll-mt-20 transition-colors"
       >
         <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-6 lg:px-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
             <div>
-              <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.22em] text-[#ECC55F] block mb-2">
+              <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.22em] text-[#9A6B10] dark:text-[#ECC55F] block mb-2">
                 Diner Feedback
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#F7F1E3] tracking-tight">
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3] tracking-tight">
                 Guest Reflections
               </h2>
-              <p className="text-sm sm:text-base text-[#D8CFC4] mt-2 max-w-xl">
+              <p className="text-sm sm:text-base text-[#4E4237] dark:text-[#D8CFC4] mt-2 max-w-xl">
                 Read what our neighbors and guests say about their meal—or share your own visit.
               </p>
             </div>
@@ -522,9 +551,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
             <button
               type="button"
               onClick={() => setReviewModalOpen(true)}
-              className="self-start md:self-end inline-flex items-center gap-2 px-6 py-3 bg-[#27222C] hover:bg-[#322B39] text-[#F7F1E3] text-xs sm:text-sm font-bold uppercase tracking-wider rounded-lg shadow-sm border border-[#D4AF37]/45 transition-all cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F0C75E] whitespace-nowrap"
+              className="self-start md:self-end inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-[#F2E9D6] dark:bg-[#27222C] dark:hover:bg-[#322B39] text-[#1F1A17] dark:text-[#F7F1E3] text-xs sm:text-sm font-bold uppercase tracking-wider rounded-lg shadow-sm border border-[#D4AF37]/45 transition-all cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#9A6B10] dark:focus-visible:outline-[#F0C75E] whitespace-nowrap"
             >
-              <PenLine className="w-4 h-4 text-[#ECC55F]" aria-hidden="true" />
+              <PenLine className="w-4 h-4 text-[#9A6B10] dark:text-[#ECC55F]" aria-hidden="true" />
               <span>Write a Review</span>
             </button>
           </div>
@@ -541,11 +570,11 @@ export function HomePage({ onNavigate }: HomePageProps) {
                   delay: Math.min(idx, 3) * 0.1,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="bg-[#27222C] p-7 sm:p-9 rounded-xl shadow-sm hover:shadow-md relative flex flex-col justify-between border border-[#D4AF37]/25 transition-shadow"
+                className="bg-white dark:bg-[#27222C] p-7 sm:p-9 rounded-xl shadow-sm hover:shadow-md relative flex flex-col justify-between border border-[#D4AF37]/30 dark:border-[#D4AF37]/25 transition-shadow"
               >
                 <span
                   aria-hidden="true"
-                  className="font-serif text-6xl text-[#D4AF37]/20 leading-none absolute top-5 right-7 select-none"
+                  className="font-serif text-6xl text-[#D4AF37]/25 dark:text-[#D4AF37]/20 leading-none absolute top-5 right-7 select-none"
                 >
                   &ldquo;
                 </span>
@@ -561,7 +590,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                         key={starIndex}
                         className={`w-4 h-4 ${
                           starIndex <= review.stars
-                            ? 'text-[#F0C75E] fill-[#F0C75E]'
+                            ? 'text-[#C99B35] fill-[#C99B35] dark:text-[#F0C75E] dark:fill-[#F0C75E]'
                             : 'text-[#D4AF37]/30'
                         }`}
                         aria-hidden="true"
@@ -569,21 +598,21 @@ export function HomePage({ onNavigate }: HomePageProps) {
                     ))}
                   </div>
 
-                  <p className="text-base sm:text-lg text-[#D8CFC4] leading-relaxed mb-7 italic">
+                  <p className="text-base sm:text-lg text-[#4E4237] dark:text-[#D8CFC4] leading-relaxed mb-7 italic">
                     &ldquo;{review.quote}&rdquo;
                   </p>
                 </div>
 
                 {/* Guest Identity */}
-                <div className="flex items-center gap-3.5 pt-4 border-t border-[#D4AF37]/20">
+                <div className="flex items-center gap-3.5 pt-4 border-t border-[#D4AF37]/25 dark:border-[#D4AF37]/20">
                   <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#C99B35] to-[#F0C75E] text-[#1D1810] flex items-center justify-center font-serif font-bold text-lg shadow-sm border border-[#FCE59C]/50 shrink-0">
                     {review.initial}
                   </div>
                   <div className="min-w-0">
-                    <h3 className="font-serif text-base font-bold text-[#F7F1E3] truncate">
+                    <h3 className="font-serif text-base font-bold text-[#1F1A17] dark:text-[#F7F1E3] truncate">
                       {review.name}
                     </h3>
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#ECC55F] block truncate">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#9A6B10] dark:text-[#ECC55F] block truncate">
                       {review.subtitle}
                     </span>
                   </div>
@@ -598,21 +627,21 @@ export function HomePage({ onNavigate }: HomePageProps) {
       <FrequentlyAskedQuestions onNavigate={onNavigate} />
 
       {/* 7. ILFORD VISIT CALLOUT STRIP */}
-      <section className="py-12 md:py-16 bg-[#211D25] border-t border-[#D4AF37]/20">
+      <section className="py-12 md:py-16 bg-[#FAF5EA] dark:bg-[#211D25] border-t border-[#D4AF37]/25 dark:border-[#D4AF37]/20 transition-colors">
         <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-12">
-          <div className="bg-[#27222C] rounded-xl p-6 sm:p-8 border border-[#D4AF37]/35 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="bg-white dark:bg-[#27222C] rounded-xl p-6 sm:p-8 border border-[#D4AF37]/35 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4 text-center md:text-left">
-              <div className="hidden sm:flex w-12 h-12 rounded-full bg-[#18151B] border border-[#D4AF37]/45 text-[#ECC55F] items-center justify-center shrink-0">
+              <div className="hidden sm:flex w-12 h-12 rounded-full bg-[#FAF5EA] dark:bg-[#18151B] border border-[#D4AF37]/45 text-[#9A6B10] dark:text-[#ECC55F] items-center justify-center shrink-0">
                 <MapPin className="w-5 h-5" aria-hidden="true" />
               </div>
               <div>
-                <span className="text-[11px] font-bold uppercase tracking-widest text-[#ECC55F] block mb-0.5">
+                <span className="text-[11px] font-bold uppercase tracking-widest text-[#9A6B10] dark:text-[#ECC55F] block mb-0.5">
                   Visit Our Restaurant
                 </span>
-                <p className="font-serif text-lg sm:text-xl font-semibold text-[#F7F1E3]">
+                <p className="font-serif text-lg sm:text-xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3]">
                   {RESTAURANT_INFO.fullAddress}
                 </p>
-                <p className="text-xs sm:text-sm text-[#D8CFC4]">
+                <p className="text-xs sm:text-sm text-[#4E4237] dark:text-[#D8CFC4]">
                   {RESTAURANT_INFO.hoursMain} · {RESTAURANT_INFO.hoursFriday}
                 </p>
               </div>
@@ -621,9 +650,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
             <div className="flex flex-wrap items-center justify-center gap-3">
               <a
                 href={RESTAURANT_INFO.phoneHref}
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#18151B] hover:bg-[#322B39] text-[#F7F1E3] border border-[#D4AF37]/40 text-xs font-bold uppercase tracking-wider rounded-lg transition-colors whitespace-nowrap"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#FAF5EA] hover:bg-[#F2E9D6] dark:bg-[#18151B] dark:hover:bg-[#322B39] text-[#1F1A17] dark:text-[#F7F1E3] border border-[#D4AF37]/40 text-xs font-bold uppercase tracking-wider rounded-lg transition-colors whitespace-nowrap"
               >
-                <Phone className="w-3.5 h-3.5 text-[#ECC55F]" aria-hidden="true" />
+                <Phone className="w-3.5 h-3.5 text-[#9A6B10] dark:text-[#ECC55F]" aria-hidden="true" />
                 <span>Call {RESTAURANT_INFO.phoneDisplay}</span>
               </a>
               <a

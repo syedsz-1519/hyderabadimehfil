@@ -1,11 +1,24 @@
 import { useEffect, useState } from 'react';
-import { Menu, X, Phone, Instagram, ChevronDown, Compass, UtensilsCrossed } from 'lucide-react';
+import {
+  Menu,
+  X,
+  Phone,
+  Instagram,
+  ChevronDown,
+  Compass,
+  UtensilsCrossed,
+  Sun,
+  Moon,
+} from 'lucide-react';
 import { MENU_CATEGORIES, PageRoute, RESTAURANT_INFO } from '../data/restaurantData';
+import { type ThemeMode } from '../App';
 import { ResilientImage } from './ResilientImage';
 
 interface HeaderProps {
   currentPage: PageRoute;
   onNavigate: (page: PageRoute, sectionId?: string) => void;
+  theme: ThemeMode;
+  onToggleTheme: () => void;
 }
 
 const NAV_ITEMS: Array<{ id: PageRoute; label: string }> = [
@@ -23,7 +36,7 @@ const HOME_SECTIONS: Array<{ id: string; label: string }> = [
   { id: 'faq', label: 'FAQ' },
 ];
 
-export function Header({ currentPage, onNavigate }: HeaderProps) {
+export function Header({ currentPage, onNavigate, theme, onToggleTheme }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileSectionsGroup, setMobileSectionsGroup] = useState<'home' | 'menu'>(
     currentPage === 'menu' ? 'menu' : 'home'
@@ -47,6 +60,8 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
     onNavigate(page, sectionId);
   };
 
+  const isDark = theme === 'dark';
+
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-[#18151B]/95 backdrop-blur-md border-b border-[#D4AF37]/35 shadow-[0_4px_24px_rgba(10,8,12,0.45)]">
       <div className="h-16 md:h-20 max-w-7xl mx-auto px-3 sm:px-6 lg:px-12 flex items-center justify-between gap-2 sm:gap-4">
@@ -61,7 +76,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
             alt="Hyderabadi Mehfil Emblem Logo"
             eager
             fallbackLabel="HM"
-            className="h-9 w-9 sm:h-10 sm:w-10 md:h-11 md:w-11 rounded-full object-cover shrink-0 shadow-sm border border-[#D4AF37]/65 bg-[#18151B]"
+            className="h-9 w-9 sm:h-10 sm:w-10 md:h-11 md:w-11 rounded-full object-cover shrink-0 shadow-sm border border-[#D4AF37]/75 bg-[#18151B]"
           />
           <div className="flex flex-col min-w-0">
             <span className="font-serif text-xs sm:text-base md:text-lg font-semibold tracking-wider text-[#F7F1E3] leading-tight truncate">
@@ -97,14 +112,28 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
 
         {/* Right Actions */}
         <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+          <button
+            type="button"
+            onClick={onToggleTheme}
+            aria-label={isDark ? 'Switch to Light Ivory theme' : 'Switch to Dark Charcoal theme'}
+            title={isDark ? 'Switch to Light Ivory theme' : 'Switch to Dark Charcoal theme'}
+            className="text-[#ECC55F] hover:text-[#F7F1E3] transition-colors p-2 rounded-full hover:bg-white/10 border border-[#D4AF37]/35 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F0C75E]"
+          >
+            {isDark ? (
+              <Sun className="w-[17px] h-[17px] sm:w-[18px] sm:h-[18px]" aria-hidden="true" />
+            ) : (
+              <Moon className="w-[17px] h-[17px] sm:w-[18px] sm:h-[18px]" aria-hidden="true" />
+            )}
+          </button>
+
           <a
             href={RESTAURANT_INFO.instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram profile"
-            className="text-[#ECC55F] hover:text-[#F7F1E3] transition-colors p-2 rounded-full hover:bg-white/10 border border-[#D4AF37]/35 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F0C75E]"
+            className="hidden sm:inline-flex text-[#ECC55F] hover:text-[#F7F1E3] transition-colors p-2 rounded-full hover:bg-white/10 border border-[#D4AF37]/35 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F0C75E]"
           >
-            <Instagram className="w-[17px] h-[17px] sm:w-[18px] sm:h-[18px]" aria-hidden="true" />
+            <Instagram className="w-[18px] h-[18px]" aria-hidden="true" />
           </a>
 
           <button
@@ -145,7 +174,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
           aria-label="Mobile Navigation"
           className="md:hidden bg-[#211D25] border-t border-[#D4AF37]/35 px-4 py-4 space-y-4 shadow-2xl max-h-[calc(100vh-4rem)] overflow-y-auto"
         >
-          {/* Main Pages */}
+          {/* Main Pages + Theme & Instagram Row */}
           <div className="space-y-1">
             {NAV_ITEMS.map((item) => {
               const isActive = currentPage === item.id;
@@ -165,6 +194,35 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                 </button>
               );
             })}
+          </div>
+
+          <div className="flex items-center justify-between gap-2 pt-1">
+            <button
+              type="button"
+              onClick={onToggleTheme}
+              className="flex-1 inline-flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-[#18151B] border border-[#D4AF37]/35 text-xs font-bold uppercase tracking-wider text-[#ECC55F] cursor-pointer"
+            >
+              {isDark ? (
+                <>
+                  <Sun className="w-3.5 h-3.5" aria-hidden="true" />
+                  <span>Light Ivory Mode</span>
+                </>
+              ) : (
+                <>
+                  <Moon className="w-3.5 h-3.5" aria-hidden="true" />
+                  <span>Dark Charcoal Mode</span>
+                </>
+              )}
+            </button>
+            <a
+              href={RESTAURANT_INFO.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 py-2 px-3 rounded-lg bg-[#18151B] border border-[#D4AF37]/35 text-xs font-bold uppercase tracking-wider text-[#F7F1E3]"
+            >
+              <Instagram className="w-3.5 h-3.5 text-[#ECC55F]" aria-hidden="true" />
+              <span>Instagram</span>
+            </a>
           </div>
 
           {/* Direct Section Jump Selector */}

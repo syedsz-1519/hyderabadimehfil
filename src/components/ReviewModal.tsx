@@ -135,9 +135,9 @@ export function ReviewModal({ isOpen, onClose }: ReviewModalProps) {
       }}
       className="fixed inset-0 z-50 bg-[#141217]/80 backdrop-blur-sm flex items-center justify-center p-4"
     >
-      <div className="relative w-full max-w-lg bg-[#211D25] rounded-xl shadow-2xl border border-[#D4AF37]/45 overflow-hidden">
+      <div className="relative w-full max-w-lg bg-[#FAF5EA] dark:bg-[#211D25] rounded-xl shadow-2xl border border-[#D4AF37]/50 overflow-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between gap-4 px-6 py-4 bg-[#18151B] text-[#F7F1E3] border-b border-[#D4AF37]/30">
+        <div className="flex items-center justify-between gap-4 px-6 py-4 bg-[#18151B] text-[#F7F1E3] border-b border-[#D4AF37]/35">
           <div>
             <h2 id="write-review-title" className="font-serif text-xl sm:text-2xl font-semibold text-[#ECC55F]">
               Write a Guest Review
@@ -159,13 +159,13 @@ export function ReviewModal({ isOpen, onClose }: ReviewModalProps) {
 
         {submitted ? (
           <div className="p-7 text-center">
-            <div className="w-12 h-12 rounded-full bg-[#166534]/25 text-[#4ADE80] border border-[#4ADE80]/30 flex items-center justify-center mx-auto mb-4">
+            <div className="w-12 h-12 rounded-full bg-[#166534]/15 dark:bg-[#166534]/25 text-[#15803D] dark:text-[#4ADE80] border border-[#15803D]/30 dark:border-[#4ADE80]/30 flex items-center justify-center mx-auto mb-4">
               <CheckCircle2 className="w-7 h-7" aria-hidden="true" />
             </div>
-            <h3 className="font-serif text-2xl font-semibold text-[#F7F1E3] mb-2">
+            <h3 className="font-serif text-2xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3] mb-2">
               Thank You for Your Review
             </h3>
-            <p className="text-sm text-[#D8CFC4] leading-relaxed mb-6">
+            <p className="text-sm text-[#4E4237] dark:text-[#D8CFC4] leading-relaxed mb-6">
               Your reflection has been saved and is now visible in Guest Reflections below.
             </p>
             <button
@@ -180,7 +180,7 @@ export function ReviewModal({ isOpen, onClose }: ReviewModalProps) {
           <form noValidate onSubmit={handleSubmit} className="p-6 space-y-4">
             {/* Star Rating Selector */}
             <div>
-              <span className="block text-xs font-bold uppercase tracking-wider text-[#F7F1E3] mb-2">
+              <span className="block text-xs font-bold uppercase tracking-wider text-[#1F1A17] dark:text-[#F7F1E3] mb-2">
                 Your Rating
               </span>
               <div className="flex items-center gap-1.5" role="radiogroup" aria-label="Star rating">
@@ -200,14 +200,16 @@ export function ReviewModal({ isOpen, onClose }: ReviewModalProps) {
                     >
                       <Star
                         className={`w-7 h-7 transition-colors ${
-                          filled ? 'text-[#F0C75E] fill-[#F0C75E]' : 'text-[#D4AF37]/35'
+                          filled
+                            ? 'text-[#C99B35] dark:text-[#F0C75E] fill-[#C99B35] dark:fill-[#F0C75E]'
+                            : 'text-[#D4AF37]/40 dark:text-[#D4AF37]/35'
                         }`}
                         aria-hidden="true"
                       />
                     </button>
                   );
                 })}
-                <span className="ml-2 text-xs font-semibold text-[#D8CFC4] tabular-nums">
+                <span className="ml-2 text-xs font-semibold text-[#4E4237] dark:text-[#D8CFC4] tabular-nums">
                   {rating} / 5
                 </span>
               </div>
@@ -218,7 +220,7 @@ export function ReviewModal({ isOpen, onClose }: ReviewModalProps) {
               <div>
                 <label
                   htmlFor="review-name"
-                  className="block text-xs font-bold uppercase tracking-wider text-[#F7F1E3] mb-1.5"
+                  className="block text-xs font-bold uppercase tracking-wider text-[#1F1A17] dark:text-[#F7F1E3] mb-1.5"
                 >
                   Your Name *
                 </label>
@@ -230,14 +232,14 @@ export function ReviewModal({ isOpen, onClose }: ReviewModalProps) {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g. Ayesha K."
-                  className="w-full bg-[#18151B] border border-[#D4AF37]/30 text-[#F7F1E3] placeholder:text-[#B4A89B] text-sm px-3.5 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F0C75E]/35 focus:border-[#F0C75E]"
+                  className="w-full bg-white dark:bg-[#18151B] border border-[#D4AF37]/40 dark:border-[#D4AF37]/30 text-[#1F1A17] dark:text-[#F7F1E3] placeholder:text-[#7A6A5C] dark:placeholder:text-[#B4A89B] text-sm px-3.5 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F0C75E]/40 focus:border-[#C99B35] dark:focus:border-[#F0C75E]"
                 />
               </div>
 
               <div>
                 <label
                   htmlFor="review-subtitle"
-                  className="block text-xs font-bold uppercase tracking-wider text-[#F7F1E3] mb-1.5"
+                  className="block text-xs font-bold uppercase tracking-wider text-[#1F1A17] dark:text-[#F7F1E3] mb-1.5"
                 >
                   Neighborhood or Visit
                 </label>
@@ -248,7 +250,7 @@ export function ReviewModal({ isOpen, onClose }: ReviewModalProps) {
                   value={subtitle}
                   onChange={(e) => setSubtitle(e.target.value)}
                   placeholder="e.g. Dined In · Ilford"
-                  className="w-full bg-[#18151B] border border-[#D4AF37]/30 text-[#F7F1E3] placeholder:text-[#B4A89B] text-sm px-3.5 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F0C75E]/35 focus:border-[#F0C75E]"
+                  className="w-full bg-white dark:bg-[#18151B] border border-[#D4AF37]/40 dark:border-[#D4AF37]/30 text-[#1F1A17] dark:text-[#F7F1E3] placeholder:text-[#7A6A5C] dark:placeholder:text-[#B4A89B] text-sm px-3.5 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F0C75E]/40 focus:border-[#C99B35] dark:focus:border-[#F0C75E]"
                 />
               </div>
             </div>
@@ -258,11 +260,11 @@ export function ReviewModal({ isOpen, onClose }: ReviewModalProps) {
               <div className="flex items-baseline justify-between mb-1.5">
                 <label
                   htmlFor="review-quote"
-                  className="block text-xs font-bold uppercase tracking-wider text-[#F7F1E3]"
+                  className="block text-xs font-bold uppercase tracking-wider text-[#1F1A17] dark:text-[#F7F1E3]"
                 >
                   Your Review *
                 </label>
-                <span className="text-[11px] text-[#B4A89B] tabular-nums">
+                <span className="text-[11px] text-[#6B5B4E] dark:text-[#B4A89B] tabular-nums">
                   {quote.length}/{REVIEW_CONSTRAINTS.QUOTE_MAX}
                 </span>
               </div>
@@ -274,21 +276,24 @@ export function ReviewModal({ isOpen, onClose }: ReviewModalProps) {
                 value={quote}
                 onChange={(e) => setQuote(e.target.value)}
                 placeholder="Tell future guests what you ordered and how your meal was..."
-                className="w-full bg-[#18151B] border border-[#D4AF37]/30 text-[#F7F1E3] placeholder:text-[#B4A89B] text-sm p-3.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F0C75E]/35 focus:border-[#F0C75E] resize-y"
+                className="w-full bg-white dark:bg-[#18151B] border border-[#D4AF37]/40 dark:border-[#D4AF37]/30 text-[#1F1A17] dark:text-[#F7F1E3] placeholder:text-[#7A6A5C] dark:placeholder:text-[#B4A89B] text-sm p-3.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F0C75E]/40 focus:border-[#C99B35] dark:focus:border-[#F0C75E] resize-y"
               />
             </div>
 
             {/* Verified Reviewer Bar */}
-            <div className="rounded-lg bg-[#27222C] border border-[#D4AF37]/30 p-3 flex flex-wrap items-center justify-between gap-2 text-xs">
+            <div className="rounded-lg bg-white dark:bg-[#27222C] border border-[#D4AF37]/35 p-3 flex flex-wrap items-center justify-between gap-2 text-xs">
               {user && user.emailVerified ? (
                 <>
-                  <span className="text-[#F7F1E3] font-medium truncate">
-                    Posting as <strong className="font-semibold text-[#ECC55F]">{user.email}</strong>
+                  <span className="text-[#1F1A17] dark:text-[#F7F1E3] font-medium truncate">
+                    Posting as{' '}
+                    <strong className="font-semibold text-[#9A6B10] dark:text-[#ECC55F]">
+                      {user.email}
+                    </strong>
                   </span>
                   <button
                     type="button"
                     onClick={() => void signOutReviewer()}
-                    className="inline-flex items-center gap-1 text-[#ECC55F] hover:text-[#F7F1E3] font-semibold cursor-pointer"
+                    className="inline-flex items-center gap-1 text-[#9A6B10] dark:text-[#ECC55F] hover:text-[#1F1A17] dark:hover:text-[#F7F1E3] font-semibold cursor-pointer"
                   >
                     <LogOut className="w-3.5 h-3.5" aria-hidden="true" />
                     <span>Switch Account</span>
@@ -296,14 +301,14 @@ export function ReviewModal({ isOpen, onClose }: ReviewModalProps) {
                 </>
               ) : (
                 <>
-                  <span className="text-[#D8CFC4]">
+                  <span className="text-[#4E4237] dark:text-[#D8CFC4]">
                     Quick Google verification ensures genuine diner reviews.
                   </span>
                   <button
                     type="button"
                     disabled={isSigningIn}
                     onClick={handleGoogleSignIn}
-                    className="px-3 py-1.5 rounded-md bg-[#18151B] border border-[#D4AF37]/50 text-[#ECC55F] font-semibold hover:bg-[#322B39] transition-colors cursor-pointer disabled:opacity-60 whitespace-nowrap"
+                    className="px-3 py-1.5 rounded-md bg-[#FAF5EA] dark:bg-[#18151B] border border-[#D4AF37]/50 text-[#9A6B10] dark:text-[#ECC55F] font-semibold hover:bg-[#F2E9D6] dark:hover:bg-[#322B39] transition-colors cursor-pointer disabled:opacity-60 whitespace-nowrap"
                   >
                     {isSigningIn ? 'Signing in...' : 'Sign in with Google'}
                   </button>
@@ -314,7 +319,7 @@ export function ReviewModal({ isOpen, onClose }: ReviewModalProps) {
             {errorMsg && (
               <p
                 role="alert"
-                className="text-xs font-medium text-[#FCA5A5] bg-[#7F1D1D]/25 border border-[#FCA5A5]/35 rounded-lg px-3 py-2"
+                className="text-xs font-medium text-[#B91C1C] dark:text-[#FCA5A5] bg-[#FEE2E2] dark:bg-[#7F1D1D]/25 border border-[#FCA5A5] dark:border-[#FCA5A5]/35 rounded-lg px-3 py-2"
               >
                 {errorMsg}
               </p>
@@ -325,7 +330,7 @@ export function ReviewModal({ isOpen, onClose }: ReviewModalProps) {
                 type="button"
                 disabled={isSubmitting}
                 onClick={handleResetAndClose}
-                className="px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-[#D8CFC4] hover:text-[#F7F1E3] cursor-pointer"
+                className="px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-[#4E4237] dark:text-[#D8CFC4] hover:text-[#1F1A17] dark:hover:text-[#F7F1E3] cursor-pointer"
               >
                 Cancel
               </button>

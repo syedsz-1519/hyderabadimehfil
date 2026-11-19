@@ -183,11 +183,11 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
 
   const renderPrice = (price: string, large = false) => (
     <span
-      className={`font-serif font-bold text-[#ECC55F] tabular-nums tracking-tight shrink-0 ${
+      className={`font-serif font-bold text-[#9A6B10] dark:text-[#ECC55F] tabular-nums tracking-tight shrink-0 ${
         large ? 'text-xl sm:text-2xl' : 'text-base sm:text-lg'
       }`}
     >
-      <span className="text-xs font-semibold text-[#D4AF37] mr-0.5">£</span>
+      <span className="text-xs font-semibold text-[#B5851E] dark:text-[#D4AF37] mr-0.5">£</span>
       {price}
     </span>
   );
@@ -199,7 +199,7 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
         type="button"
         onClick={() => setLightboxDish({ name, imageUrl })}
         aria-label={`View photo of ${name}`}
-        className="group/img relative w-full aspect-[4/3] overflow-hidden bg-[#1D1921] block cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F0C75E]"
+        className="group/img relative w-full aspect-[4/3] overflow-hidden bg-[#F2E9D6] dark:bg-[#1D1921] block cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#9A6B10] dark:focus-visible:outline-[#F0C75E]"
       >
         <ResilientImage
           src={imageUrl}
@@ -218,7 +218,7 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
         type="button"
         onClick={() => setLightboxDish({ name, imageUrl })}
         aria-label={`View photo of ${name}`}
-        className="group/img relative w-28 sm:w-32 aspect-[4/3] rounded-lg overflow-hidden border border-[#D4AF37]/30 bg-[#1D1921] shrink-0 cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F0C75E]"
+        className="group/img relative w-28 sm:w-32 aspect-[4/3] rounded-lg overflow-hidden border border-[#D4AF37]/30 bg-[#F2E9D6] dark:bg-[#1D1921] shrink-0 cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#9A6B10] dark:focus-visible:outline-[#F0C75E]"
       >
         <ResilientImage
           src={imageUrl}
@@ -231,7 +231,7 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
   };
 
   return (
-    <div className="flex flex-col w-full bg-gradient-to-b from-[#1A171D] via-[#1E1A22] to-[#1A171D]">
+    <div className="flex flex-col w-full bg-gradient-to-b from-[#FAF5EA] via-[#F7F0E0] to-[#FAF5EA] dark:from-[#1A171D] dark:via-[#1E1A22] dark:to-[#1A171D] transition-colors">
       {/* 1. MENU HEADER BANNER */}
       <section className="relative w-full bg-[#18151B] text-[#F7F1E3] overflow-hidden py-16 md:py-24">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -404,11 +404,14 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
       </nav>
 
       {/* 3. DIETARY FILTER CONTROLS */}
-      <div className="w-full bg-[#211D25] border-b border-[#D4AF37]/25 py-3">
+      <div className="w-full bg-[#F2E9D6] dark:bg-[#211D25] border-b border-[#D4AF37]/30 dark:border-[#D4AF37]/25 py-3 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2">
-            <SlidersHorizontal className="w-4 h-4 text-[#ECC55F]" aria-hidden="true" />
-            <span className="text-xs font-bold uppercase tracking-wider text-[#F7F1E3]">
+            <SlidersHorizontal
+              className="w-4 h-4 text-[#9A6B10] dark:text-[#ECC55F]"
+              aria-hidden="true"
+            />
+            <span className="text-xs font-bold uppercase tracking-wider text-[#1F1A17] dark:text-[#F7F1E3]">
               Dietary Filter:
             </span>
           </div>
@@ -423,14 +426,14 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
                   type="button"
                   aria-pressed={isSelected}
                   onClick={() => setDietaryFilter(option.id)}
-                  className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all border cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F0C75E] whitespace-nowrap ${
+                  className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all border cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#9A6B10] dark:focus-visible:outline-[#F0C75E] whitespace-nowrap ${
                     isSelected
                       ? isVegOption
-                        ? 'bg-[#166534] text-[#F0FDF4] border-[#4ADE80]/60 shadow-xs'
+                        ? 'bg-[#166534] text-[#F0FDF4] border-[#15803D]/70 dark:border-[#4ADE80]/60 shadow-xs'
                         : 'bg-gradient-to-r from-[#C99B35] via-[#F0C75E] to-[#D4A63B] text-[#1D1810] border-[#FCE59C]/60 shadow-xs'
                       : isVegOption
-                      ? 'bg-[#27222C] text-[#4ADE80] border-[#4ADE80]/35 hover:bg-[#166534]/25'
-                      : 'bg-[#27222C] text-[#D8CFC4] border-[#D4AF37]/30 hover:border-[#D4AF37] hover:text-[#F7F1E3]'
+                      ? 'bg-white dark:bg-[#27222C] text-[#15803D] dark:text-[#4ADE80] border-[#15803D]/35 dark:border-[#4ADE80]/35 hover:bg-[#166534]/10 dark:hover:bg-[#166534]/25'
+                      : 'bg-white dark:bg-[#27222C] text-[#4E4237] dark:text-[#D8CFC4] border-[#D4AF37]/35 dark:border-[#D4AF37]/30 hover:border-[#D4AF37] hover:text-[#1F1A17] dark:hover:text-[#F7F1E3]'
                   }`}
                 >
                   {isVegOption && <Leaf className="w-3.5 h-3.5" aria-hidden="true" />}
@@ -449,18 +452,21 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
           <section id="specials" className="scroll-mt-36">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
               <div>
-                <span className="text-xs font-bold uppercase tracking-widest text-[#ECC55F]">
+                <span className="text-xs font-bold uppercase tracking-widest text-[#9A6B10] dark:text-[#ECC55F]">
                   Kitchen Schedule
                 </span>
-                <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#F7F1E3] mt-1">
+                <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3] mt-1">
                   DAILY &amp; WEEKEND SPECIAL
                 </h2>
-                <p className="text-sm sm:text-base text-[#D8CFC4] mt-1">
+                <p className="text-sm sm:text-base text-[#4E4237] dark:text-[#D8CFC4] mt-1">
                   Slow-cooked handis and heritage recipes prepared on scheduled days of the week.
                 </p>
               </div>
-              <span className="self-start md:self-auto inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#ECC55F]">
-                <CalendarClock className="w-4 h-4 text-[#ECC55F]" aria-hidden="true" />
+              <span className="self-start md:self-auto inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#9A6B10] dark:text-[#ECC55F]">
+                <CalendarClock
+                  className="w-4 h-4 text-[#9A6B10] dark:text-[#ECC55F]"
+                  aria-hidden="true"
+                />
                 <span>Day-Wise Schedule</span>
               </span>
             </div>
@@ -469,28 +475,30 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
               {specials.map((item) => (
                 <article
                   key={item.id}
-                  className="bg-[#27222C] rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between border border-[#D4AF37]/25 hover:border-[#D4AF37]/65"
+                  className="bg-white dark:bg-[#27222C] rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between border border-[#D4AF37]/30 dark:border-[#D4AF37]/25 hover:border-[#D4AF37]/80 dark:hover:border-[#D4AF37]/65"
                 >
                   <div>
                     {renderDishCardImage(item.imageUrl, item.name)}
                     <div className="p-6">
                       <div className="flex items-baseline justify-between gap-2 mb-2">
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-[#ECC55F]">
+                        <span className="text-[11px] font-bold uppercase tracking-wider text-[#9A6B10] dark:text-[#ECC55F]">
                           {item.dayLabel}
                         </span>
                         {renderPrice(item.price, true)}
                       </div>
-                      <h3 className="font-serif text-xl font-semibold text-[#F7F1E3] mb-2">
+                      <h3 className="font-serif text-xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3] mb-2">
                         {item.name}
                       </h3>
-                      <p className="text-sm text-[#D8CFC4] leading-relaxed">{item.description}</p>
+                      <p className="text-sm text-[#4E4237] dark:text-[#D8CFC4] leading-relaxed">
+                        {item.description}
+                      </p>
                     </div>
                   </div>
-                  <div className="px-6 py-3.5 border-t border-[#D4AF37]/20 flex items-center justify-between bg-[#211D25]">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#B4A89B]">
+                  <div className="px-6 py-3.5 border-t border-[#D4AF37]/25 dark:border-[#D4AF37]/20 flex items-center justify-between bg-[#FAF5EA] dark:bg-[#211D25]">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B5B4E] dark:text-[#B4A89B]">
                       {item.scheduleTag}
                     </span>
-                    <Flame className="w-4 h-4 text-[#ECC55F]" aria-hidden="true" />
+                    <Flame className="w-4 h-4 text-[#9A6B10] dark:text-[#ECC55F]" aria-hidden="true" />
                   </div>
                 </article>
               ))}
@@ -502,10 +510,10 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
         {starters.length > 0 && (
           <section id="starters" className="scroll-mt-36">
             <div className="mb-8">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#ECC55F]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#9A6B10] dark:text-[#ECC55F]">
                 Appetizers &amp; Quick Bites
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#F7F1E3] mt-1">
+              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3] mt-1">
                 STARTERS
               </h2>
             </div>
@@ -514,10 +522,10 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
               {starters.map((item) => (
                 <article
                   key={item.id}
-                  className={`bg-[#27222C] rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between border ${
+                  className={`bg-white dark:bg-[#27222C] rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between border ${
                     item.isVeg
-                      ? 'border-[#4ADE80]/35 hover:border-[#4ADE80]/65'
-                      : 'border-[#D4AF37]/25 hover:border-[#D4AF37]/65'
+                      ? 'border-[#15803D]/35 dark:border-[#4ADE80]/35 hover:border-[#15803D]/70 dark:hover:border-[#4ADE80]/65'
+                      : 'border-[#D4AF37]/30 dark:border-[#D4AF37]/25 hover:border-[#D4AF37]/80 dark:hover:border-[#D4AF37]/65'
                   }`}
                 >
                   <div>
@@ -528,10 +536,10 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
                           {item.isVeg && (
                             <span
                               title="Vegetarian"
-                              className="w-2.5 h-2.5 rounded-full bg-[#4ADE80] inline-block shrink-0"
+                              className="w-2.5 h-2.5 rounded-full bg-[#15803D] dark:bg-[#4ADE80] inline-block shrink-0"
                             />
                           )}
-                          <h3 className="font-serif text-xl font-semibold text-[#F7F1E3]">
+                          <h3 className="font-serif text-xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3]">
                             {item.name}
                           </h3>
                         </div>
@@ -540,13 +548,17 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
                       {item.portion && (
                         <span
                           className={`block text-[11px] font-bold uppercase tracking-wider mb-2.5 ${
-                            item.isVeg ? 'text-[#4ADE80]' : 'text-[#ECC55F]'
+                            item.isVeg
+                              ? 'text-[#15803D] dark:text-[#4ADE80]'
+                              : 'text-[#9A6B10] dark:text-[#ECC55F]'
                           }`}
                         >
                           {item.isVeg ? `Vegetarian · ${item.portion}` : item.portion}
                         </span>
                       )}
-                      <p className="text-sm text-[#D8CFC4] leading-relaxed">{item.description}</p>
+                      <p className="text-sm text-[#4E4237] dark:text-[#D8CFC4] leading-relaxed">
+                        {item.description}
+                      </p>
                     </div>
                   </div>
                 </article>
@@ -559,13 +571,13 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
         {tandoor.length > 0 && (
           <section id="tandoor" className="scroll-mt-36">
             <div className="mb-8">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#ECC55F]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#9A6B10] dark:text-[#ECC55F]">
                 Clay Oven Specialties
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#F7F1E3] mt-1">
+              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3] mt-1">
                 TANDOOR
               </h2>
-              <p className="text-sm sm:text-base text-[#D8CFC4] mt-1">
+              <p className="text-sm sm:text-base text-[#4E4237] dark:text-[#D8CFC4] mt-1">
                 Charcoal grilled with house-ground marinades and aromatic oils.
               </p>
             </div>
@@ -582,10 +594,10 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
                 return (
                   <article
                     key={item.id}
-                    className={`bg-[#27222C] rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between border ${
+                    className={`bg-white dark:bg-[#27222C] rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between border ${
                       item.isVeg
-                        ? 'border-[#4ADE80]/35 hover:border-[#4ADE80]/65'
-                        : 'border-[#D4AF37]/25 hover:border-[#D4AF37]/65'
+                        ? 'border-[#15803D]/35 dark:border-[#4ADE80]/35 hover:border-[#15803D]/70 dark:hover:border-[#4ADE80]/65'
+                        : 'border-[#D4AF37]/30 dark:border-[#D4AF37]/25 hover:border-[#D4AF37]/80 dark:hover:border-[#D4AF37]/65'
                     }`}
                   >
                     <div>
@@ -593,32 +605,36 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
                       <div className="p-5">
                         <div className="flex items-center justify-between gap-2 mb-2">
                           {item.badge ? (
-                            <span className="text-[11px] font-bold uppercase tracking-wider text-[#ECC55F]">
+                            <span className="text-[11px] font-bold uppercase tracking-wider text-[#9A6B10] dark:text-[#ECC55F]">
                               {item.badge}
                             </span>
                           ) : item.portion ? (
                             <span
                               className={`text-[11px] font-bold uppercase tracking-wider ${
-                                item.isVeg ? 'text-[#4ADE80]' : 'text-[#ECC55F]'
+                                item.isVeg
+                                  ? 'text-[#15803D] dark:text-[#4ADE80]'
+                                  : 'text-[#9A6B10] dark:text-[#ECC55F]'
                               }`}
                             >
                               {item.isVeg ? `Veg · ${item.portion}` : item.portion}
                             </span>
                           ) : (
-                            <span className="text-[11px] font-bold uppercase tracking-wider text-[#ECC55F]">
+                            <span className="text-[11px] font-bold uppercase tracking-wider text-[#9A6B10] dark:text-[#ECC55F]">
                               Tandoor
                             </span>
                           )}
                           {renderPrice(displayedPrice)}
                         </div>
 
-                        <h3 className="font-serif text-lg font-semibold text-[#F7F1E3] mb-1.5">
+                        <h3 className="font-serif text-lg font-semibold text-[#1F1A17] dark:text-[#F7F1E3] mb-1.5">
                           {item.name}
                         </h3>
-                        <p className="text-sm text-[#D8CFC4] leading-relaxed">{item.description}</p>
+                        <p className="text-sm text-[#4E4237] dark:text-[#D8CFC4] leading-relaxed">
+                          {item.description}
+                        </p>
 
                         {item.selectablePortions && (
-                          <div className="mt-4 inline-flex gap-1 bg-[#1B181F] rounded-lg p-1 border border-[#D4AF37]/30">
+                          <div className="mt-4 inline-flex gap-1 bg-[#F2E9D6] dark:bg-[#1B181F] rounded-lg p-1 border border-[#D4AF37]/35 dark:border-[#D4AF37]/30">
                             {item.selectablePortions.map((opt) => {
                               const selected = tandooriPortion === opt.label;
                               return (
@@ -631,7 +647,7 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
                                   className={`px-3 py-1 text-xs font-bold rounded-md transition-colors cursor-pointer whitespace-nowrap ${
                                     selected
                                       ? 'bg-gradient-to-r from-[#C99B35] to-[#F0C75E] text-[#1D1810]'
-                                      : 'text-[#D8CFC4] hover:text-[#F7F1E3]'
+                                      : 'text-[#4E4237] hover:text-[#1F1A17] dark:text-[#D8CFC4] dark:hover:text-[#F7F1E3]'
                                   }`}
                                 >
                                   {opt.label}
@@ -653,13 +669,13 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
         {platters.length > 0 && (
           <section id="platters" className="scroll-mt-36">
             <div className="mb-8">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#ECC55F]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#9A6B10] dark:text-[#ECC55F]">
                 Sharing Feasts
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#F7F1E3] mt-1">
+              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3] mt-1">
                 PLATTERS
               </h2>
-              <p className="text-sm sm:text-base text-[#D8CFC4] mt-1">
+              <p className="text-sm sm:text-base text-[#4E4237] dark:text-[#D8CFC4] mt-1">
                 Crafted for solo tasting or sharing at the table.
               </p>
             </div>
@@ -670,7 +686,7 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
                 return (
                   <article
                     key={platter.id}
-                    className="bg-[#27222C] rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-shadow border border-[#D4AF37]/30 flex flex-col"
+                    className="bg-white dark:bg-[#27222C] rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-shadow border border-[#D4AF37]/30 flex flex-col"
                   >
                     {renderDishCardImage(platter.imageUrl, platter.name)}
 
@@ -678,17 +694,17 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
                       <div>
                         <div className="flex items-start justify-between gap-4 mb-2">
                           <div>
-                            <span className="block text-[11px] font-bold uppercase tracking-wider text-[#ECC55F]">
+                            <span className="block text-[11px] font-bold uppercase tracking-wider text-[#9A6B10] dark:text-[#ECC55F]">
                               {platter.tag}
                             </span>
-                            <h3 className="font-serif text-2xl font-semibold text-[#F7F1E3] mt-1">
+                            <h3 className="font-serif text-2xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3] mt-1">
                               {platter.name}
                             </h3>
                           </div>
                           {renderPrice(platter.price, true)}
                         </div>
 
-                        <p className="text-sm sm:text-base text-[#D8CFC4] mb-4">
+                        <p className="text-sm sm:text-base text-[#4E4237] dark:text-[#D8CFC4] mb-4">
                           {platter.description}
                         </p>
                       </div>
@@ -698,7 +714,7 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
                           type="button"
                           aria-expanded={isExpanded}
                           onClick={() => togglePlatter(platter.id)}
-                          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#ECC55F] hover:text-[#F7F1E3] transition-colors py-1.5 cursor-pointer"
+                          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#9A6B10] hover:text-[#1F1A17] dark:text-[#ECC55F] dark:hover:text-[#F7F1E3] transition-colors py-1.5 cursor-pointer"
                         >
                           <span>
                             {isExpanded ? 'Hide Platter Contents' : 'Explore Platter Contents'}
@@ -712,13 +728,13 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
                         </button>
 
                         {isExpanded && (
-                          <ul className="mt-4 pt-4 border-t border-[#D4AF37]/20 space-y-2">
+                          <ul className="mt-4 pt-4 border-t border-[#D4AF37]/25 dark:border-[#D4AF37]/20 space-y-2">
                             {platter.contents.map((line) => (
                               <li
                                 key={line}
-                                className="flex items-center gap-2.5 text-sm text-[#F7F1E3]"
+                                className="flex items-center gap-2.5 text-sm text-[#1F1A17] dark:text-[#F7F1E3]"
                               >
-                                <span className="w-1.5 h-1.5 rounded-full bg-[#F0C75E] shrink-0" />
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#C99B35] dark:bg-[#F0C75E] shrink-0" />
                                 <span>{line}</span>
                               </li>
                             ))}
@@ -737,13 +753,13 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
         {biryanis.length > 0 && (
           <section id="biryani" className="scroll-mt-36">
             <div className="mb-8">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#ECC55F]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#9A6B10] dark:text-[#ECC55F]">
                 Signature Handi Biryanis
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#F7F1E3] mt-1">
+              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3] mt-1">
                 HYDERABADI DUM BIRYANI
               </h2>
-              <p className="text-sm sm:text-base text-[#D8CFC4] mt-1">
+              <p className="text-sm sm:text-base text-[#4E4237] dark:text-[#D8CFC4] mt-1">
                 Slow-cooked in sealed handis with long-grain basmati, saffron, and whole spices.
               </p>
             </div>
@@ -757,34 +773,34 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
                 return (
                   <article
                     key={biryani.id}
-                    className="bg-[#27222C] rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between border-2 border-[#D4AF37]/40 hover:border-[#D4AF37] transition-colors"
+                    className="bg-white dark:bg-[#27222C] rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between border-2 border-[#D4AF37]/45 dark:border-[#D4AF37]/40 hover:border-[#D4AF37] transition-colors"
                   >
                     <div>
                       {renderDishCardImage(biryani.imageUrl, biryani.name)}
 
                       <div className="p-6 sm:p-7">
                         <div className="flex flex-wrap items-baseline justify-between gap-3 mb-2">
-                          <span className="text-[11px] font-bold uppercase tracking-wider text-[#ECC55F]">
+                          <span className="text-[11px] font-bold uppercase tracking-wider text-[#9A6B10] dark:text-[#ECC55F]">
                             {biryani.tag}
                           </span>
                           <div className="text-right">
                             {renderPrice(selectedSize.price, true)}
-                            <span className="block text-[10px] font-semibold uppercase tracking-wider text-[#B4A89B]">
+                            <span className="block text-[10px] font-semibold uppercase tracking-wider text-[#6B5B4E] dark:text-[#B4A89B]">
                               {selectedSize.label} portion
                             </span>
                           </div>
                         </div>
 
-                        <h3 className="font-serif text-2xl font-bold text-[#F7F1E3] mb-2">
+                        <h3 className="font-serif text-2xl font-bold text-[#1F1A17] dark:text-[#F7F1E3] mb-2">
                           {biryani.name}
                         </h3>
-                        <p className="text-sm sm:text-base text-[#D8CFC4] leading-relaxed mb-6">
+                        <p className="text-sm sm:text-base text-[#4E4237] dark:text-[#D8CFC4] leading-relaxed mb-6">
                           {biryani.description}
                         </p>
 
                         {/* Selectable Portion Size Controls */}
-                        <div className="bg-[#1D1921] p-4 rounded-xl mb-5 border border-[#D4AF37]/25">
-                          <span className="block text-[11px] font-bold uppercase tracking-wider text-[#B4A89B] mb-2.5">
+                        <div className="bg-[#F2E9D6] dark:bg-[#1D1921] p-4 rounded-xl mb-5 border border-[#D4AF37]/30 dark:border-[#D4AF37]/25">
+                          <span className="block text-[11px] font-bold uppercase tracking-wider text-[#6B5B4E] dark:text-[#B4A89B] mb-2.5">
                             Select Portion Size:
                           </span>
                           <div className="grid grid-cols-3 gap-2">
@@ -804,7 +820,7 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
                                   className={`py-2.5 px-2 sm:px-3 text-center rounded-xl text-xs sm:text-sm font-bold transition-all border cursor-pointer ${
                                     active
                                       ? 'bg-gradient-to-r from-[#C99B35] via-[#F0C75E] to-[#D4A63B] text-[#1D1810] border-[#FCE59C]/60 shadow-sm'
-                                      : 'bg-[#27222C] text-[#D8CFC4] border-[#D4AF37]/20 hover:bg-[#322B39] hover:text-[#F7F1E3]'
+                                      : 'bg-white dark:bg-[#27222C] text-[#4E4237] dark:text-[#D8CFC4] border-[#D4AF37]/25 dark:border-[#D4AF37]/20 hover:bg-[#FAF5EA] dark:hover:bg-[#322B39] hover:text-[#1F1A17] dark:hover:text-[#F7F1E3]'
                                   }`}
                                 >
                                   <span className="block">{size.label}</span>
@@ -817,9 +833,9 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
                           </div>
                         </div>
 
-                        <div className="pt-4 border-t border-[#D4AF37]/20 flex items-center gap-2 text-xs sm:text-sm text-[#D8CFC4]">
+                        <div className="pt-4 border-t border-[#D4AF37]/25 dark:border-[#D4AF37]/20 flex items-center gap-2 text-xs sm:text-sm text-[#4E4237] dark:text-[#D8CFC4]">
                           <CheckCircle2
-                            className="w-4 h-4 text-[#ECC55F] shrink-0"
+                            className="w-4 h-4 text-[#9A6B10] dark:text-[#ECC55F] shrink-0"
                             aria-hidden="true"
                           />
                           <span>{biryani.accompaniment}</span>
@@ -839,13 +855,13 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
             {lambCurries.length > 0 && (
               <section id="lamb" className="scroll-mt-36">
                 <div className="mb-6">
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#ECC55F]">
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#9A6B10] dark:text-[#ECC55F]">
                     Rich Gravies
                   </span>
-                  <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#F7F1E3] mt-1">
+                  <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3] mt-1">
                     MEHFIL-E-LAMB
                   </h2>
-                  <p className="text-sm sm:text-base text-[#D8CFC4] mt-1">
+                  <p className="text-sm sm:text-base text-[#4E4237] dark:text-[#D8CFC4] mt-1">
                     Tender Scottish lamb braised in traditional copper degchi sauces.
                   </p>
                 </div>
@@ -854,15 +870,17 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
                   {lambCurries.map((dish) => (
                     <article
                       key={dish.id}
-                      className="bg-[#27222C] p-5 rounded-xl shadow-xs flex items-center justify-between gap-4 border border-[#D4AF37]/25 hover:border-[#D4AF37]/65 transition-colors"
+                      className="bg-white dark:bg-[#27222C] p-5 rounded-xl shadow-xs flex items-center justify-between gap-4 border border-[#D4AF37]/30 dark:border-[#D4AF37]/25 hover:border-[#D4AF37]/80 dark:hover:border-[#D4AF37]/65 transition-colors"
                     >
                       <div className="flex items-center gap-4 min-w-0 flex-1">
                         {renderListDishThumb(dish.imageUrl, dish.name)}
                         <div className="min-w-0">
-                          <h3 className="font-serif text-lg sm:text-xl font-semibold text-[#F7F1E3]">
+                          <h3 className="font-serif text-lg sm:text-xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3]">
                             {dish.name}
                           </h3>
-                          <p className="text-sm text-[#D8CFC4] mt-1">{dish.description}</p>
+                          <p className="text-sm text-[#4E4237] dark:text-[#D8CFC4] mt-1">
+                            {dish.description}
+                          </p>
                         </div>
                       </div>
                       {renderPrice(dish.price)}
@@ -875,13 +893,13 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
             {murghCurries.length > 0 && (
               <section id="murgh" className="scroll-mt-36">
                 <div className="mb-6">
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#ECC55F]">
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#9A6B10] dark:text-[#ECC55F]">
                     Chicken Specialties
                   </span>
-                  <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#F7F1E3] mt-1">
+                  <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3] mt-1">
                     MEHFIL-E-MURGH
                   </h2>
-                  <p className="text-sm sm:text-base text-[#D8CFC4] mt-1">
+                  <p className="text-sm sm:text-base text-[#4E4237] dark:text-[#D8CFC4] mt-1">
                     Signature poultry creations stewed in fragrant gravies.
                   </p>
                 </div>
@@ -890,20 +908,22 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
                   {murghCurries.map((dish) => (
                     <article
                       key={dish.id}
-                      className="bg-[#27222C] p-5 rounded-xl shadow-xs flex items-center justify-between gap-4 border border-[#D4AF37]/25 hover:border-[#D4AF37]/65 transition-colors"
+                      className="bg-white dark:bg-[#27222C] p-5 rounded-xl shadow-xs flex items-center justify-between gap-4 border border-[#D4AF37]/30 dark:border-[#D4AF37]/25 hover:border-[#D4AF37]/80 dark:hover:border-[#D4AF37]/65 transition-colors"
                     >
                       <div className="flex items-center gap-4 min-w-0 flex-1">
                         {renderListDishThumb(dish.imageUrl, dish.name)}
                         <div className="min-w-0">
                           {dish.badge && (
-                            <span className="block text-[10px] uppercase font-bold tracking-wider text-[#ECC55F] mb-0.5">
+                            <span className="block text-[10px] uppercase font-bold tracking-wider text-[#9A6B10] dark:text-[#ECC55F] mb-0.5">
                               {dish.badge}
                             </span>
                           )}
-                          <h3 className="font-serif text-lg sm:text-xl font-semibold text-[#F7F1E3]">
+                          <h3 className="font-serif text-lg sm:text-xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3]">
                             {dish.name}
                           </h3>
-                          <p className="text-sm text-[#D8CFC4] mt-1">{dish.description}</p>
+                          <p className="text-sm text-[#4E4237] dark:text-[#D8CFC4] mt-1">
+                            {dish.description}
+                          </p>
                         </div>
                       </div>
                       {renderPrice(dish.price)}
@@ -919,13 +939,13 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
         {mandis.length > 0 && (
           <section id="mandi" className="scroll-mt-36">
             <div className="mb-8">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#ECC55F]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#9A6B10] dark:text-[#ECC55F]">
                 Arabian-Hyderabadi Fusion
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#F7F1E3] mt-1">
+              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3] mt-1">
                 MEHFIL-E-MANDI
               </h2>
-              <p className="text-sm sm:text-base text-[#D8CFC4] mt-1">
+              <p className="text-sm sm:text-base text-[#4E4237] dark:text-[#D8CFC4] mt-1">
                 Succulent roasted meats served over spiced long mandi rice, served in traditional
                 communal platters.
               </p>
@@ -935,47 +955,53 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
               {mandis.map((mandi) => (
                 <article
                   key={mandi.id}
-                  className="bg-[#27222C] rounded-xl overflow-hidden shadow-xs flex flex-col justify-between border border-[#D4AF37]/25 hover:border-[#D4AF37]/65 transition-colors"
+                  className="bg-white dark:bg-[#27222C] rounded-xl overflow-hidden shadow-xs flex flex-col justify-between border border-[#D4AF37]/30 dark:border-[#D4AF37]/25 hover:border-[#D4AF37]/80 dark:hover:border-[#D4AF37]/65 transition-colors"
                 >
                   <div>
                     {renderDishCardImage(mandi.imageUrl, mandi.name)}
                     <div className="p-6">
-                      <span className="block text-[11px] font-bold uppercase tracking-wider text-[#ECC55F]">
+                      <span className="block text-[11px] font-bold uppercase tracking-wider text-[#9A6B10] dark:text-[#ECC55F]">
                         {mandi.tag}
                       </span>
-                      <h3 className="font-serif text-2xl font-bold text-[#F7F1E3] mt-1.5 mb-2">
+                      <h3 className="font-serif text-2xl font-bold text-[#1F1A17] dark:text-[#F7F1E3] mt-1.5 mb-2">
                         {mandi.name}
                       </h3>
-                      <p className="text-sm text-[#D8CFC4] leading-relaxed">{mandi.description}</p>
+                      <p className="text-sm text-[#4E4237] dark:text-[#D8CFC4] leading-relaxed">
+                        {mandi.description}
+                      </p>
                     </div>
                   </div>
 
                   <div className="px-6 pb-6">
-                    <div className="bg-[#1D1921] p-3.5 rounded-xl space-y-2 border border-[#D4AF37]/25">
+                    <div className="bg-[#F2E9D6] dark:bg-[#1D1921] p-3.5 rounded-xl space-y-2 border border-[#D4AF37]/30 dark:border-[#D4AF37]/25">
                       {mandi.tiers.map((tier, index) => (
                         <div
                           key={tier.label}
                           className={`flex items-center justify-between text-sm ${
                             index === mandi.tiers.length - 1 && mandi.tiers.length > 1
-                              ? 'pt-1.5 border-t border-[#D4AF37]/20'
+                              ? 'pt-1.5 border-t border-[#D4AF37]/25 dark:border-[#D4AF37]/20'
                               : ''
                           }`}
                         >
                           <span
                             className={
                               tier.highlight
-                                ? 'text-[#F7F1E3] font-bold'
-                                : 'text-[#D8CFC4] font-medium'
+                                ? 'text-[#1F1A17] dark:text-[#F7F1E3] font-bold'
+                                : 'text-[#4E4237] dark:text-[#D8CFC4] font-medium'
                             }
                           >
                             {tier.label}:
                           </span>
                           <span
                             className={`font-bold tabular-nums ${
-                              tier.highlight ? 'text-[#F0C75E] text-base' : 'text-[#ECC55F]'
+                              tier.highlight
+                                ? 'text-[#9A6B10] dark:text-[#F0C75E] text-base'
+                                : 'text-[#9A6B10] dark:text-[#ECC55F]'
                             }`}
                           >
-                            <span className="text-xs text-[#D4AF37] mr-0.5">£</span>
+                            <span className="text-xs text-[#B5851E] dark:text-[#D4AF37] mr-0.5">
+                              £
+                            </span>
                             {tier.price}
                           </span>
                         </div>
@@ -992,14 +1018,14 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
         {vegItems.length > 0 && (
           <section id="veg" className="scroll-mt-36">
             <div className="flex items-center gap-3 mb-7">
-              <span className="w-6 h-6 rounded-full bg-[#166534] border border-[#4ADE80]/50 flex items-center justify-center shadow-xs">
-                <Leaf className="w-3.5 h-3.5 text-[#4ADE80]" aria-hidden="true" />
+              <span className="w-6 h-6 rounded-full bg-[#166534]/15 dark:bg-[#166534] border border-[#15803D]/40 dark:border-[#4ADE80]/50 flex items-center justify-center shadow-xs">
+                <Leaf className="w-3.5 h-3.5 text-[#15803D] dark:text-[#4ADE80]" aria-hidden="true" />
               </span>
               <div>
-                <span className="text-xs font-bold uppercase tracking-widest text-[#4ADE80] block">
+                <span className="text-xs font-bold uppercase tracking-widest text-[#15803D] dark:text-[#4ADE80] block">
                   Vegetarian Delights
                 </span>
-                <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#F7F1E3]">
+                <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3]">
                   VEG ITEMS
                 </h2>
               </div>
@@ -1009,18 +1035,20 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
               {vegItems.map((item) => (
                 <article
                   key={item.id}
-                  className="bg-[#27222C] rounded-xl overflow-hidden shadow-xs flex flex-col justify-between border border-[#4ADE80]/30 hover:border-[#4ADE80]/65 transition-colors"
+                  className="bg-white dark:bg-[#27222C] rounded-xl overflow-hidden shadow-xs flex flex-col justify-between border border-[#15803D]/30 dark:border-[#4ADE80]/30 hover:border-[#15803D]/70 dark:hover:border-[#4ADE80]/65 transition-colors"
                 >
                   <div>
                     {renderDishCardImage(item.imageUrl, item.name)}
                     <div className="p-6">
                       <div className="flex items-start justify-between gap-2 mb-2">
-                        <h3 className="font-serif text-xl font-semibold text-[#F7F1E3]">
+                        <h3 className="font-serif text-xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3]">
                           {item.name}
                         </h3>
                         {renderPrice(item.price)}
                       </div>
-                      <p className="text-sm text-[#D8CFC4] leading-relaxed">{item.description}</p>
+                      <p className="text-sm text-[#4E4237] dark:text-[#D8CFC4] leading-relaxed">
+                        {item.description}
+                      </p>
                     </div>
                   </div>
                 </article>
@@ -1033,13 +1061,13 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
         {rotiItems.length > 0 && (
           <section id="roti" className="scroll-mt-36">
             <div className="mb-7">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#ECC55F]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#9A6B10] dark:text-[#ECC55F]">
                 From the Tandoori Pit
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#F7F1E3] mt-1">
+              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3] mt-1">
                 MEHFIL-E-ROTI
               </h2>
-              <p className="text-sm sm:text-base text-[#D8CFC4] mt-1">
+              <p className="text-sm sm:text-base text-[#4E4237] dark:text-[#D8CFC4] mt-1">
                 Freshly baked in our clay tandoor and brushed with melted butter.
               </p>
             </div>
@@ -1048,16 +1076,18 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
               {rotiItems.map((item) => (
                 <article
                   key={item.id}
-                  className="bg-[#27222C] rounded-xl overflow-hidden shadow-xs text-center border border-[#D4AF37]/25 hover:border-[#D4AF37]/65 transition-colors flex flex-col justify-between"
+                  className="bg-white dark:bg-[#27222C] rounded-xl overflow-hidden shadow-xs text-center border border-[#D4AF37]/30 dark:border-[#D4AF37]/25 hover:border-[#D4AF37]/80 dark:hover:border-[#D4AF37]/65 transition-colors flex flex-col justify-between"
                 >
                   <div>
                     {renderDishCardImage(item.imageUrl, item.name)}
                     <div className="p-4">
                       <div className="mb-1.5">{renderPrice(item.price)}</div>
-                      <h3 className="font-serif text-base font-bold text-[#F7F1E3] mb-1">
+                      <h3 className="font-serif text-base font-bold text-[#1F1A17] dark:text-[#F7F1E3] mb-1">
                         {item.name}
                       </h3>
-                      <p className="text-xs text-[#D8CFC4] leading-snug">{item.description}</p>
+                      <p className="text-xs text-[#4E4237] dark:text-[#D8CFC4] leading-snug">
+                        {item.description}
+                      </p>
                     </div>
                   </div>
                 </article>
@@ -1072,21 +1102,23 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
             {extrasItems.length > 0 && (
               <section id="extras" className="scroll-mt-36">
                 <div className="mb-6">
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#ECC55F]">
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#9A6B10] dark:text-[#ECC55F]">
                     Accompaniments &amp; Portions
                   </span>
-                  <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#F7F1E3] mt-1">
+                  <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3] mt-1">
                     EXTRA&apos;S
                   </h2>
                 </div>
 
-                <div className="bg-[#27222C] rounded-2xl p-6 shadow-xs border border-[#D4AF37]/30 divide-y divide-[#D4AF37]/15">
+                <div className="bg-white dark:bg-[#27222C] rounded-2xl p-6 shadow-xs border border-[#D4AF37]/30 divide-y divide-[#D4AF37]/20 dark:divide-[#D4AF37]/15">
                   {extrasItems.map((extra) => (
                     <div
                       key={extra.id}
                       className="flex items-center justify-between py-3 first:pt-1 last:pb-1"
                     >
-                      <span className="text-base font-semibold text-[#F7F1E3]">{extra.name}</span>
+                      <span className="text-base font-semibold text-[#1F1A17] dark:text-[#F7F1E3]">
+                        {extra.name}
+                      </span>
                       {renderPrice(extra.price)}
                     </div>
                   ))}
@@ -1097,10 +1129,10 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
             {lassiItems.length > 0 && (
               <section id="lassi" className="scroll-mt-36">
                 <div className="mb-6">
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#ECC55F]">
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#9A6B10] dark:text-[#ECC55F]">
                     Chilled Yogurt Drinks
                   </span>
-                  <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#F7F1E3] mt-1">
+                  <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3] mt-1">
                     MEHFIL-E-LASSI
                   </h2>
                 </div>
@@ -1111,22 +1143,24 @@ export function MenuPage({ initialSectionRequest }: MenuPageProps) {
                       key={lassi.id}
                       className={`p-5 rounded-xl shadow-xs flex items-center justify-between gap-4 border transition-colors ${
                         lassi.badge
-                          ? 'bg-gradient-to-r from-[#27222C] to-[#2F2835] border-[#D4AF37]/50'
-                          : 'bg-[#27222C] border-[#D4AF37]/25 hover:border-[#D4AF37]/65'
+                          ? 'bg-gradient-to-r from-[#FBF6EA] to-[#F3E8CE] dark:from-[#27222C] dark:to-[#2F2835] border-[#D4AF37]/50'
+                          : 'bg-white dark:bg-[#27222C] border-[#D4AF37]/30 dark:border-[#D4AF37]/25 hover:border-[#D4AF37]/80 dark:hover:border-[#D4AF37]/65'
                       }`}
                     >
                       <div className="flex items-center gap-4 min-w-0 flex-1">
                         {renderListDishThumb(lassi.imageUrl, lassi.name)}
                         <div className="min-w-0">
                           {lassi.badge && (
-                            <span className="block text-[10px] text-[#ECC55F] uppercase font-bold tracking-wider mb-1">
+                            <span className="block text-[10px] text-[#9A6B10] dark:text-[#ECC55F] uppercase font-bold tracking-wider mb-1">
                               {lassi.badge}
                             </span>
                           )}
-                          <h3 className="font-serif text-lg sm:text-xl font-semibold text-[#F7F1E3]">
+                          <h3 className="font-serif text-lg sm:text-xl font-semibold text-[#1F1A17] dark:text-[#F7F1E3]">
                             {lassi.name}
                           </h3>
-                          <p className="text-sm text-[#D8CFC4] mt-0.5">{lassi.description}</p>
+                          <p className="text-sm text-[#4E4237] dark:text-[#D8CFC4] mt-0.5">
+                            {lassi.description}
+                          </p>
                         </div>
                       </div>
                       {renderPrice(lassi.price, Boolean(lassi.badge))}
