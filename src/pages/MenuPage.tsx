@@ -130,11 +130,11 @@ export function MenuPage({ initialSection }: MenuPageProps) {
 
   const renderPrice = (price: string, large = false) => (
     <span
-      className={`font-serif font-bold text-[#3A000D] tabular-nums tracking-tight shrink-0 ${
+      className={`font-serif font-bold text-[#ECC55F] tabular-nums tracking-tight shrink-0 ${
         large ? 'text-xl sm:text-2xl' : 'text-base sm:text-lg'
       }`}
     >
-      <span className="text-xs font-semibold text-[#795902] mr-0.5">£</span>
+      <span className="text-xs font-semibold text-[#D4AF37] mr-0.5">£</span>
       {price}
     </span>
   );
@@ -146,7 +146,7 @@ export function MenuPage({ initialSection }: MenuPageProps) {
         type="button"
         onClick={() => setLightboxDish({ name, imageUrl })}
         aria-label={`View photo of ${name}`}
-        className="group/img relative w-full aspect-[4/3] overflow-hidden bg-[#F4E5E0] block cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5A0F1F]"
+        className="group/img relative w-full aspect-[4/3] overflow-hidden bg-[#1D1921] block cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F0C75E]"
       >
         <ResilientImage
           src={imageUrl}
@@ -165,7 +165,7 @@ export function MenuPage({ initialSection }: MenuPageProps) {
         type="button"
         onClick={() => setLightboxDish({ name, imageUrl })}
         aria-label={`View photo of ${name}`}
-        className="group/img relative w-28 sm:w-32 aspect-[4/3] rounded-lg overflow-hidden border border-[#C9A24B]/30 bg-[#F4E5E0] shrink-0 cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5A0F1F]"
+        className="group/img relative w-28 sm:w-32 aspect-[4/3] rounded-lg overflow-hidden border border-[#D4AF37]/30 bg-[#1D1921] shrink-0 cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F0C75E]"
       >
         <ResilientImage
           src={imageUrl}
@@ -178,9 +178,9 @@ export function MenuPage({ initialSection }: MenuPageProps) {
   };
 
   return (
-    <div className="flex flex-col w-full bg-gradient-to-b from-[#FFF8F6] via-[#FFF6EB] to-[#FFF1EC]">
+    <div className="flex flex-col w-full bg-gradient-to-b from-[#1A171D] via-[#1E1A22] to-[#1A171D]">
       {/* 1. MENU HEADER BANNER */}
-      <section className="relative w-full bg-[#261410] text-[#FFF8F6] overflow-hidden py-16 md:py-24">
+      <section className="relative w-full bg-[#18151B] text-[#F7F1E3] overflow-hidden py-16 md:py-24">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <ResilientImage
             src={RESTAURANT_INFO.menuHeroImageUrl}
@@ -191,47 +191,47 @@ export function MenuPage({ initialSection }: MenuPageProps) {
         </div>
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-[#3A000D]/80 via-[#3A000D]/45 to-[#1B1411]/35 pointer-events-none"
+          className="absolute inset-0 bg-gradient-to-t from-[#1A171D]/88 via-[#1A171D]/45 to-[#18151B]/35 pointer-events-none"
         />
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(27,20,17,0.44)_0%,transparent_72%)] pointer-events-none"
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(24,21,27,0.46)_0%,transparent_72%)] pointer-events-none"
         />
 
         <div className="relative z-10 max-w-5xl mx-auto px-5 sm:px-6 lg:px-12 text-center">
-          <div className="inline-flex items-center gap-2 text-[#FFDF9E] text-xs font-bold uppercase tracking-[0.22em] mb-3 drop-shadow-[0_2px_6px_rgba(0,0,0,0.65)]">
-            <UtensilsCrossed className="w-3.5 h-3.5 text-[#E8A317]" aria-hidden="true" />
+          <div className="inline-flex items-center gap-2 text-[#ECC55F] text-xs font-bold uppercase tracking-[0.22em] mb-3 drop-shadow-[0_2px_6px_rgba(0,0,0,0.75)]">
+            <UtensilsCrossed className="w-3.5 h-3.5 text-[#F0C75E]" aria-hidden="true" />
             <span>Chef Selection</span>
           </div>
 
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#FFF8F6] mb-4 drop-shadow-[0_4px_16px_rgba(0,0,0,0.75)]">
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F7F1E3] mb-4 drop-shadow-[0_4px_16px_rgba(0,0,0,0.75)]">
             MENU
           </h1>
 
           <div className="flex items-center justify-center gap-4 max-w-xs mx-auto my-3">
-            <div className="flex-1 h-px bg-gradient-to-r from-transparent to-[#FFDF9E]/70" />
-            <Flame className="w-4 h-4 text-[#E8A317]" aria-hidden="true" />
-            <div className="flex-1 h-px bg-gradient-to-l from-transparent to-[#FFDF9E]/70" />
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent to-[#ECC55F]/75" />
+            <Flame className="w-4 h-4 text-[#F0C75E]" aria-hidden="true" />
+            <div className="flex-1 h-px bg-gradient-to-l from-transparent to-[#ECC55F]/75" />
           </div>
 
-          <p className="text-base sm:text-lg text-[#FFF8F6] max-w-2xl mx-auto mt-3 leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)]">
+          <p className="text-base sm:text-lg text-[#F7F1E3] max-w-2xl mx-auto mt-3 leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)]">
             Experience the rich flavors of Hyderabad with our authentic chicken and lamb dum
             biryani, served fresh at 290 Ilford Lane.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mt-7 text-xs sm:text-sm font-semibold text-[#FFDF9E] drop-shadow-[0_2px_6px_rgba(0,0,0,0.65)]">
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mt-7 text-xs sm:text-sm font-semibold text-[#ECC55F] drop-shadow-[0_2px_6px_rgba(0,0,0,0.75)]">
             <span className="inline-flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-[#E8A317]" aria-hidden="true" />
+              <ShieldCheck className="w-4 h-4 text-[#F0C75E]" aria-hidden="true" />
               <span>100% Halal</span>
             </span>
-            <span className="text-[#C9A24B]/60">•</span>
+            <span className="text-[#D4AF37]/60">•</span>
             <span className="inline-flex items-center gap-1.5">
-              <Flame className="w-4 h-4 text-[#E8A317]" aria-hidden="true" />
+              <Flame className="w-4 h-4 text-[#F0C75E]" aria-hidden="true" />
               <span>Authentic Dum Pukht</span>
             </span>
-            <span className="text-[#C9A24B]/60">•</span>
+            <span className="text-[#D4AF37]/60">•</span>
             <span className="inline-flex items-center gap-1.5">
-              <Users className="w-4 h-4 text-[#E8A317]" aria-hidden="true" />
+              <Users className="w-4 h-4 text-[#F0C75E]" aria-hidden="true" />
               <span>Feast Platters Available</span>
             </span>
           </div>
@@ -241,7 +241,7 @@ export function MenuPage({ initialSection }: MenuPageProps) {
       {/* 2. STICKY HORIZONTAL CATEGORY TABS */}
       <nav
         aria-label="Menu Categories"
-        className="sticky top-16 md:top-20 z-30 bg-[#FFF1EC]/95 backdrop-blur-md border-b border-[#C9A24B]/30 shadow-xs"
+        className="sticky top-16 md:top-20 z-30 bg-[#18151B]/95 backdrop-blur-md border-b border-[#D4AF37]/30 shadow-xs"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <div
@@ -255,10 +255,10 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                   key={category.id}
                   type="button"
                   onClick={() => scrollToSection(category.id)}
-                  className={`px-3.5 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all border shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5A0F1F] whitespace-nowrap ${
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all border shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F0C75E] whitespace-nowrap ${
                     isActive
-                      ? 'bg-[#5A0F1F] text-[#FFF8F6] border-[#C9A24B] shadow-sm'
-                      : 'bg-[#FAEBE5] text-[#554243] border-[#C9A24B]/25 hover:bg-[#F4E5E0] hover:text-[#3A000D]'
+                      ? 'bg-gradient-to-r from-[#C99B35] via-[#F0C75E] to-[#D4A63B] text-[#1D1810] border-[#FCE59C]/60 shadow-sm'
+                      : 'bg-[#27222C] text-[#D8CFC4] border-[#D4AF37]/25 hover:bg-[#322B39] hover:text-[#F7F1E3]'
                   }`}
                 >
                   {category.label}
@@ -270,11 +270,11 @@ export function MenuPage({ initialSection }: MenuPageProps) {
       </nav>
 
       {/* 3. DIETARY FILTER CONTROLS */}
-      <div className="w-full bg-[#F4E5E0]/75 border-b border-[#C9A24B]/25 py-3">
+      <div className="w-full bg-[#211D25] border-b border-[#D4AF37]/25 py-3">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2">
-            <SlidersHorizontal className="w-4 h-4 text-[#795902]" aria-hidden="true" />
-            <span className="text-xs font-bold uppercase tracking-wider text-[#211A17]">
+            <SlidersHorizontal className="w-4 h-4 text-[#ECC55F]" aria-hidden="true" />
+            <span className="text-xs font-bold uppercase tracking-wider text-[#F7F1E3]">
               Dietary Filter:
             </span>
           </div>
@@ -289,14 +289,14 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                   type="button"
                   aria-pressed={isSelected}
                   onClick={() => setDietaryFilter(option.id)}
-                  className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all border cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5A0F1F] whitespace-nowrap ${
+                  className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all border cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F0C75E] whitespace-nowrap ${
                     isSelected
                       ? isVegOption
-                        ? 'bg-[#15803D] text-white border-[#15803D] shadow-xs'
-                        : 'bg-[#5A0F1F] text-[#FFF8F6] border-[#C9A24B] shadow-xs'
+                        ? 'bg-[#166534] text-[#F0FDF4] border-[#4ADE80]/60 shadow-xs'
+                        : 'bg-gradient-to-r from-[#C99B35] via-[#F0C75E] to-[#D4A63B] text-[#1D1810] border-[#FCE59C]/60 shadow-xs'
                       : isVegOption
-                      ? 'bg-white text-[#15803D] border-[#15803D]/35 hover:bg-[#15803D]/10'
-                      : 'bg-white text-[#211A17] border-[#C9A24B]/35 hover:border-[#C9A24B] hover:text-[#5A0F1F]'
+                      ? 'bg-[#27222C] text-[#4ADE80] border-[#4ADE80]/35 hover:bg-[#166534]/25'
+                      : 'bg-[#27222C] text-[#D8CFC4] border-[#D4AF37]/30 hover:border-[#D4AF37] hover:text-[#F7F1E3]'
                   }`}
                 >
                   {isVegOption && <Leaf className="w-3.5 h-3.5" aria-hidden="true" />}
@@ -315,18 +315,18 @@ export function MenuPage({ initialSection }: MenuPageProps) {
           <section id="specials" className="scroll-mt-36">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
               <div>
-                <span className="text-xs font-bold uppercase tracking-widest text-[#795902]">
+                <span className="text-xs font-bold uppercase tracking-widest text-[#ECC55F]">
                   Kitchen Schedule
                 </span>
-                <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#3A000D] mt-1">
+                <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#F7F1E3] mt-1">
                   DAILY &amp; WEEKEND SPECIAL
                 </h2>
-                <p className="text-sm sm:text-base text-[#554243] mt-1">
+                <p className="text-sm sm:text-base text-[#D8CFC4] mt-1">
                   Slow-cooked handis and heritage recipes prepared on scheduled days of the week.
                 </p>
               </div>
-              <span className="self-start md:self-auto inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#795902]">
-                <CalendarClock className="w-4 h-4 text-[#795902]" aria-hidden="true" />
+              <span className="self-start md:self-auto inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#ECC55F]">
+                <CalendarClock className="w-4 h-4 text-[#ECC55F]" aria-hidden="true" />
                 <span>Day-Wise Schedule</span>
               </span>
             </div>
@@ -335,28 +335,28 @@ export function MenuPage({ initialSection }: MenuPageProps) {
               {specials.map((item) => (
                 <article
                   key={item.id}
-                  className="bg-white rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between border border-[#C9A24B]/30 hover:border-[#C9A24B]/60"
+                  className="bg-[#27222C] rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between border border-[#D4AF37]/25 hover:border-[#D4AF37]/65"
                 >
                   <div>
                     {renderDishCardImage(item.imageUrl, item.name)}
                     <div className="p-6">
                       <div className="flex items-baseline justify-between gap-2 mb-2">
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-[#795902]">
+                        <span className="text-[11px] font-bold uppercase tracking-wider text-[#ECC55F]">
                           {item.dayLabel}
                         </span>
                         {renderPrice(item.price, true)}
                       </div>
-                      <h3 className="font-serif text-xl font-semibold text-[#3A000D] mb-2">
+                      <h3 className="font-serif text-xl font-semibold text-[#F7F1E3] mb-2">
                         {item.name}
                       </h3>
-                      <p className="text-sm text-[#554243] leading-relaxed">{item.description}</p>
+                      <p className="text-sm text-[#D8CFC4] leading-relaxed">{item.description}</p>
                     </div>
                   </div>
-                  <div className="px-6 py-3.5 border-t border-[#EEDFDA] flex items-center justify-between bg-[#FFFDFB]">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#554243]">
+                  <div className="px-6 py-3.5 border-t border-[#D4AF37]/20 flex items-center justify-between bg-[#211D25]">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#B4A89B]">
                       {item.scheduleTag}
                     </span>
-                    <Flame className="w-4 h-4 text-[#C9A24B]" aria-hidden="true" />
+                    <Flame className="w-4 h-4 text-[#ECC55F]" aria-hidden="true" />
                   </div>
                 </article>
               ))}
@@ -368,10 +368,10 @@ export function MenuPage({ initialSection }: MenuPageProps) {
         {starters.length > 0 && (
           <section id="starters" className="scroll-mt-36">
             <div className="mb-8">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#795902]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#ECC55F]">
                 Appetizers &amp; Quick Bites
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#3A000D] mt-1">
+              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#F7F1E3] mt-1">
                 STARTERS
               </h2>
             </div>
@@ -380,10 +380,10 @@ export function MenuPage({ initialSection }: MenuPageProps) {
               {starters.map((item) => (
                 <article
                   key={item.id}
-                  className={`bg-white rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between border ${
+                  className={`bg-[#27222C] rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between border ${
                     item.isVeg
-                      ? 'border-[#15803D]/35 hover:border-[#15803D]/60'
-                      : 'border-[#C9A24B]/30 hover:border-[#C9A24B]/60'
+                      ? 'border-[#4ADE80]/35 hover:border-[#4ADE80]/65'
+                      : 'border-[#D4AF37]/25 hover:border-[#D4AF37]/65'
                   }`}
                 >
                   <div>
@@ -394,10 +394,10 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                           {item.isVeg && (
                             <span
                               title="Vegetarian"
-                              className="w-2.5 h-2.5 rounded-full bg-[#15803D] inline-block shrink-0"
+                              className="w-2.5 h-2.5 rounded-full bg-[#4ADE80] inline-block shrink-0"
                             />
                           )}
-                          <h3 className="font-serif text-xl font-semibold text-[#3A000D]">
+                          <h3 className="font-serif text-xl font-semibold text-[#F7F1E3]">
                             {item.name}
                           </h3>
                         </div>
@@ -406,13 +406,13 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                       {item.portion && (
                         <span
                           className={`block text-[11px] font-bold uppercase tracking-wider mb-2.5 ${
-                            item.isVeg ? 'text-[#15803D]' : 'text-[#795902]'
+                            item.isVeg ? 'text-[#4ADE80]' : 'text-[#ECC55F]'
                           }`}
                         >
                           {item.isVeg ? `Vegetarian · ${item.portion}` : item.portion}
                         </span>
                       )}
-                      <p className="text-sm text-[#554243] leading-relaxed">{item.description}</p>
+                      <p className="text-sm text-[#D8CFC4] leading-relaxed">{item.description}</p>
                     </div>
                   </div>
                 </article>
@@ -425,13 +425,13 @@ export function MenuPage({ initialSection }: MenuPageProps) {
         {tandoor.length > 0 && (
           <section id="tandoor" className="scroll-mt-36">
             <div className="mb-8">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#795902]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#ECC55F]">
                 Clay Oven Specialties
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#3A000D] mt-1">
+              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#F7F1E3] mt-1">
                 TANDOOR
               </h2>
-              <p className="text-sm sm:text-base text-[#554243] mt-1">
+              <p className="text-sm sm:text-base text-[#D8CFC4] mt-1">
                 Charcoal grilled with house-ground marinades and aromatic oils.
               </p>
             </div>
@@ -448,10 +448,10 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                 return (
                   <article
                     key={item.id}
-                    className={`bg-white rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between border ${
+                    className={`bg-[#27222C] rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between border ${
                       item.isVeg
-                        ? 'border-[#15803D]/35 hover:border-[#15803D]/60'
-                        : 'border-[#C9A24B]/30 hover:border-[#C9A24B]/60'
+                        ? 'border-[#4ADE80]/35 hover:border-[#4ADE80]/65'
+                        : 'border-[#D4AF37]/25 hover:border-[#D4AF37]/65'
                     }`}
                   >
                     <div>
@@ -459,32 +459,32 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                       <div className="p-5">
                         <div className="flex items-center justify-between gap-2 mb-2">
                           {item.badge ? (
-                            <span className="text-[11px] font-bold uppercase tracking-wider text-[#5A0F1F]">
+                            <span className="text-[11px] font-bold uppercase tracking-wider text-[#ECC55F]">
                               {item.badge}
                             </span>
                           ) : item.portion ? (
                             <span
                               className={`text-[11px] font-bold uppercase tracking-wider ${
-                                item.isVeg ? 'text-[#15803D]' : 'text-[#795902]'
+                                item.isVeg ? 'text-[#4ADE80]' : 'text-[#ECC55F]'
                               }`}
                             >
                               {item.isVeg ? `Veg · ${item.portion}` : item.portion}
                             </span>
                           ) : (
-                            <span className="text-[11px] font-bold uppercase tracking-wider text-[#795902]">
+                            <span className="text-[11px] font-bold uppercase tracking-wider text-[#ECC55F]">
                               Tandoor
                             </span>
                           )}
                           {renderPrice(displayedPrice)}
                         </div>
 
-                        <h3 className="font-serif text-lg font-semibold text-[#3A000D] mb-1.5">
+                        <h3 className="font-serif text-lg font-semibold text-[#F7F1E3] mb-1.5">
                           {item.name}
                         </h3>
-                        <p className="text-sm text-[#554243] leading-relaxed">{item.description}</p>
+                        <p className="text-sm text-[#D8CFC4] leading-relaxed">{item.description}</p>
 
                         {item.selectablePortions && (
-                          <div className="mt-4 inline-flex gap-1 bg-[#FAEBE5] rounded-lg p-1 border border-[#C9A24B]/35">
+                          <div className="mt-4 inline-flex gap-1 bg-[#1B181F] rounded-lg p-1 border border-[#D4AF37]/30">
                             {item.selectablePortions.map((opt) => {
                               const selected = tandooriPortion === opt.label;
                               return (
@@ -496,8 +496,8 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                                   }
                                   className={`px-3 py-1 text-xs font-bold rounded-md transition-colors cursor-pointer whitespace-nowrap ${
                                     selected
-                                      ? 'bg-[#5A0F1F] text-[#FFF8F6]'
-                                      : 'text-[#554243] hover:text-[#3A000D]'
+                                      ? 'bg-gradient-to-r from-[#C99B35] to-[#F0C75E] text-[#1D1810]'
+                                      : 'text-[#D8CFC4] hover:text-[#F7F1E3]'
                                   }`}
                                 >
                                   {opt.label}
@@ -519,13 +519,13 @@ export function MenuPage({ initialSection }: MenuPageProps) {
         {platters.length > 0 && (
           <section id="platters" className="scroll-mt-36">
             <div className="mb-8">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#795902]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#ECC55F]">
                 Sharing Feasts
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#3A000D] mt-1">
+              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#F7F1E3] mt-1">
                 PLATTERS
               </h2>
-              <p className="text-sm sm:text-base text-[#554243] mt-1">
+              <p className="text-sm sm:text-base text-[#D8CFC4] mt-1">
                 Crafted for solo tasting or sharing at the table.
               </p>
             </div>
@@ -536,7 +536,7 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                 return (
                   <article
                     key={platter.id}
-                    className="bg-white rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-shadow border border-[#C9A24B]/35 flex flex-col"
+                    className="bg-[#27222C] rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-shadow border border-[#D4AF37]/30 flex flex-col"
                   >
                     {renderDishCardImage(platter.imageUrl, platter.name)}
 
@@ -544,17 +544,17 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                       <div>
                         <div className="flex items-start justify-between gap-4 mb-2">
                           <div>
-                            <span className="block text-[11px] font-bold uppercase tracking-wider text-[#795902]">
+                            <span className="block text-[11px] font-bold uppercase tracking-wider text-[#ECC55F]">
                               {platter.tag}
                             </span>
-                            <h3 className="font-serif text-2xl font-semibold text-[#3A000D] mt-1">
+                            <h3 className="font-serif text-2xl font-semibold text-[#F7F1E3] mt-1">
                               {platter.name}
                             </h3>
                           </div>
                           {renderPrice(platter.price, true)}
                         </div>
 
-                        <p className="text-sm sm:text-base text-[#554243] mb-4">
+                        <p className="text-sm sm:text-base text-[#D8CFC4] mb-4">
                           {platter.description}
                         </p>
                       </div>
@@ -564,7 +564,7 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                           type="button"
                           aria-expanded={isExpanded}
                           onClick={() => togglePlatter(platter.id)}
-                          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#795902] hover:text-[#3A000D] transition-colors py-1.5 cursor-pointer"
+                          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#ECC55F] hover:text-[#F7F1E3] transition-colors py-1.5 cursor-pointer"
                         >
                           <span>
                             {isExpanded ? 'Hide Platter Contents' : 'Explore Platter Contents'}
@@ -578,13 +578,13 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                         </button>
 
                         {isExpanded && (
-                          <ul className="mt-4 pt-4 border-t border-[#EEDFDA] space-y-2">
+                          <ul className="mt-4 pt-4 border-t border-[#D4AF37]/20 space-y-2">
                             {platter.contents.map((line) => (
                               <li
                                 key={line}
-                                className="flex items-center gap-2.5 text-sm text-[#211A17]"
+                                className="flex items-center gap-2.5 text-sm text-[#F7F1E3]"
                               >
-                                <span className="w-1.5 h-1.5 rounded-full bg-[#C9A24B] shrink-0" />
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#F0C75E] shrink-0" />
                                 <span>{line}</span>
                               </li>
                             ))}
@@ -603,13 +603,13 @@ export function MenuPage({ initialSection }: MenuPageProps) {
         {biryanis.length > 0 && (
           <section id="biryani" className="scroll-mt-36">
             <div className="mb-8">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#795902]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#ECC55F]">
                 Signature Handi Biryanis
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#3A000D] mt-1">
+              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#F7F1E3] mt-1">
                 HYDERABADI DUM BIRYANI
               </h2>
-              <p className="text-sm sm:text-base text-[#554243] mt-1">
+              <p className="text-sm sm:text-base text-[#D8CFC4] mt-1">
                 Slow-cooked in sealed handis with long-grain basmati, saffron, and whole spices.
               </p>
             </div>
@@ -623,34 +623,34 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                 return (
                   <article
                     key={biryani.id}
-                    className="bg-white rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between border-2 border-[#C9A24B]/45 hover:border-[#C9A24B] transition-colors"
+                    className="bg-[#27222C] rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between border-2 border-[#D4AF37]/40 hover:border-[#D4AF37] transition-colors"
                   >
                     <div>
                       {renderDishCardImage(biryani.imageUrl, biryani.name)}
 
                       <div className="p-6 sm:p-7">
                         <div className="flex flex-wrap items-baseline justify-between gap-3 mb-2">
-                          <span className="text-[11px] font-bold uppercase tracking-wider text-[#795902]">
+                          <span className="text-[11px] font-bold uppercase tracking-wider text-[#ECC55F]">
                             {biryani.tag}
                           </span>
                           <div className="text-right">
                             {renderPrice(selectedSize.price, true)}
-                            <span className="block text-[10px] font-semibold uppercase tracking-wider text-[#554243]">
+                            <span className="block text-[10px] font-semibold uppercase tracking-wider text-[#B4A89B]">
                               {selectedSize.label} portion
                             </span>
                           </div>
                         </div>
 
-                        <h3 className="font-serif text-2xl font-bold text-[#3A000D] mb-2">
+                        <h3 className="font-serif text-2xl font-bold text-[#F7F1E3] mb-2">
                           {biryani.name}
                         </h3>
-                        <p className="text-sm sm:text-base text-[#554243] leading-relaxed mb-6">
+                        <p className="text-sm sm:text-base text-[#D8CFC4] leading-relaxed mb-6">
                           {biryani.description}
                         </p>
 
                         {/* Selectable Portion Size Controls */}
-                        <div className="bg-[#FFF1EC] p-4 rounded-xl mb-5 border border-[#C9A24B]/30">
-                          <span className="block text-[11px] font-bold uppercase tracking-wider text-[#554243] mb-2.5">
+                        <div className="bg-[#1D1921] p-4 rounded-xl mb-5 border border-[#D4AF37]/25">
+                          <span className="block text-[11px] font-bold uppercase tracking-wider text-[#B4A89B] mb-2.5">
                             Select Portion Size:
                           </span>
                           <div className="grid grid-cols-3 gap-2">
@@ -669,8 +669,8 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                                   }
                                   className={`py-2.5 px-2 sm:px-3 text-center rounded-xl text-xs sm:text-sm font-bold transition-all border cursor-pointer ${
                                     active
-                                      ? 'bg-[#5A0F1F] text-[#FFF8F6] border-[#C9A24B] shadow-sm'
-                                      : 'bg-[#FAEBE5] text-[#554243] border-[#EEDFDA] hover:bg-[#F4E5E0] hover:text-[#3A000D]'
+                                      ? 'bg-gradient-to-r from-[#C99B35] via-[#F0C75E] to-[#D4A63B] text-[#1D1810] border-[#FCE59C]/60 shadow-sm'
+                                      : 'bg-[#27222C] text-[#D8CFC4] border-[#D4AF37]/20 hover:bg-[#322B39] hover:text-[#F7F1E3]'
                                   }`}
                                 >
                                   <span className="block">{size.label}</span>
@@ -683,9 +683,9 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                           </div>
                         </div>
 
-                        <div className="pt-4 border-t border-[#EEDFDA] flex items-center gap-2 text-xs sm:text-sm text-[#554243]">
+                        <div className="pt-4 border-t border-[#D4AF37]/20 flex items-center gap-2 text-xs sm:text-sm text-[#D8CFC4]">
                           <CheckCircle2
-                            className="w-4 h-4 text-[#795902] shrink-0"
+                            className="w-4 h-4 text-[#ECC55F] shrink-0"
                             aria-hidden="true"
                           />
                           <span>{biryani.accompaniment}</span>
@@ -705,13 +705,13 @@ export function MenuPage({ initialSection }: MenuPageProps) {
             {lambCurries.length > 0 && (
               <section id="lamb" className="scroll-mt-36">
                 <div className="mb-6">
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#795902]">
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#ECC55F]">
                     Rich Gravies
                   </span>
-                  <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#3A000D] mt-1">
+                  <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#F7F1E3] mt-1">
                     MEHFIL-E-LAMB
                   </h2>
-                  <p className="text-sm sm:text-base text-[#554243] mt-1">
+                  <p className="text-sm sm:text-base text-[#D8CFC4] mt-1">
                     Tender Scottish lamb braised in traditional copper degchi sauces.
                   </p>
                 </div>
@@ -720,15 +720,15 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                   {lambCurries.map((dish) => (
                     <article
                       key={dish.id}
-                      className="bg-white p-5 rounded-xl shadow-xs flex items-center justify-between gap-4 border border-[#C9A24B]/30 hover:border-[#C9A24B]/60 transition-colors"
+                      className="bg-[#27222C] p-5 rounded-xl shadow-xs flex items-center justify-between gap-4 border border-[#D4AF37]/25 hover:border-[#D4AF37]/65 transition-colors"
                     >
                       <div className="flex items-center gap-4 min-w-0 flex-1">
                         {renderListDishThumb(dish.imageUrl, dish.name)}
                         <div className="min-w-0">
-                          <h3 className="font-serif text-lg sm:text-xl font-semibold text-[#3A000D]">
+                          <h3 className="font-serif text-lg sm:text-xl font-semibold text-[#F7F1E3]">
                             {dish.name}
                           </h3>
-                          <p className="text-sm text-[#554243] mt-1">{dish.description}</p>
+                          <p className="text-sm text-[#D8CFC4] mt-1">{dish.description}</p>
                         </div>
                       </div>
                       {renderPrice(dish.price)}
@@ -741,13 +741,13 @@ export function MenuPage({ initialSection }: MenuPageProps) {
             {murghCurries.length > 0 && (
               <section id="murgh" className="scroll-mt-36">
                 <div className="mb-6">
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#795902]">
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#ECC55F]">
                     Chicken Specialties
                   </span>
-                  <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#3A000D] mt-1">
+                  <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#F7F1E3] mt-1">
                     MEHFIL-E-MURGH
                   </h2>
-                  <p className="text-sm sm:text-base text-[#554243] mt-1">
+                  <p className="text-sm sm:text-base text-[#D8CFC4] mt-1">
                     Signature poultry creations stewed in fragrant gravies.
                   </p>
                 </div>
@@ -756,20 +756,20 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                   {murghCurries.map((dish) => (
                     <article
                       key={dish.id}
-                      className="bg-white p-5 rounded-xl shadow-xs flex items-center justify-between gap-4 border border-[#C9A24B]/30 hover:border-[#C9A24B]/60 transition-colors"
+                      className="bg-[#27222C] p-5 rounded-xl shadow-xs flex items-center justify-between gap-4 border border-[#D4AF37]/25 hover:border-[#D4AF37]/65 transition-colors"
                     >
                       <div className="flex items-center gap-4 min-w-0 flex-1">
                         {renderListDishThumb(dish.imageUrl, dish.name)}
                         <div className="min-w-0">
                           {dish.badge && (
-                            <span className="block text-[10px] uppercase font-bold tracking-wider text-[#795902] mb-0.5">
+                            <span className="block text-[10px] uppercase font-bold tracking-wider text-[#ECC55F] mb-0.5">
                               {dish.badge}
                             </span>
                           )}
-                          <h3 className="font-serif text-lg sm:text-xl font-semibold text-[#3A000D]">
+                          <h3 className="font-serif text-lg sm:text-xl font-semibold text-[#F7F1E3]">
                             {dish.name}
                           </h3>
-                          <p className="text-sm text-[#554243] mt-1">{dish.description}</p>
+                          <p className="text-sm text-[#D8CFC4] mt-1">{dish.description}</p>
                         </div>
                       </div>
                       {renderPrice(dish.price)}
@@ -785,13 +785,13 @@ export function MenuPage({ initialSection }: MenuPageProps) {
         {mandis.length > 0 && (
           <section id="mandi" className="scroll-mt-36">
             <div className="mb-8">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#795902]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#ECC55F]">
                 Arabian-Hyderabadi Fusion
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#3A000D] mt-1">
+              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#F7F1E3] mt-1">
                 MEHFIL-E-MANDI
               </h2>
-              <p className="text-sm sm:text-base text-[#554243] mt-1">
+              <p className="text-sm sm:text-base text-[#D8CFC4] mt-1">
                 Succulent roasted meats served over spiced long mandi rice, served in traditional
                 communal platters.
               </p>
@@ -801,47 +801,47 @@ export function MenuPage({ initialSection }: MenuPageProps) {
               {mandis.map((mandi) => (
                 <article
                   key={mandi.id}
-                  className="bg-white rounded-xl overflow-hidden shadow-xs flex flex-col justify-between border border-[#C9A24B]/30 hover:border-[#C9A24B]/60 transition-colors"
+                  className="bg-[#27222C] rounded-xl overflow-hidden shadow-xs flex flex-col justify-between border border-[#D4AF37]/25 hover:border-[#D4AF37]/65 transition-colors"
                 >
                   <div>
                     {renderDishCardImage(mandi.imageUrl, mandi.name)}
                     <div className="p-6">
-                      <span className="block text-[11px] font-bold uppercase tracking-wider text-[#795902]">
+                      <span className="block text-[11px] font-bold uppercase tracking-wider text-[#ECC55F]">
                         {mandi.tag}
                       </span>
-                      <h3 className="font-serif text-2xl font-bold text-[#3A000D] mt-1.5 mb-2">
+                      <h3 className="font-serif text-2xl font-bold text-[#F7F1E3] mt-1.5 mb-2">
                         {mandi.name}
                       </h3>
-                      <p className="text-sm text-[#554243] leading-relaxed">{mandi.description}</p>
+                      <p className="text-sm text-[#D8CFC4] leading-relaxed">{mandi.description}</p>
                     </div>
                   </div>
 
                   <div className="px-6 pb-6">
-                    <div className="bg-[#FFF1EC] p-3.5 rounded-xl space-y-2 border border-[#C9A24B]/30">
+                    <div className="bg-[#1D1921] p-3.5 rounded-xl space-y-2 border border-[#D4AF37]/25">
                       {mandi.tiers.map((tier, index) => (
                         <div
                           key={tier.label}
                           className={`flex items-center justify-between text-sm ${
                             index === mandi.tiers.length - 1 && mandi.tiers.length > 1
-                              ? 'pt-1.5 border-t border-[#EEDFDA]'
+                              ? 'pt-1.5 border-t border-[#D4AF37]/20'
                               : ''
                           }`}
                         >
                           <span
                             className={
                               tier.highlight
-                                ? 'text-[#3A000D] font-bold'
-                                : 'text-[#554243] font-medium'
+                                ? 'text-[#F7F1E3] font-bold'
+                                : 'text-[#D8CFC4] font-medium'
                             }
                           >
                             {tier.label}:
                           </span>
                           <span
                             className={`font-bold tabular-nums ${
-                              tier.highlight ? 'text-[#795902] text-base' : 'text-[#3A000D]'
+                              tier.highlight ? 'text-[#F0C75E] text-base' : 'text-[#ECC55F]'
                             }`}
                           >
-                            <span className="text-xs text-[#C9A24B] mr-0.5">£</span>
+                            <span className="text-xs text-[#D4AF37] mr-0.5">£</span>
                             {tier.price}
                           </span>
                         </div>
@@ -858,14 +858,14 @@ export function MenuPage({ initialSection }: MenuPageProps) {
         {vegItems.length > 0 && (
           <section id="veg" className="scroll-mt-36">
             <div className="flex items-center gap-3 mb-7">
-              <span className="w-6 h-6 rounded-full bg-[#15803D] flex items-center justify-center shadow-xs">
-                <Leaf className="w-3.5 h-3.5 text-white" aria-hidden="true" />
+              <span className="w-6 h-6 rounded-full bg-[#166534] border border-[#4ADE80]/50 flex items-center justify-center shadow-xs">
+                <Leaf className="w-3.5 h-3.5 text-[#4ADE80]" aria-hidden="true" />
               </span>
               <div>
-                <span className="text-xs font-bold uppercase tracking-widest text-[#15803D] block">
+                <span className="text-xs font-bold uppercase tracking-widest text-[#4ADE80] block">
                   Vegetarian Delights
                 </span>
-                <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#3A000D]">
+                <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#F7F1E3]">
                   VEG ITEMS
                 </h2>
               </div>
@@ -875,18 +875,18 @@ export function MenuPage({ initialSection }: MenuPageProps) {
               {vegItems.map((item) => (
                 <article
                   key={item.id}
-                  className="bg-white rounded-xl overflow-hidden shadow-xs flex flex-col justify-between border border-[#15803D]/30 hover:border-[#15803D]/60 transition-colors"
+                  className="bg-[#27222C] rounded-xl overflow-hidden shadow-xs flex flex-col justify-between border border-[#4ADE80]/30 hover:border-[#4ADE80]/65 transition-colors"
                 >
                   <div>
                     {renderDishCardImage(item.imageUrl, item.name)}
                     <div className="p-6">
                       <div className="flex items-start justify-between gap-2 mb-2">
-                        <h3 className="font-serif text-xl font-semibold text-[#3A000D]">
+                        <h3 className="font-serif text-xl font-semibold text-[#F7F1E3]">
                           {item.name}
                         </h3>
                         {renderPrice(item.price)}
                       </div>
-                      <p className="text-sm text-[#554243] leading-relaxed">{item.description}</p>
+                      <p className="text-sm text-[#D8CFC4] leading-relaxed">{item.description}</p>
                     </div>
                   </div>
                 </article>
@@ -899,13 +899,13 @@ export function MenuPage({ initialSection }: MenuPageProps) {
         {rotiItems.length > 0 && (
           <section id="roti" className="scroll-mt-36">
             <div className="mb-7">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#795902]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#ECC55F]">
                 From the Tandoori Pit
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#3A000D] mt-1">
+              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#F7F1E3] mt-1">
                 MEHFIL-E-ROTI
               </h2>
-              <p className="text-sm sm:text-base text-[#554243] mt-1">
+              <p className="text-sm sm:text-base text-[#D8CFC4] mt-1">
                 Freshly baked in our clay tandoor and brushed with melted butter.
               </p>
             </div>
@@ -914,16 +914,16 @@ export function MenuPage({ initialSection }: MenuPageProps) {
               {rotiItems.map((item) => (
                 <article
                   key={item.id}
-                  className="bg-white rounded-xl overflow-hidden shadow-xs text-center border border-[#C9A24B]/30 hover:border-[#C9A24B]/60 transition-colors flex flex-col justify-between"
+                  className="bg-[#27222C] rounded-xl overflow-hidden shadow-xs text-center border border-[#D4AF37]/25 hover:border-[#D4AF37]/65 transition-colors flex flex-col justify-between"
                 >
                   <div>
                     {renderDishCardImage(item.imageUrl, item.name)}
                     <div className="p-4">
                       <div className="mb-1.5">{renderPrice(item.price)}</div>
-                      <h3 className="font-serif text-base font-bold text-[#3A000D] mb-1">
+                      <h3 className="font-serif text-base font-bold text-[#F7F1E3] mb-1">
                         {item.name}
                       </h3>
-                      <p className="text-xs text-[#554243] leading-snug">{item.description}</p>
+                      <p className="text-xs text-[#D8CFC4] leading-snug">{item.description}</p>
                     </div>
                   </div>
                 </article>
@@ -938,21 +938,21 @@ export function MenuPage({ initialSection }: MenuPageProps) {
             {extrasItems.length > 0 && (
               <section id="extras" className="scroll-mt-36">
                 <div className="mb-6">
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#795902]">
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#ECC55F]">
                     Accompaniments &amp; Portions
                   </span>
-                  <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#3A000D] mt-1">
+                  <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#F7F1E3] mt-1">
                     EXTRA&apos;S
                   </h2>
                 </div>
 
-                <div className="bg-white rounded-2xl p-6 shadow-xs border border-[#C9A24B]/30 divide-y divide-[#EEDFDA]">
+                <div className="bg-[#27222C] rounded-2xl p-6 shadow-xs border border-[#D4AF37]/30 divide-y divide-[#D4AF37]/15">
                   {extrasItems.map((extra) => (
                     <div
                       key={extra.id}
                       className="flex items-center justify-between py-3 first:pt-1 last:pb-1"
                     >
-                      <span className="text-base font-semibold text-[#3A000D]">{extra.name}</span>
+                      <span className="text-base font-semibold text-[#F7F1E3]">{extra.name}</span>
                       {renderPrice(extra.price)}
                     </div>
                   ))}
@@ -963,10 +963,10 @@ export function MenuPage({ initialSection }: MenuPageProps) {
             {lassiItems.length > 0 && (
               <section id="lassi" className="scroll-mt-36">
                 <div className="mb-6">
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#795902]">
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#ECC55F]">
                     Chilled Yogurt Drinks
                   </span>
-                  <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#3A000D] mt-1">
+                  <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#F7F1E3] mt-1">
                     MEHFIL-E-LASSI
                   </h2>
                 </div>
@@ -977,22 +977,22 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                       key={lassi.id}
                       className={`p-5 rounded-xl shadow-xs flex items-center justify-between gap-4 border transition-colors ${
                         lassi.badge
-                          ? 'bg-gradient-to-r from-white to-[#FFF3E5] border-[#C9A24B]/50'
-                          : 'bg-white border-[#C9A24B]/30 hover:border-[#C9A24B]/60'
+                          ? 'bg-gradient-to-r from-[#27222C] to-[#2F2835] border-[#D4AF37]/50'
+                          : 'bg-[#27222C] border-[#D4AF37]/25 hover:border-[#D4AF37]/65'
                       }`}
                     >
                       <div className="flex items-center gap-4 min-w-0 flex-1">
                         {renderListDishThumb(lassi.imageUrl, lassi.name)}
                         <div className="min-w-0">
                           {lassi.badge && (
-                            <span className="block text-[10px] text-[#795902] uppercase font-bold tracking-wider mb-1">
+                            <span className="block text-[10px] text-[#ECC55F] uppercase font-bold tracking-wider mb-1">
                               {lassi.badge}
                             </span>
                           )}
-                          <h3 className="font-serif text-lg sm:text-xl font-semibold text-[#3A000D]">
+                          <h3 className="font-serif text-lg sm:text-xl font-semibold text-[#F7F1E3]">
                             {lassi.name}
                           </h3>
-                          <p className="text-sm text-[#554243] mt-0.5">{lassi.description}</p>
+                          <p className="text-sm text-[#D8CFC4] mt-0.5">{lassi.description}</p>
                         </div>
                       </div>
                       {renderPrice(lassi.price, Boolean(lassi.badge))}
@@ -1014,13 +1014,13 @@ export function MenuPage({ initialSection }: MenuPageProps) {
           onClick={(e) => {
             if (e.target === e.currentTarget) setLightboxDish(null);
           }}
-          className="fixed inset-0 z-50 bg-[#1B1411]/90 backdrop-blur-md flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-[#141217]/90 backdrop-blur-md flex items-center justify-center p-4"
         >
-          <div className="relative max-w-2xl w-full bg-[#FFF8F6] rounded-xl overflow-hidden shadow-2xl border border-[#C9A24B]/50">
-            <div className="flex items-center justify-between gap-4 px-5 py-3.5 bg-[#3A000D] text-[#FFF8F6] border-b border-[#C9A24B]/30">
+          <div className="relative max-w-2xl w-full bg-[#211D25] rounded-xl overflow-hidden shadow-2xl border border-[#D4AF37]/50">
+            <div className="flex items-center justify-between gap-4 px-5 py-3.5 bg-[#18151B] text-[#F7F1E3] border-b border-[#D4AF37]/30">
               <span
                 id="menu-lightbox-title"
-                className="font-serif text-base sm:text-lg text-[#FFDF9E] truncate"
+                className="font-serif text-base sm:text-lg text-[#ECC55F] truncate"
               >
                 {lightboxDish.name}
               </span>
@@ -1028,12 +1028,12 @@ export function MenuPage({ initialSection }: MenuPageProps) {
                 type="button"
                 aria-label="Close photo preview"
                 onClick={() => setLightboxDish(null)}
-                className="p-1.5 rounded-full hover:bg-white/10 text-[#FFF8F6] cursor-pointer"
+                className="p-1.5 rounded-full hover:bg-white/10 text-[#F7F1E3] cursor-pointer"
               >
                 <X className="w-5 h-5" aria-hidden="true" />
               </button>
             </div>
-            <div className="bg-[#1B1411] flex items-center justify-center max-h-[70vh] overflow-hidden">
+            <div className="bg-[#141217] flex items-center justify-center max-h-[70vh] overflow-hidden">
               <ResilientImage
                 src={lightboxDish.imageUrl}
                 alt={lightboxDish.name}
