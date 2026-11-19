@@ -1,3 +1,10 @@
+/**
+ * Firebase Initialization Module
+ * 
+ * Initializes Firebase with environment variables.
+ * Provides centralized auth and database access.
+ */
+
 import { initializeApp } from 'firebase/app';
 import {
   getAuth,
@@ -8,86 +15,95 @@ import {
   type User,
 } from 'firebase/auth';
 import { doc, getDocFromServer, getFirestore } from 'firebase/firestore';
-import firebaseConfig from '../../firebase-applet-config.json';
+import { env } from '../config/env';
+import { log } from './logger';
 
-const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
-export const auth = getAuth(app);
+/**
+ * Initialize Firebase app with environment config
+ */
+const firebaseConfig = {
+  apiKey: env.firebaseApiKey,
+  authDomain: env.firebaseAuthDomain,
+  projectId: env.firebaseProjectId,
+  storageBucket: env.firebaseStorageBucket,
+  messagingSenderId: env.firebaseMessagingSenderId,
+  appId: env.firebaseAppId,
+};
+
+let firebaseApp: any;
+let db: any;
+let auth: any;
+
+try {
+  firebaseApp = initializeApp(firebaseConfig);
+  db = getFirestore(firebaseApp, env.firebaseFirestoreDbId);
+  auth = getAuth(firebaseApp);
+
+  log.debug('Firebase initialized successfully', {
+    projectId: env.firebaseProjectId,
+  });
+} catch (error) {
+  log.error('Failed to initialize Firebase:', error);
+  throw error;
+}
+
+export { firebaseApp, db, auth };
+
 export const googleProvider = new GoogleAuthProvider();
 
-export enum OperationType {
-  CREATE = 'create',
-  UPDATE = 'update',
-  DELETE = 'delete',
-  LIST = 'list',
-  GET = 'get',
-  WRITE = 'write',
-}
-
-export interface FirestoreErrorInfo {
-  error: string;
-  operationType: OperationType;
-  path: string | null;
-  authInfo: {
-    userId?: string | null;
-    email?: string | null;
-    emailVerified?: boolean | null;
-    isAnonymous?: boolean | null;
-    tenantId?: string | null;
-    providerInfo?: Array<{
-      providerId?: string | null;
-      email?: string | null;
-    }>;
-  };
-}
-
-export function handleFirestoreError(
-  error: unknown,
-  operationType: OperationType,
-  path: string | null
-): never {
-  const errInfo: FirestoreErrorInfo = {
-    error: error instanceof Error ? error.message : String(error),
-    authInfo: {
-      userId: auth.currentUser?.uid,
-      email: auth.currentUser?.email,
-      emailVerified: auth.currentUser?.emailVerified,
-      isAnonymous: auth.currentUser?.isAnonymous,
-      tenantId: auth.currentUser?.tenantId,
-      providerInfo:
-        auth.currentUser?.providerData?.map((provider) => ({
-          providerId: provider.providerId,
-          email: provider.email,
-        })) || [],
-    },
-    operationType,
-    path,
-  };
-  console.error('Firestore Error: ', JSON.stringify(errInfo));
-  throw new Error(JSON.stringify(errInfo));
-}
-
-async function testConnection() {
+/**
+ * Test Firebase connectivity on app start
+ */
+async function testFirebaseConnection() {
   try {
-    await getDocFromServer(doc(db, 'test', 'connection'));
+    // Try to read a non-existent document (checking connectivity, not data)
+    await getDocFromServer(doc(db, '__connectivity__', 'test'));
   } catch (error) {
-    if (error instanceof Error && error.message.includes('the client is offline')) {
-      console.error('Please check your Firebase configuration.');
+    if (error instanceof Error && error.message.includes('offline')) {
+      log.warn('Firebase may be offline - check your connection');
+    } else {
+      log.debug('Firebase connectivity check completed');
     }
   }
 }
 
-void testConnection();
+// Run connectivity test in background (non-blocking)
+void testFirebaseConnection();
 
+/**
+ * Google Sign-In for reviews
+ */
 export async function signInWithGoogleForReview(): Promise<User> {
-  const result = await signInWithPopup(auth, googleProvider);
-  return result.user;
+  try {
+    const result = await signInWithPopup(auth, googleProvider);
+    log.info('User signed in with Google');
+    return result.user;
+  } catch (error: any) {
+    if (error.code === 'auth/popup-closed-by-user') {
+      log.debug('User closed Google sign-in popup');
+      throw new Error('popup-closed-by-user');
+    }
+    log.error('Google sign-in failed:', error.code);
+    throw error;
+  }
 }
 
+/**
+ * Sign out current user
+ */
 export async function signOutReviewer(): Promise<void> {
-  await signOut(auth);
+  try {
+    await signOut(auth);
+    log.info('User signed out');
+  } catch (error) {
+    log.error('Sign out failed:', error);
+    throw error;
+  }
 }
 
+/**
+ * Subscribe to auth state changes
+ */
 export function subscribeToAuth(callback: (user: User | null) => void): () => void {
   return onAuthStateChanged(auth, callback);
 }
